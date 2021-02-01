@@ -1,0 +1,17 @@
+type CodeEntry
+  {
+    id: String!
+    prefLabel: String!
+    notation: Uriorcurie!
+    broader: [Uriorcurie]
+    inScheme: Uriorcurie!
+    seeAlso: [Uri]
+    definition: String
+  }
+
+type NamedThing
+  {
+    id: String!
+  }
+
+

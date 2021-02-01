@@ -1,0 +1,28 @@
+{
+   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-02-01 14:07\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: My Schema Description\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
+   "@context": {
+      "type": "@type",
+      "biolinkml": "https://w3id.org/biolink/biolinkml/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "termci": "https://w3id.org/mixs/termci_schema/",
+      "termci_core": "https://w3id.org/mixs/termci_core/",
+      "@vocab": "https://w3id.org/mixs/termci_schema/",
+      "broader": {
+         "@type": "@id"
+      },
+      "id": "@id",
+      "inScheme": {
+         "@type": "@id"
+      },
+      "notation": {
+         "@type": "@id"
+      },
+      "seeAlso": {
+         "@type": "@id"
+      },
+      "NamedThing": {
+         "@id": "termci_core:NamedThing"
+      }
+   }
+}
+

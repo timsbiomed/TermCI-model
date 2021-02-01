@@ -3,9 +3,9 @@ SCHEMA_DIR = $(SRC_DIR)/schema
 SOURCE_FILES := $(shell find $(SCHEMA_DIR) -name '*.yaml')
 SCHEMA_NAMES = $(patsubst $(SCHEMA_DIR)/%.yaml, %, $(SOURCE_FILES))
 
-SCHEMA_NAME = my_schema
+SCHEMA_NAME = termci_schema
 SCHEMA_SRC = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
-TGTS = graphql jsonschema docs shex owl csv graphql python
+TGTS = graphql jsonschema docs shex owl csv graphql python jsonld-context
 
 #GEN_OPTS = --no-mergeimports
 GEN_OPTS = 
@@ -93,6 +93,11 @@ target/owl/%.owl.ttl: $(SCHEMA_DIR)/%.yaml tdir-owl
 gen-rdf: target/rdf/$(SCHEMA_NAME).ttl
 target/rdf/%.ttl: $(SCHEMA_DIR)/%.yaml tdir-rdf
 	gen-rdf $(GEN_OPTS) $< > $@
+
+### -- JSONLD Context --
+gen-jsonld-context: target/jsonld-context/$(SCHEMA_NAME).context.json
+target/jsonld-context/%.context.json: $(SCHEMA_DIR)/%.yaml tdir-jsonld-context
+	gen-jsonld-context $(GEN_OPTS) $< > $@
 
 ###  -- LinkML --
 # linkml (copy)

@@ -1,0 +1,65 @@
+{
+   "$id": "https://w3id.org/termci_schema",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "definitions": {
+      "CodeEntry": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "broader": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "definition": {
+               "type": "string"
+            },
+            "id": {
+               "type": "string"
+            },
+            "inScheme": {
+               "type": "string"
+            },
+            "notation": {
+               "type": "string"
+            },
+            "prefLabel": {
+               "type": "string"
+            },
+            "seeAlso": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            }
+         },
+         "required": [
+            "id",
+            "prefLabel",
+            "notation",
+            "inScheme"
+         ],
+         "title": "CodeEntry",
+         "type": "object"
+      },
+      "NamedThing": {
+         "additionalProperties": false,
+         "description": "root class",
+         "properties": {
+            "id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "NamedThing",
+         "type": "object"
+      }
+   },
+   "properties": {},
+   "title": "termci_schema",
+   "type": "object"
+}
+

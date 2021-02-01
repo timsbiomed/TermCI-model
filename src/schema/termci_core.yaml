@@ -1,13 +1,13 @@
-id: https://w3id.org/my_core
-name: my_core
+id: https://w3id.org/termci_core
+name: termci_core
 description: >-
   This is an example of an imported module
 imports:
 - biolinkml:types
 prefixes:
   biolinkml: https://w3id.org/biolink/biolinkml/
-  my_core: https://w3id.org/mixs/my_core/
-default_prefix: my_core
+  termci_core: https://w3id.org/mixs/termci_core/
+default_prefix: termci_core
 
 slots:
   id:
