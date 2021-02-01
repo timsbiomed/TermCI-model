@@ -114,6 +114,7 @@ classes:
       A terminological resource (ontology, classification scheme, concept system, etc.)
     class_uri: skos:ConceptScheme
     slots:
+      - prefix
       - namespace
       - description
       - reference
