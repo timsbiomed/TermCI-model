@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 biolinkml = ">=1.7.0"
-mkdocs = "*"
 
 [dev-packages]
+mkdocs = "*"
 
 [requires]
 python_version = "3.9"
