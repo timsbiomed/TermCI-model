@@ -11,21 +11,22 @@
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
     meta:classes <https://hotecosystem.org/termci/CodeEntry>,
-        <https://hotecosystem.org/termci/ConceptSystem> ;
+        <https://hotecosystem.org/termci/ConceptSystem>,
+        <https://hotecosystem.org/termci/Package> ;
     meta:default_range <https://hotecosystem.org/termci/string> ;
-    meta:generation_date "2021-02-01 15:24"^^xsd:dateTime ;
+    meta:generation_date "2021-02-01 16:25"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
-            metatype:prefix_prefix "dc" ],
-        [ meta:prefix_reference skos: ;
-            metatype:prefix_prefix "skos" ],
+    meta:prefixes [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference biolinkml: ;
             metatype:prefix_prefix "biolinkml" ],
+        [ meta:prefix_reference skos: ;
+            metatype:prefix_prefix "skos" ],
         [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
             metatype:prefix_prefix "termci" ],
-        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
-            metatype:prefix_prefix "sh" ] ;
+        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ] ;
     meta:slots <https://hotecosystem.org/termci/code>,
         <https://hotecosystem.org/termci/defined_in>,
         <https://hotecosystem.org/termci/definition>,
@@ -33,11 +34,13 @@
         <https://hotecosystem.org/termci/designation>,
         <https://hotecosystem.org/termci/namespace>,
         <https://hotecosystem.org/termci/narrower_than>,
+        <https://hotecosystem.org/termci/package__entries>,
+        <https://hotecosystem.org/termci/package__systems>,
         <https://hotecosystem.org/termci/prefix>,
         <https://hotecosystem.org/termci/reference>,
         <https://hotecosystem.org/termci/root_concept> ;
-    meta:source_file_date "Mon Feb  1 14:47:03 2021"^^xsd:dateTime ;
-    meta:source_file_size 2985 ;
+    meta:source_file_date "Mon Feb  1 16:24:41 2021"^^xsd:dateTime ;
+    meta:source_file_size 3269 ;
     meta:types <https://hotecosystem.org/termci/boolean>,
         <https://hotecosystem.org/termci/date>,
         <https://hotecosystem.org/termci/datetime>,
@@ -154,6 +157,11 @@
     metatype:repr "str" ;
     meta:uri xsd:anyURI .
 
+<https://hotecosystem.org/termci/entries> a metatype:SlotDefinition ;
+    meta:inlined true ;
+    meta:multivalued true ;
+    meta:range <https://hotecosystem.org/termci/CodeEntry> .
+
 <https://hotecosystem.org/termci/ncname> a metatype:TypeDefinition ;
     skos:definition "Prefix part of CURIE" ;
     skos:inScheme biolinkml:types ;
@@ -162,6 +170,31 @@
     metatype:imported_from "biolinkml:types" ;
     metatype:repr "str" ;
     meta:uri xsd:string .
+
+<https://hotecosystem.org/termci/package__entries> a metatype:SlotDefinition ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    meta:domain_of <https://hotecosystem.org/termci/Package> ;
+    meta:inlined true ;
+    meta:multivalued true ;
+    meta:owner <https://hotecosystem.org/termci/Package> ;
+    meta:range <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:slot_uri <https://hotecosystem.org/termci/entries> ;
+    metatype:alias "entries" .
+
+<https://hotecosystem.org/termci/package__systems> a metatype:SlotDefinition ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    meta:domain_of <https://hotecosystem.org/termci/Package> ;
+    meta:inlined true ;
+    meta:multivalued true ;
+    meta:owner <https://hotecosystem.org/termci/Package> ;
+    meta:range <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:slot_uri <https://hotecosystem.org/termci/systems> ;
+    metatype:alias "systems" .
+
+<https://hotecosystem.org/termci/systems> a metatype:SlotDefinition ;
+    meta:inlined true ;
+    meta:multivalued true ;
+    meta:range <https://hotecosystem.org/termci/ConceptSystem> .
 
 <https://hotecosystem.org/termci/code> a metatype:SlotDefinition ;
     skos:definition "The official identifier of this entry within the context of of the containing concept scheme" ;
@@ -292,6 +325,16 @@ system""" ;
     metatype:base "str" ;
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:string .
+
+<https://hotecosystem.org/termci/Package> a metatype:ClassDefinition ;
+    skos:definition "A collection of CodEntries and/or ConceptSystems" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    meta:attributes <https://hotecosystem.org/termci/entries>,
+        <https://hotecosystem.org/termci/systems> ;
+    meta:class_uri <https://hotecosystem.org/termci/Package> ;
+    meta:definition_uri <https://hotecosystem.org/termci/Package> ;
+    meta:slots <https://hotecosystem.org/termci/package__entries>,
+        <https://hotecosystem.org/termci/package__systems> .
 
 <https://hotecosystem.org/termci/ConceptSystem> a metatype:ClassDefinition ;
     skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;

@@ -84,6 +84,27 @@
          ],
          "title": "ConceptSystem",
          "type": "object"
+      },
+      "Package": {
+         "additionalProperties": false,
+         "description": "A collection of CodEntries and/or ConceptSystems",
+         "properties": {
+            "entries": {
+               "items": {
+                  "$ref": "#/definitions/CodeEntry"
+               },
+               "type": "array"
+            },
+            "systems": {
+               "items": {
+                  "$ref": "#/definitions/ConceptSystem"
+               },
+               "type": "array"
+            }
+         },
+         "required": [],
+         "title": "Package",
+         "type": "object"
       }
    },
    "properties": {},

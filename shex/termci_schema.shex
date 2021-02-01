@@ -56,5 +56,13 @@ metatype:Nodeidentifier NONLITERAL
     )
 }
 
+<Package> CLOSED {
+    (  $<Package_tes> (  <entries> @<CodeEntry> * ;
+          <systems> @<ConceptSystem> *
+       ) ;
+       rdf:type [ <Package> ] ?
+    )
+}
+
 
 

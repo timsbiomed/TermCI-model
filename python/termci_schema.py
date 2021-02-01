@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-01 15:24
+# Generation date: 2021-02-01 16:25
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -153,6 +153,37 @@ class ConceptSystem(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
+@dataclass
+class Package(YAMLRoot):
+    """
+    A collection of CodEntries and/or ConceptSystems
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = TERMCI.Package
+    class_class_curie: ClassVar[str] = "termci:Package"
+    class_name: ClassVar[str] = "Package"
+    class_model_uri: ClassVar[URIRef] = TERMCI.Package
+
+    entries: Optional[Union[Dict[Union[str, CodeEntryCode], Union[dict, CodeEntry]], List[Union[dict, CodeEntry]]]] = empty_dict()
+    systems: Optional[Union[Dict[Union[str, ConceptSystemPrefix], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]] = empty_dict()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.entries is None:
+            self.entries = []
+        if not isinstance(self.entries, (list, dict)):
+            self.entries = [self.entries]
+        self._normalize_inlined_slot(slot_name="entries", slot_type=CodeEntry, key_name="code", inlined_as_list=None, keyed=True)
+
+        if self.systems is None:
+            self.systems = []
+        if not isinstance(self.systems, (list, dict)):
+            self.systems = [self.systems]
+        self._normalize_inlined_slot(slot_name="systems", slot_type=ConceptSystem, key_name="prefix", inlined_as_list=None, keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
 # Enumerations
 
 
@@ -189,3 +220,9 @@ slots.root_concept = Slot(uri=SKOS.hasTopConcept, name="root_concept", curie=SKO
 
 slots.description = Slot(uri=DC.description, name="description", curie=DC.curie('description'),
                    model_uri=TERMCI.description, domain=None, range=Optional[str])
+
+slots.package__entries = Slot(uri=TERMCI.entries, name="package__entries", curie=TERMCI.curie('entries'),
+                   model_uri=TERMCI.package__entries, domain=None, range=Optional[Union[Dict[Union[str, CodeEntryCode], Union[dict, CodeEntry]], List[Union[dict, CodeEntry]]]])
+
+slots.package__systems = Slot(uri=TERMCI.systems, name="package__systems", curie=TERMCI.curie('systems'),
+                   model_uri=TERMCI.package__systems, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemPrefix], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])

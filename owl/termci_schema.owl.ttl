@@ -6,9 +6,30 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<https://hotecosystem.org/termci/Package> a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "Package" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptSystem> ;
+            owl:onProperty meta:systems ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
+            owl:onProperty meta:entries ] ;
+    skos:definition "A collection of CodEntries and/or ConceptSystems" .
+
 meta:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" ;
     skos:definition "the name and description of a subset" .
+
+meta:package__entries a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "package__entries" ;
+    rdfs:range <https://hotecosystem.org/termci/CodeEntry> .
+
+meta:package__systems a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "package__systems" ;
+    rdfs:range <https://hotecosystem.org/termci/ConceptSystem> .
 
 <https://w3id.org/biolink/biolinkml/meta/types/Boolean> a owl:Class,
         meta:TypeDefinition ;
@@ -116,11 +137,11 @@ meta:SubsetDefinition a owl:Class ;
     rdfs:label "termci_schema" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:generation_date "2021-02-01 15:24" ;
+    meta:generation_date "2021-02-01 16:25" ;
     meta:metamodel_version "1.7.0" ;
     meta:source_file "termci_schema.yaml" ;
-    meta:source_file_date "Mon Feb  1 14:47:03 2021" ;
-    meta:source_file_size 2985 .
+    meta:source_file_date "Mon Feb  1 16:24:41 2021" ;
+    meta:source_file_size 3269 .
 
 <https://hotecosystem.org/termci/code> a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -172,32 +193,6 @@ system""" .
     rdfs:range <https://hotecosystem.org/termci/CodeEntry> ;
     skos:definition "A concept that has no broader concepts in a ConceptSystem" .
 
-<https://hotecosystem.org/termci/ConceptSystem> a owl:Class,
-        meta:ClassDefinition ;
-    rdfs:label "ConceptSystem" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://hotecosystem.org/termci/description> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
-            owl:onProperty <https://hotecosystem.org/termci/root_concept> ],
-        [ a owl:Class ;
-            owl:intersectionOf ( [ a owl:Restriction ;
-                        owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-                        owl:onProperty <https://hotecosystem.org/termci/namespace> ] [ a owl:Restriction ;
-                        owl:onProperty <https://hotecosystem.org/termci/namespace> ;
-                        owl:someValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ] ) ],
-        [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
-            owl:onProperty <https://hotecosystem.org/termci/prefix> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-            owl:onProperty <https://hotecosystem.org/termci/reference> ] ;
-    skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
-    skos:exactMatch skos:ConceptScheme .
-
 <https://hotecosystem.org/termci/namespace> a owl:ObjectProperty,
         meta:SlotDefinition ;
     rdfs:label "namespace" ;
@@ -210,10 +205,6 @@ system""" .
     rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
     skos:definition "A link that provides additional information about this entry" .
 
-meta:ClassDefinition a owl:Class ;
-    rdfs:label "class_definition" ;
-    skos:definition "the definition of a class or interface" .
-
 <https://w3id.org/biolink/biolinkml/meta/types/Ncname> a owl:Class,
         meta:TypeDefinition ;
     rdfs:label "ncname" ;
@@ -223,31 +214,61 @@ meta:ClassDefinition a owl:Class ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "Prefix part of CURIE" .
 
+meta:ClassDefinition a owl:Class ;
+    rdfs:label "class_definition" ;
+    skos:definition "the definition of a class or interface" .
+
+<https://hotecosystem.org/termci/ConceptSystem> a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "ConceptSystem" ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:intersectionOf ( [ a owl:Restriction ;
+                        owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+                        owl:onProperty <https://hotecosystem.org/termci/namespace> ] [ a owl:Restriction ;
+                        owl:onProperty <https://hotecosystem.org/termci/namespace> ;
+                        owl:someValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ] ) ],
+        [ a owl:Restriction ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
+            owl:onProperty <https://hotecosystem.org/termci/prefix> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
+            owl:onProperty <https://hotecosystem.org/termci/root_concept> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/description> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <https://hotecosystem.org/termci/reference> ] ;
+    skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
+    skos:exactMatch skos:ConceptScheme .
+
 <https://hotecosystem.org/termci/CodeEntry> a owl:Class,
         meta:ClassDefinition ;
     rdfs:label "CodeEntry" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
-            owl:onProperty <https://hotecosystem.org/termci/narrower_than> ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <https://hotecosystem.org/termci/designation> ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://hotecosystem.org/termci/definition> ],
+            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
+            owl:onProperty <https://hotecosystem.org/termci/narrower_than> ],
         [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://hotecosystem.org/termci/code> ;
+            owl:onClass <https://hotecosystem.org/termci/ConceptSystem> ;
+            owl:onProperty <https://hotecosystem.org/termci/defined_in> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
             owl:onProperty <https://hotecosystem.org/termci/reference> ],
         [ a owl:Restriction ;
-            owl:onClass <https://hotecosystem.org/termci/ConceptSystem> ;
-            owl:onProperty <https://hotecosystem.org/termci/defined_in> ;
-            owl:qualifiedCardinality 1 ] ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/code> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/definition> ] ;
     skos:definition "An entry in a concept system" ;
     skos:exactMatch skos:Concept .
 

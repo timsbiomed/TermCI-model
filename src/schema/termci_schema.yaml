@@ -120,5 +120,19 @@ classes:
       - reference
       - root_concept
 
+  Package:
+    description: |-
+      A collection of CodEntries and/or ConceptSystems
+    attributes:
+      entries:
+        range: CodeEntry
+        inlined: true
+        multivalued: true
+      systems:
+        range: ConceptSystem
+        inlined: true
+        multivalued: true
+
+
 
 

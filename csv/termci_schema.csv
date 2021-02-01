@@ -1,4 +1,5 @@
 id,mappings,description
 CodeEntry,,An entry in a concept system
 ConceptSystem,,"A terminological resource (ontology, classification scheme, concept system, etc.)"
+Package,,A collection of CodEntries and/or ConceptSystems
 

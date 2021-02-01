@@ -17,4 +17,10 @@ type ConceptSystem
     rootConcept: [CodeEntry]
   }
 
+type Package
+  {
+    entries: [CodeEntry]
+    systems: [ConceptSystem]
+  }
+
 
