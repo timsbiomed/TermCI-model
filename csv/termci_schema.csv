@@ -1,4 +1,4 @@
 id,mappings,description
-CodeEntry,,
-named_thing,,root class
+CodeEntry,,An entry in a concept system
+ConceptSystem,,"A terminological resource (ontology, classification scheme, concept system, etc.)"
 

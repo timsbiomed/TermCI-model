@@ -5,7 +5,7 @@ SCHEMA_NAMES = $(patsubst $(SCHEMA_DIR)/%.yaml, %, $(SOURCE_FILES))
 
 SCHEMA_NAME = termci_schema
 SCHEMA_SRC = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
-TGTS = graphql jsonschema docs shex owl csv graphql python jsonld-context
+TGTS = graphql jsonschema docs shex owl csv graphql python jsonld-context rdf
 
 #GEN_OPTS = --no-mergeimports
 GEN_OPTS = 
@@ -25,8 +25,7 @@ echo:
 test: all
 
 install:
-	. environment.sh
-	pip install -r requirements.txt
+	pipenv install
 
 tdir-%:
 	mkdir -p target/$*
@@ -46,58 +45,55 @@ gen-docs: target/docs/index.md copy-src-docs
 copy-src-docs:
 	cp $(SRC_DIR)/docs/*md target/docs/
 target/docs/%.md: $(SCHEMA_SRC) tdir-docs
-	gen-markdown $(GEN_OPTS) --dir target/docs $<
+	pipenv run gen-markdown $(GEN_OPTS) --dir target/docs $<
 stage-docs: gen-docs
 	cp -pr target/docs .
 
 ###  -- MARKDOWN DOCS --
-# TODO: modularize imports
 gen-python: $(patsubst %, target/python/%.py, $(SCHEMA_NAMES))
 .PHONY: gen-python
 target/python/%.py: $(SCHEMA_DIR)/%.yaml  tdir-python
-	gen-py-classes --no-mergeimports $(GEN_OPTS) $< > $@
+	pipenv run gen-py-classes --no-mergeimports $(GEN_OPTS) $< > $@
 
 ###  -- MARKDOWN DOCS --
-# TODO: modularize imports. For now imports are merged.
 gen-graphql:target/graphql/$(SCHEMA_NAME).graphql 
 target/graphql/%.graphql: $(SCHEMA_DIR)/%.yaml tdir-graphql
-	gen-graphql $(GEN_OPTS) $< > $@
+	pipenv run gen-graphql $(GEN_OPTS) $< > $@
 
 ###  -- JSON schema --
 # TODO: modularize imports. For now imports are merged.
 gen-jsonschema: target/jsonschema/$(SCHEMA_NAME).schema.json
 target/jsonschema/%.schema.json: $(SCHEMA_DIR)/%.yaml tdir-jsonschema
-	gen-json-schema $(GEN_OPTS) -t transaction $< > $@
+	pipenv run gen-json-schema $(GEN_OPTS) -t transaction $< > $@
 
 ###  -- Shex --
 # one file per module
 gen-shex: $(patsubst %, target/shex/%.shex, $(SCHEMA_NAMES))
 target/shex/%.shex: $(SCHEMA_DIR)/%.yaml tdir-shex
-	gen-shex --no-mergeimports $(GEN_OPTS) $< > $@
+	pipenv run gen-shex --no-mergeimports $(GEN_OPTS) $< > $@
 
 ###  -- CSV --
 # one file per module
 gen-csv: $(patsubst %, target/csv/%.csv, $(SCHEMA_NAMES))
 target/csv/%.csv: $(SCHEMA_DIR)/%.yaml tdir-csv
-	gen-csv $(GEN_OPTS) $< > $@
+	pipenv run gen-csv $(GEN_OPTS) $< > $@
 
 ###  -- OWL --
-# TODO: modularize imports. For now imports are merged.
 gen-owl: target/owl/$(SCHEMA_NAME).owl.ttl
 .PHONY: gen-owl
 target/owl/%.owl.ttl: $(SCHEMA_DIR)/%.yaml tdir-owl
-	gen-owl $(GEN_OPTS) $< > $@
+	pipenv run gen-owl $(GEN_OPTS) $< > $@
 
 ###  -- RDF (direct mapping) --
 # TODO: modularize imports. For now imports are merged.
 gen-rdf: target/rdf/$(SCHEMA_NAME).ttl
 target/rdf/%.ttl: $(SCHEMA_DIR)/%.yaml tdir-rdf
-	gen-rdf $(GEN_OPTS) $< > $@
+	pipenv run gen-rdf $(GEN_OPTS) $< > $@
 
 ### -- JSONLD Context --
 gen-jsonld-context: target/jsonld-context/$(SCHEMA_NAME).context.json
 target/jsonld-context/%.context.json: $(SCHEMA_DIR)/%.yaml tdir-jsonld-context
-	gen-jsonld-context $(GEN_OPTS) $< > $@
+	pipenv run gen-jsonld-context $(GEN_OPTS) $< > $@
 
 ###  -- LinkML --
 # linkml (copy)

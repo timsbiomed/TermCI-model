@@ -1,0 +1,322 @@
+@prefix : <https://w3id.org/biolink/biolinkml/meta/types/> .
+@prefix biolinkml: <https://w3id.org/biolink/biolinkml/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix meta: <https://w3id.org/biolink/biolinkml/meta/> .
+@prefix metatype: <https://w3id.org/biolink/biolinkml/meta/types/> .
+@prefix shex: <http://www.w3.org/ns/shex#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://hotecosystem.org/termci/termci_schema> a metatype:SchemaDefinition ;
+    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
+    skos:definition "Terminology Code Index model" ;
+    meta:classes <https://hotecosystem.org/termci/CodeEntry>,
+        <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:default_range <https://hotecosystem.org/termci/string> ;
+    meta:generation_date "2021-02-01 15:24"^^xsd:dateTime ;
+    meta:id <https://w3id.org/termci_schema> ;
+    meta:imports biolinkml:types ;
+    meta:prefixes [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference skos: ;
+            metatype:prefix_prefix "skos" ],
+        [ meta:prefix_reference biolinkml: ;
+            metatype:prefix_prefix "biolinkml" ],
+        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
+            metatype:prefix_prefix "termci" ],
+        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ] ;
+    meta:slots <https://hotecosystem.org/termci/code>,
+        <https://hotecosystem.org/termci/defined_in>,
+        <https://hotecosystem.org/termci/definition>,
+        <https://hotecosystem.org/termci/description>,
+        <https://hotecosystem.org/termci/designation>,
+        <https://hotecosystem.org/termci/namespace>,
+        <https://hotecosystem.org/termci/narrower_than>,
+        <https://hotecosystem.org/termci/prefix>,
+        <https://hotecosystem.org/termci/reference>,
+        <https://hotecosystem.org/termci/root_concept> ;
+    meta:source_file_date "Mon Feb  1 14:47:03 2021"^^xsd:dateTime ;
+    meta:source_file_size 2985 ;
+    meta:types <https://hotecosystem.org/termci/boolean>,
+        <https://hotecosystem.org/termci/date>,
+        <https://hotecosystem.org/termci/datetime>,
+        <https://hotecosystem.org/termci/decimal>,
+        <https://hotecosystem.org/termci/double>,
+        <https://hotecosystem.org/termci/float>,
+        <https://hotecosystem.org/termci/integer>,
+        <https://hotecosystem.org/termci/ncname>,
+        <https://hotecosystem.org/termci/nodeidentifier>,
+        <https://hotecosystem.org/termci/objectidentifier>,
+        <https://hotecosystem.org/termci/string>,
+        <https://hotecosystem.org/termci/time>,
+        <https://hotecosystem.org/termci/uri>,
+        <https://hotecosystem.org/termci/uriorcurie> ;
+    metatype:default_prefix "termci" ;
+    metatype:metamodel_version "1.7.0" ;
+    metatype:source_file "termci_schema.yaml" .
+
+<https://hotecosystem.org/termci/boolean> a metatype:TypeDefinition ;
+    skos:definition "A binary (true or false) value" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Boolean ;
+    metatype:base "Bool" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "bool" ;
+    meta:uri xsd:boolean .
+
+<https://hotecosystem.org/termci/date> a metatype:TypeDefinition ;
+    skos:definition "a date (year, month and day) in an idealized calendar" ;
+    skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Date ;
+    metatype:base "XSDDate" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:date .
+
+<https://hotecosystem.org/termci/datetime> a metatype:TypeDefinition ;
+    skos:definition "The combination of a date and time" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Datetime ;
+    metatype:base "XSDDateTime" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:dateTime .
+
+<https://hotecosystem.org/termci/decimal> a metatype:TypeDefinition ;
+    skos:definition "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Decimal ;
+    metatype:base "Decimal" ;
+    metatype:imported_from "biolinkml:types" ;
+    meta:uri xsd:decimal .
+
+<https://hotecosystem.org/termci/double> a metatype:TypeDefinition ;
+    skos:definition "A real number that conforms to the xsd:double specification" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Double ;
+    metatype:base "float" ;
+    metatype:imported_from "biolinkml:types" ;
+    meta:uri xsd:double .
+
+<https://hotecosystem.org/termci/float> a metatype:TypeDefinition ;
+    skos:definition "A real number that conforms to the xsd:float specification" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Float ;
+    metatype:base "float" ;
+    metatype:imported_from "biolinkml:types" ;
+    meta:uri xsd:float .
+
+<https://hotecosystem.org/termci/integer> a metatype:TypeDefinition ;
+    skos:definition "An integer" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Integer ;
+    metatype:base "int" ;
+    metatype:imported_from "biolinkml:types" ;
+    meta:uri xsd:integer .
+
+<https://hotecosystem.org/termci/nodeidentifier> a metatype:TypeDefinition ;
+    skos:definition "A URI, CURIE or BNODE that represents a node in a model." ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Nodeidentifier ;
+    metatype:base "NodeIdentifier" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri shex:nonLiteral .
+
+<https://hotecosystem.org/termci/objectidentifier> a metatype:TypeDefinition ;
+    skos:definition "A URI or CURIE that represents an object in the model." ;
+    skos:inScheme biolinkml:types ;
+    skos:note "Used for inheritence and type checking" ;
+    meta:definition_uri metatype:Objectidentifier ;
+    metatype:base "ElementIdentifier" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri shex:iri .
+
+<https://hotecosystem.org/termci/time> a metatype:TypeDefinition ;
+    skos:definition "A time object represents a (local) time of day, independent of any particular day" ;
+    skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Time ;
+    metatype:base "XSDTime" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:dateTime .
+
+<https://hotecosystem.org/termci/uriorcurie> a metatype:TypeDefinition ;
+    skos:definition "a URI or a CURIE" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Uriorcurie ;
+    metatype:base "URIorCURIE" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:anyURI .
+
+<https://hotecosystem.org/termci/ncname> a metatype:TypeDefinition ;
+    skos:definition "Prefix part of CURIE" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Ncname ;
+    metatype:base "NCName" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:string .
+
+<https://hotecosystem.org/termci/code> a metatype:SlotDefinition ;
+    skos:definition "The official identifier of this entry within the context of of the containing concept scheme" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:notation ;
+    meta:definition_uri <https://hotecosystem.org/termci/code> ;
+    meta:domain_of <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:identifier true ;
+    meta:owner <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
+    meta:required true ;
+    meta:slot_uri skos:notation .
+
+<https://hotecosystem.org/termci/defined_in> a metatype:SlotDefinition ;
+    skos:definition "The terminological resource (ontology, classification scheme, concept system, etc.) that defines this code" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:inScheme ;
+    meta:definition_uri <https://hotecosystem.org/termci/defined_in> ;
+    meta:domain_of <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:owner <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:range <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:required true ;
+    meta:slot_uri skos:inScheme .
+
+<https://hotecosystem.org/termci/definition> a metatype:SlotDefinition ;
+    skos:definition "The \"preferred\" textual definition of this code in the context of a particular community or language" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:definition ;
+    meta:definition_uri <https://hotecosystem.org/termci/definition> ;
+    meta:domain_of <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:owner <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
+    meta:slot_uri skos:definition .
+
+<https://hotecosystem.org/termci/description> a metatype:SlotDefinition ;
+    skos:definition "The description of a concept system" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation <dc:description> ;
+    meta:definition_uri <https://hotecosystem.org/termci/description> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
+    meta:slot_uri <http://purl.org/dc/elements/1.1/description> .
+
+<https://hotecosystem.org/termci/designation> a metatype:SlotDefinition ;
+    skos:definition "The preferred label or text in the context of a particular community or language" ;
+    skos:editorialNote "Designation should never be used as an identifier.  They are strictly informative" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:prefLabel ;
+    meta:definition_uri <https://hotecosystem.org/termci/designation> ;
+    meta:domain_of <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:owner <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
+    meta:slot_uri skos:prefLabel .
+
+<https://hotecosystem.org/termci/namespace> a metatype:SlotDefinition ;
+    skos:definition "A known namespace URI assigned to this concept system/prefix" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation <sh:namespace> ;
+    meta:definition_uri <https://hotecosystem.org/termci/namespace> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:multivalued true ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/uri> ;
+    meta:required true ;
+    meta:slot_uri <http://www.w3.org/ns/shacl#namespace> .
+
+<https://hotecosystem.org/termci/narrower_than> a metatype:SlotDefinition ;
+    skos:definition """A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept
+system""" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:broader ;
+    meta:definition_uri <https://hotecosystem.org/termci/narrower_than> ;
+    meta:domain_of <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:multivalued true ;
+    meta:owner <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:range <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:slot_uri skos:broader .
+
+<https://hotecosystem.org/termci/prefix> a metatype:SlotDefinition ;
+    skos:definition "The official prefix assigned to a concept system" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation <sh:prefix> ;
+    meta:definition_uri <https://hotecosystem.org/termci/prefix> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:identifier true ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/ncname> ;
+    meta:required true ;
+    meta:slot_uri <http://www.w3.org/ns/shacl#prefix> .
+
+<https://hotecosystem.org/termci/root_concept> a metatype:SlotDefinition ;
+    skos:definition "A concept that has no broader concepts in a ConceptSystem" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:hasTopConcept ;
+    meta:definition_uri <https://hotecosystem.org/termci/root_concept> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:multivalued true ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:slot_uri skos:hasTopConcept .
+
+<https://hotecosystem.org/termci/uri> a metatype:TypeDefinition ;
+    skos:definition "a complete URI" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Uri ;
+    metatype:base "URI" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:anyURI .
+
+<https://hotecosystem.org/termci/reference> a metatype:SlotDefinition ;
+    skos:definition "A link that provides additional information about this entry" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:seeAlso ;
+    meta:definition_uri <https://hotecosystem.org/termci/reference> ;
+    meta:domain_of <https://hotecosystem.org/termci/CodeEntry>,
+        <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:multivalued true ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/uri> ;
+    meta:slot_uri skos:seeAlso .
+
+<https://hotecosystem.org/termci/string> a metatype:TypeDefinition ;
+    skos:definition "A character string" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:String ;
+    metatype:base "str" ;
+    metatype:imported_from "biolinkml:types" ;
+    meta:uri xsd:string .
+
+<https://hotecosystem.org/termci/ConceptSystem> a metatype:ClassDefinition ;
+    skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:ConceptScheme ;
+    meta:class_uri skos:ConceptScheme ;
+    meta:definition_uri <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:slots <https://hotecosystem.org/termci/description>,
+        <https://hotecosystem.org/termci/namespace>,
+        <https://hotecosystem.org/termci/prefix>,
+        <https://hotecosystem.org/termci/reference>,
+        <https://hotecosystem.org/termci/root_concept> .
+
+<https://hotecosystem.org/termci/CodeEntry> a metatype:ClassDefinition ;
+    skos:definition "An entry in a concept system" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    skos:mappingRelation skos:Concept ;
+    meta:class_uri skos:Concept ;
+    meta:definition_uri <https://hotecosystem.org/termci/CodeEntry> ;
+    meta:slots <https://hotecosystem.org/termci/code>,
+        <https://hotecosystem.org/termci/defined_in>,
+        <https://hotecosystem.org/termci/definition>,
+        <https://hotecosystem.org/termci/designation>,
+        <https://hotecosystem.org/termci/narrower_than>,
+        <https://hotecosystem.org/termci/reference> .
+
+
+

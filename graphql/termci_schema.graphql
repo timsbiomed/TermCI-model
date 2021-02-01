@@ -1,17 +1,20 @@
 type CodeEntry
   {
-    id: String!
-    prefLabel: String!
-    notation: Uriorcurie!
-    broader: [Uriorcurie]
-    inScheme: Uriorcurie!
-    seeAlso: [Uri]
+    code: String!
+    designation: String
     definition: String
+    reference: [Uri]
+    definedIn: ConceptSystem!
+    narrowerThan: [CodeEntry]
   }
 
-type NamedThing
+type ConceptSystem
   {
-    id: String!
+    prefix: Ncname!
+    namespace: [Uri]!
+    description: String
+    reference: [Uri]
+    rootConcept: [CodeEntry]
   }
 
 

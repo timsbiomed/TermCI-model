@@ -1,51 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix meta: <https://w3id.org/biolink/biolinkml/meta/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-meta:CodeEntry_broader a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "CodeEntry_broader" ;
-    rdfs:domain <https://w3id.org/mixs/termci_schema/CodeEntry> ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-    rdfs:subPropertyOf <https://w3id.org/mixs/termci_schema/broader> .
-
-meta:CodeEntry_definition a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "CodeEntry_definition" ;
-    rdfs:domain <https://w3id.org/mixs/termci_schema/CodeEntry> ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-    rdfs:subPropertyOf <https://w3id.org/mixs/termci_schema/definition> .
-
-meta:CodeEntry_inScheme a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "CodeEntry_inScheme" ;
-    rdfs:domain <https://w3id.org/mixs/termci_schema/CodeEntry> ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-    rdfs:subPropertyOf <https://w3id.org/mixs/termci_schema/inScheme> .
-
-meta:CodeEntry_notation a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "CodeEntry_notation" ;
-    rdfs:domain <https://w3id.org/mixs/termci_schema/CodeEntry> ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-    rdfs:subPropertyOf <https://w3id.org/mixs/termci_schema/notation> .
-
-meta:CodeEntry_prefLabel a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "CodeEntry_prefLabel" ;
-    rdfs:domain <https://w3id.org/mixs/termci_schema/CodeEntry> ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-    rdfs:subPropertyOf <https://w3id.org/mixs/termci_schema/prefLabel> .
-
-meta:CodeEntry_seeAlso a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "CodeEntry_seeAlso" ;
-    rdfs:domain <https://w3id.org/mixs/termci_schema/CodeEntry> ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-    rdfs:subPropertyOf <https://w3id.org/mixs/termci_schema/seeAlso> .
 
 meta:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" ;
@@ -115,15 +74,6 @@ meta:SubsetDefinition a owl:Class ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "An integer" .
 
-<https://w3id.org/biolink/biolinkml/meta/types/Ncname> a owl:Class,
-        meta:TypeDefinition ;
-    rdfs:label "ncname" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty meta:topValue ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:definition "Prefix part of CURIE" .
-
 <https://w3id.org/biolink/biolinkml/meta/types/Nodeidentifier> a owl:Class,
         meta:TypeDefinition ;
     rdfs:label "nodeidentifier" ;
@@ -153,64 +103,153 @@ meta:SubsetDefinition a owl:Class ;
     skos:definition "A time object represents a (local) time of day, independent of any particular day" ;
     skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" .
 
+<https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "uriorcurie" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:anyURI ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "a URI or a CURIE" .
+
 <https://w3id.org/termci_schema> a owl:Ontology ;
     rdfs:label "termci_schema" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
-    skos:definition "My Schema Description" ;
-    meta:generation_date "2021-02-01 14:07" ;
+    skos:definition "Terminology Code Index model" ;
+    meta:generation_date "2021-02-01 15:24" ;
     meta:metamodel_version "1.7.0" ;
     meta:source_file "termci_schema.yaml" ;
-    meta:source_file_date "Mon Feb  1 14:07:36 2021" ;
-    meta:source_file_size 1264 .
+    meta:source_file_date "Mon Feb  1 14:47:03 2021" ;
+    meta:source_file_size 2985 .
 
-<https://w3id.org/mixs/termci_core/NamedThing> a owl:Class,
-        meta:ClassDefinition ;
-    rdfs:label "named thing" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://w3id.org/mixs/termci_core/id> ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:definition "root class" .
-
-<https://w3id.org/mixs/termci_core/id> a owl:ObjectProperty,
+<https://hotecosystem.org/termci/code> a owl:ObjectProperty,
         meta:SlotDefinition ;
-    rdfs:label "id" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> .
+    rdfs:label "code" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+    skos:definition "The official identifier of this entry within the context of of the containing concept scheme" .
+
+<https://hotecosystem.org/termci/defined_in> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "defined_in" ;
+    rdfs:range <https://hotecosystem.org/termci/ConceptSystem> ;
+    skos:definition "The terminological resource (ontology, classification scheme, concept system, etc.) that defines this code" .
+
+<https://hotecosystem.org/termci/definition> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "definition" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+    skos:definition "The \"preferred\" textual definition of this code in the context of a particular community or language" .
+
+<https://hotecosystem.org/termci/description> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "description" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+    skos:definition "The description of a concept system" .
+
+<https://hotecosystem.org/termci/designation> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "designation" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+    skos:definition "The preferred label or text in the context of a particular community or language" ;
+    skos:editorialNote "Designation should never be used as an identifier.  They are strictly informative" .
+
+<https://hotecosystem.org/termci/narrower_than> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "narrower_than" ;
+    rdfs:range <https://hotecosystem.org/termci/CodeEntry> ;
+    skos:definition """A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept
+system""" .
+
+<https://hotecosystem.org/termci/prefix> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "prefix" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
+    skos:definition "The official prefix assigned to a concept system" .
+
+<https://hotecosystem.org/termci/root_concept> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "root_concept" ;
+    rdfs:range <https://hotecosystem.org/termci/CodeEntry> ;
+    skos:definition "A concept that has no broader concepts in a ConceptSystem" .
+
+<https://hotecosystem.org/termci/ConceptSystem> a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "ConceptSystem" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/description> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
+            owl:onProperty <https://hotecosystem.org/termci/root_concept> ],
+        [ a owl:Class ;
+            owl:intersectionOf ( [ a owl:Restriction ;
+                        owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+                        owl:onProperty <https://hotecosystem.org/termci/namespace> ] [ a owl:Restriction ;
+                        owl:onProperty <https://hotecosystem.org/termci/namespace> ;
+                        owl:someValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ] ) ],
+        [ a owl:Restriction ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
+            owl:onProperty <https://hotecosystem.org/termci/prefix> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <https://hotecosystem.org/termci/reference> ] ;
+    skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
+    skos:exactMatch skos:ConceptScheme .
+
+<https://hotecosystem.org/termci/namespace> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "namespace" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+    skos:definition "A known namespace URI assigned to this concept system/prefix" .
+
+<https://hotecosystem.org/termci/reference> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "reference" ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+    skos:definition "A link that provides additional information about this entry" .
 
 meta:ClassDefinition a owl:Class ;
     rdfs:label "class_definition" ;
     skos:definition "the definition of a class or interface" .
 
-<https://w3id.org/mixs/termci_schema/broader> a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "broader" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> .
+<https://w3id.org/biolink/biolinkml/meta/types/Ncname> a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "ncname" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "Prefix part of CURIE" .
 
-<https://w3id.org/mixs/termci_schema/definition> a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "definition" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> .
-
-<https://w3id.org/mixs/termci_schema/inScheme> a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "inScheme" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> .
-
-<https://w3id.org/mixs/termci_schema/notation> a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "notation" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-    skos:definition "example slot" .
-
-<https://w3id.org/mixs/termci_schema/prefLabel> a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "prefLabel" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> .
-
-<https://w3id.org/mixs/termci_schema/seeAlso> a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "seeAlso" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uri> .
+<https://hotecosystem.org/termci/CodeEntry> a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "CodeEntry" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/CodeEntry> ;
+            owl:onProperty <https://hotecosystem.org/termci/narrower_than> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/designation> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/definition> ],
+        [ a owl:Restriction ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/code> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <https://hotecosystem.org/termci/reference> ],
+        [ a owl:Restriction ;
+            owl:onClass <https://hotecosystem.org/termci/ConceptSystem> ;
+            owl:onProperty <https://hotecosystem.org/termci/defined_in> ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "An entry in a concept system" ;
+    skos:exactMatch skos:Concept .
 
 <https://w3id.org/biolink/biolinkml/meta/types/Uri> a owl:Class,
         meta:TypeDefinition ;
@@ -221,33 +260,6 @@ meta:ClassDefinition a owl:Class ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "a complete URI" .
 
-<https://w3id.org/mixs/termci_schema/CodeEntry> a owl:Class,
-        meta:ClassDefinition ;
-    rdfs:label "CodeEntry" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-            owl:onProperty <https://w3id.org/mixs/termci_schema/seeAlso> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://w3id.org/mixs/termci_schema/definition> ],
-        [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://w3id.org/mixs/termci_schema/prefLabel> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-            owl:onProperty <https://w3id.org/mixs/termci_schema/inScheme> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-            owl:onProperty <https://w3id.org/mixs/termci_schema/notation> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-            owl:onProperty <https://w3id.org/mixs/termci_schema/broader> ],
-        <https://w3id.org/mixs/termci_core/NamedThing> .
-
 <https://w3id.org/biolink/biolinkml/meta/types/String> a owl:Class,
         meta:TypeDefinition ;
     rdfs:label "string" ;
@@ -256,15 +268,6 @@ meta:ClassDefinition a owl:Class ;
             owl:onProperty meta:topValue ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "A character string" .
-
-<https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> a owl:Class,
-        meta:TypeDefinition ;
-    rdfs:label "uriorcurie" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onDataRange xsd:anyURI ;
-            owl:onProperty meta:topValue ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:definition "a URI or a CURIE" .
 
 meta:SlotDefinition a owl:Class ;
     rdfs:label "slot_definition" ;
