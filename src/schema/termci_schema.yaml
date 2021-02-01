@@ -1,7 +1,7 @@
 id: https://w3id.org/termci_schema
 name: termci_schema
 description: >-
-  My Schema Description
+  Terminology Code Index model
 imports:
  - biolinkml:types
  - termci_core
