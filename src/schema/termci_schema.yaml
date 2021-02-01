@@ -4,63 +4,121 @@ description: >-
   Terminology Code Index model
 imports:
  - biolinkml:types
- - termci_core
+
 prefixes:
   biolinkml: https://w3id.org/biolink/biolinkml/
   termci: https://hotecosystem.org/termci/
   skos: http://www.w3.org/2004/02/skos/core#
+  sh: http://www.w3.org/ns/shacl#
+  dc: http://purl.org/dc/elements/1.1/
+
 default_prefix: termci
+default_range: string
 
 slots:
-  prefLabel:
+  code:
     range: string
-    exact_mappings:
-      - skos:prefLabel
-  notation:
-    range: uriorcurie
-    description: >-
-      example slot
-    exact_mappings:
-      - skos:notation
+    identifier: true
+    description: |-
+      The official identifier of this entry within the context of of the containing concept scheme
+    slot_uri: skos:notation
+
+  designation:
+    description: |-
+      The preferred label or text in the context of a particular community or language
+    notes:
+      - Designation should never be used as an identifier.  They are strictly informative
+    range: string
+    slot_uri: skos:prefLabel
+    multivalued: false
+    required: false
+
   definition:
     range: string
-    exact_mappings:
-      - skos:definition
-  seeAlso:
+    description: |-
+      The "preferred" textual definition of this code in the context of a particular community or language
+    slot_uri: skos:definition
+    multivalued: false
+    required: false
+
+  reference:
     range: uri
-    exact_mappings:
-      - skos:seeAlso
-  inScheme:
-    range: uriorcurie
-    exact_mappings:
-      - skos:inScheme
-  broader:
-    range: uriorcurie
-    exact_mappings:
-      - skos:broader
+    description: |-
+      A link that provides additional information about this entry
+    slot_uri: skos:seeAlso
+    multivalued: true
+    required: false
+
+  defined_in:
+    range: ConceptSystem
+    description: |-
+      The terminological resource (ontology, classification scheme, concept system, etc.) that defines this code
+    slot_uri: skos:inScheme
+    multivalued: false
+    required: true
+
+  narrower_than:
+    range: CodeEntry
+    description: |-
+      A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept
+      system
+    slot_uri: skos:broader
+    multivalued: true
+    required: false
+
+  prefix:
+    range: ncname
+    description: |-
+      The official prefix assigned to a concept system
+    identifier: true
+    slot_uri: sh:prefix
+
+  namespace:
+    range: uri
+    description: |-
+      A known namespace URI assigned to this concept system/prefix
+    multivalued: true
+    required: true
+    slot_uri: sh:namespace
+
+  root_concept:
+    range: CodeEntry
+    description: |-
+      A concept that has no broader concepts in a ConceptSystem
+    multivalued: true
+    required: false
+    slot_uri: skos:hasTopConcept
+
+  description:
+    range: string
+    description: |-
+      The description of a concept system
+    slot_uri: dc:description
+
 
 classes:
   CodeEntry:
-    is_a: named thing
-    slot_usage:
-      prefLabel:
-        required: true
-        multivalued: false
-      notation:
-        required: true
-        multivalued: false
-      broader:
-        required: false
-        multivalued: true
-      inScheme:
-        required: true
-        multivalued: false
-      seeAlso:
-        required: false
-        multivalued: true
-      definition:
-        required: false
-        multivalued: false
+    description: |-
+      An entry in a concept system
+    class_uri: skos:Concept
+    slots:
+      - code
+      - designation
+      - definition
+      - reference
+      - defined_in
+      - narrower_than
+
+  ConceptSystem:
+    description: |-
+      A terminological resource (ontology, classification scheme, concept system, etc.)
+    class_uri: skos:ConceptScheme
+    slots:
+      - prefix
+      - namespace
+      - description
+      - reference
+      - root_concept
 
 
 

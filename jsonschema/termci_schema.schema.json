@@ -4,30 +4,33 @@
    "definitions": {
       "CodeEntry": {
          "additionalProperties": false,
-         "description": "",
+         "description": "An entry in a concept system",
          "properties": {
-            "broader": {
+            "code": {
+               "description": "The official identifier of this entry within the context of of the containing concept scheme",
+               "type": "string"
+            },
+            "defined_in": {
+               "description": "The terminological resource (ontology, classification scheme, concept system, etc.) that defines this code",
+               "type": "string"
+            },
+            "definition": {
+               "description": "The \"preferred\" textual definition of this code in the context of a particular community or language",
+               "type": "string"
+            },
+            "designation": {
+               "description": "The preferred label or text in the context of a particular community or language",
+               "type": "string"
+            },
+            "narrower_than": {
+               "description": "A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept\nsystem",
                "items": {
                   "type": "string"
                },
                "type": "array"
             },
-            "definition": {
-               "type": "string"
-            },
-            "id": {
-               "type": "string"
-            },
-            "inScheme": {
-               "type": "string"
-            },
-            "notation": {
-               "type": "string"
-            },
-            "prefLabel": {
-               "type": "string"
-            },
-            "seeAlso": {
+            "reference": {
+               "description": "A link that provides additional information about this entry",
                "items": {
                   "type": "string"
                },
@@ -35,26 +38,51 @@
             }
          },
          "required": [
-            "id",
-            "prefLabel",
-            "notation",
-            "inScheme"
+            "code",
+            "defined_in"
          ],
          "title": "CodeEntry",
          "type": "object"
       },
-      "NamedThing": {
+      "ConceptSystem": {
          "additionalProperties": false,
-         "description": "root class",
+         "description": "A terminological resource (ontology, classification scheme, concept system, etc.)",
          "properties": {
-            "id": {
+            "description": {
+               "description": "The description of a concept system",
                "type": "string"
+            },
+            "namespace": {
+               "description": "A known namespace URI assigned to this concept system/prefix",
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "prefix": {
+               "description": "The official prefix assigned to a concept system",
+               "type": "string"
+            },
+            "reference": {
+               "description": "A link that provides additional information about this entry",
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "root_concept": {
+               "description": "A concept that has no broader concepts in a ConceptSystem",
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
             }
          },
          "required": [
-            "id"
+            "prefix",
+            "namespace"
          ],
-         "title": "NamedThing",
+         "title": "ConceptSystem",
          "type": "object"
       }
    },

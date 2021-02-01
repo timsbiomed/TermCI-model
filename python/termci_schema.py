@@ -1,9 +1,9 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-01 14:07
+# Generation date: 2021-02-01 15:24
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
-# description: My Schema Description
+# description: Terminology Code Index model
 # license: https://creativecommons.org/publicdomain/zero/1.0/
 
 import dataclasses
@@ -24,9 +24,8 @@ from biolinkml.utils.formatutils import camelcase, underscore, sfx
 from biolinkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from biolinkml.utils.curienamespace import CurieNamespace
-from . termci_core import NamedThing, NamedThingId
-from biolinkml.utils.metamodelcore import URI, URIorCURIE
-from includes.types import String, Uri, Uriorcurie
+from biolinkml.utils.metamodelcore import NCName, URI
+from includes.types import Ncname, String, Uri
 
 metamodel_version = "1.7.0"
 
@@ -35,70 +34,121 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
 BIOLINKML = CurieNamespace('biolinkml', 'https://w3id.org/biolink/biolinkml/')
+DC = CurieNamespace('dc', 'http://purl.org/dc/elements/1.1/')
+SH = CurieNamespace('sh', 'http://www.w3.org/ns/shacl#')
 SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
-TERMCI = CurieNamespace('termci', 'https://w3id.org/mixs/termci_schema/')
+TERMCI = CurieNamespace('termci', 'https://hotecosystem.org/termci/')
 DEFAULT_ = TERMCI
 
 
 # Types
 
 # Class references
-class CodeEntryId(NamedThingId):
+class CodeEntryCode(extended_str):
+    pass
+
+
+class ConceptSystemPrefix(NCName):
     pass
 
 
 @dataclass
-class CodeEntry(NamedThing):
+class CodeEntry(YAMLRoot):
+    """
+    An entry in a concept system
+    """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = TERMCI.CodeEntry
-    class_class_curie: ClassVar[str] = "termci:CodeEntry"
+    class_class_uri: ClassVar[URIRef] = SKOS.Concept
+    class_class_curie: ClassVar[str] = "skos:Concept"
     class_name: ClassVar[str] = "CodeEntry"
     class_model_uri: ClassVar[URIRef] = TERMCI.CodeEntry
 
-    id: Union[str, CodeEntryId] = None
-    prefLabel: str = None
-    notation: Union[str, URIorCURIE] = None
-    inScheme: Union[str, URIorCURIE] = None
-    broader: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
-    seeAlso: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+    code: Union[str, CodeEntryCode] = None
+    defined_in: Union[str, ConceptSystemPrefix] = None
+    designation: Optional[str] = None
     definition: Optional[str] = None
+    reference: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+    narrower_than: Optional[Union[Union[str, CodeEntryCode], List[Union[str, CodeEntryCode]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, CodeEntryId):
-            self.id = CodeEntryId(self.id)
+        if self.code is None:
+            raise ValueError("code must be supplied")
+        if not isinstance(self.code, CodeEntryCode):
+            self.code = CodeEntryCode(self.code)
 
-        if self.prefLabel is None:
-            raise ValueError("prefLabel must be supplied")
-        if not isinstance(self.prefLabel, str):
-            self.prefLabel = str(self.prefLabel)
+        if self.defined_in is None:
+            raise ValueError("defined_in must be supplied")
+        if not isinstance(self.defined_in, ConceptSystemPrefix):
+            self.defined_in = ConceptSystemPrefix(self.defined_in)
 
-        if self.notation is None:
-            raise ValueError("notation must be supplied")
-        if not isinstance(self.notation, URIorCURIE):
-            self.notation = URIorCURIE(self.notation)
-
-        if self.inScheme is None:
-            raise ValueError("inScheme must be supplied")
-        if not isinstance(self.inScheme, URIorCURIE):
-            self.inScheme = URIorCURIE(self.inScheme)
-
-        if self.broader is None:
-            self.broader = []
-        if not isinstance(self.broader, list):
-            self.broader = [self.broader]
-        self.broader = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.broader]
-
-        if self.seeAlso is None:
-            self.seeAlso = []
-        if not isinstance(self.seeAlso, list):
-            self.seeAlso = [self.seeAlso]
-        self.seeAlso = [v if isinstance(v, URI) else URI(v) for v in self.seeAlso]
+        if self.designation is not None and not isinstance(self.designation, str):
+            self.designation = str(self.designation)
 
         if self.definition is not None and not isinstance(self.definition, str):
             self.definition = str(self.definition)
+
+        if self.reference is None:
+            self.reference = []
+        if not isinstance(self.reference, list):
+            self.reference = [self.reference]
+        self.reference = [v if isinstance(v, URI) else URI(v) for v in self.reference]
+
+        if self.narrower_than is None:
+            self.narrower_than = []
+        if not isinstance(self.narrower_than, list):
+            self.narrower_than = [self.narrower_than]
+        self.narrower_than = [v if isinstance(v, CodeEntryCode) else CodeEntryCode(v) for v in self.narrower_than]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class ConceptSystem(YAMLRoot):
+    """
+    A terminological resource (ontology, classification scheme, concept system, etc.)
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SKOS.ConceptScheme
+    class_class_curie: ClassVar[str] = "skos:ConceptScheme"
+    class_name: ClassVar[str] = "ConceptSystem"
+    class_model_uri: ClassVar[URIRef] = TERMCI.ConceptSystem
+
+    prefix: Union[str, ConceptSystemPrefix] = None
+    namespace: Union[Union[str, URI], List[Union[str, URI]]] = None
+    description: Optional[str] = None
+    reference: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+    root_concept: Optional[Union[Union[str, CodeEntryCode], List[Union[str, CodeEntryCode]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.prefix is None:
+            raise ValueError("prefix must be supplied")
+        if not isinstance(self.prefix, ConceptSystemPrefix):
+            self.prefix = ConceptSystemPrefix(self.prefix)
+
+        if self.namespace is None:
+            raise ValueError("namespace must be supplied")
+        elif not isinstance(self.namespace, list):
+            self.namespace = [self.namespace]
+        elif len(self.namespace) == 0:
+            raise ValueError(f"namespace must be a non-empty list")
+        self.namespace = [v if isinstance(v, URI) else URI(v) for v in self.namespace]
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.reference is None:
+            self.reference = []
+        if not isinstance(self.reference, list):
+            self.reference = [self.reference]
+        self.reference = [v if isinstance(v, URI) else URI(v) for v in self.reference]
+
+        if self.root_concept is None:
+            self.root_concept = []
+        if not isinstance(self.root_concept, list):
+            self.root_concept = [self.root_concept]
+        self.root_concept = [v if isinstance(v, CodeEntryCode) else CodeEntryCode(v) for v in self.root_concept]
 
         super().__post_init__(**kwargs)
 
@@ -110,38 +160,32 @@ class CodeEntry(NamedThing):
 class slots:
     pass
 
-slots.prefLabel = Slot(uri=TERMCI.prefLabel, name="prefLabel", curie=TERMCI.curie('prefLabel'),
-                   model_uri=TERMCI.prefLabel, domain=None, range=Optional[str])
+slots.code = Slot(uri=SKOS.notation, name="code", curie=SKOS.curie('notation'),
+                   model_uri=TERMCI.code, domain=None, range=URIRef)
 
-slots.notation = Slot(uri=TERMCI.notation, name="notation", curie=TERMCI.curie('notation'),
-                   model_uri=TERMCI.notation, domain=None, range=Optional[Union[str, URIorCURIE]])
+slots.designation = Slot(uri=SKOS.prefLabel, name="designation", curie=SKOS.curie('prefLabel'),
+                   model_uri=TERMCI.designation, domain=None, range=Optional[str])
 
-slots.definition = Slot(uri=TERMCI.definition, name="definition", curie=TERMCI.curie('definition'),
+slots.definition = Slot(uri=SKOS.definition, name="definition", curie=SKOS.curie('definition'),
                    model_uri=TERMCI.definition, domain=None, range=Optional[str])
 
-slots.seeAlso = Slot(uri=TERMCI.seeAlso, name="seeAlso", curie=TERMCI.curie('seeAlso'),
-                   model_uri=TERMCI.seeAlso, domain=None, range=Optional[Union[str, URI]])
+slots.reference = Slot(uri=SKOS.seeAlso, name="reference", curie=SKOS.curie('seeAlso'),
+                   model_uri=TERMCI.reference, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
 
-slots.inScheme = Slot(uri=TERMCI.inScheme, name="inScheme", curie=TERMCI.curie('inScheme'),
-                   model_uri=TERMCI.inScheme, domain=None, range=Optional[Union[str, URIorCURIE]])
+slots.defined_in = Slot(uri=SKOS.inScheme, name="defined_in", curie=SKOS.curie('inScheme'),
+                   model_uri=TERMCI.defined_in, domain=None, range=Union[str, ConceptSystemPrefix])
 
-slots.broader = Slot(uri=TERMCI.broader, name="broader", curie=TERMCI.curie('broader'),
-                   model_uri=TERMCI.broader, domain=None, range=Optional[Union[str, URIorCURIE]])
+slots.narrower_than = Slot(uri=SKOS.broader, name="narrower_than", curie=SKOS.curie('broader'),
+                   model_uri=TERMCI.narrower_than, domain=None, range=Optional[Union[Union[str, CodeEntryCode], List[Union[str, CodeEntryCode]]]])
 
-slots.CodeEntry_prefLabel = Slot(uri=TERMCI.prefLabel, name="CodeEntry_prefLabel", curie=TERMCI.curie('prefLabel'),
-                   model_uri=TERMCI.CodeEntry_prefLabel, domain=CodeEntry, range=str)
+slots.prefix = Slot(uri=SH.prefix, name="prefix", curie=SH.curie('prefix'),
+                   model_uri=TERMCI.prefix, domain=None, range=URIRef)
 
-slots.CodeEntry_notation = Slot(uri=TERMCI.notation, name="CodeEntry_notation", curie=TERMCI.curie('notation'),
-                   model_uri=TERMCI.CodeEntry_notation, domain=CodeEntry, range=Union[str, URIorCURIE])
+slots.namespace = Slot(uri=SH.namespace, name="namespace", curie=SH.curie('namespace'),
+                   model_uri=TERMCI.namespace, domain=None, range=Union[Union[str, URI], List[Union[str, URI]]])
 
-slots.CodeEntry_broader = Slot(uri=TERMCI.broader, name="CodeEntry_broader", curie=TERMCI.curie('broader'),
-                   model_uri=TERMCI.CodeEntry_broader, domain=CodeEntry, range=Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]])
+slots.root_concept = Slot(uri=SKOS.hasTopConcept, name="root_concept", curie=SKOS.curie('hasTopConcept'),
+                   model_uri=TERMCI.root_concept, domain=None, range=Optional[Union[Union[str, CodeEntryCode], List[Union[str, CodeEntryCode]]]])
 
-slots.CodeEntry_inScheme = Slot(uri=TERMCI.inScheme, name="CodeEntry_inScheme", curie=TERMCI.curie('inScheme'),
-                   model_uri=TERMCI.CodeEntry_inScheme, domain=CodeEntry, range=Union[str, URIorCURIE])
-
-slots.CodeEntry_seeAlso = Slot(uri=TERMCI.seeAlso, name="CodeEntry_seeAlso", curie=TERMCI.curie('seeAlso'),
-                   model_uri=TERMCI.CodeEntry_seeAlso, domain=CodeEntry, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
-
-slots.CodeEntry_definition = Slot(uri=TERMCI.definition, name="CodeEntry_definition", curie=TERMCI.curie('definition'),
-                   model_uri=TERMCI.CodeEntry_definition, domain=CodeEntry, range=Optional[str])
+slots.description = Slot(uri=DC.description, name="description", curie=DC.curie('description'),
+                   model_uri=TERMCI.description, domain=None, range=Optional[str])

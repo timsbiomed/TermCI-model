@@ -1,4 +1,4 @@
-Pipfile
+Pipfile.lock
 target/
 site/
 venv/
