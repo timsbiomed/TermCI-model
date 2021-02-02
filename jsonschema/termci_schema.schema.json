@@ -53,20 +53,13 @@
          "additionalProperties": false,
          "description": "A terminological resource (ontology, classification scheme, concept system, etc.)",
          "properties": {
-            "concept_system_uri": {
-               "description": "The URI or CURIE of a concept system",
-               "type": "string"
-            },
             "description": {
                "description": "The description of a concept system",
                "type": "string"
             },
             "namespace": {
                "description": "A known namespace URI assigned to this concept system/prefix",
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
+               "type": "string"
             },
             "prefix": {
                "description": "The official prefix assigned to a concept system",
@@ -88,7 +81,6 @@
             }
          },
          "required": [
-            "concept_system_uri",
             "prefix",
             "namespace"
          ],

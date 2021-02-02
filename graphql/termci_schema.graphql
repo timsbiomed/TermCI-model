@@ -11,9 +11,8 @@ type CodeEntry
 
 type ConceptSystem
   {
-    conceptSystemUri: Uriorcurie!
     prefix: Ncname!
-    namespace: [Uri]!
+    namespace: Uri!
     description: String
     reference: [Uri]
     rootConcept: [CodeEntry]

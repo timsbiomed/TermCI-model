@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-02 08:47
+# Generation date: 2021-02-02 09:05
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -35,10 +35,11 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 # Namespaces
 BIOLINKML = CurieNamespace('biolinkml', 'https://w3id.org/biolink/biolinkml/')
 DC = CurieNamespace('dc', 'http://purl.org/dc/elements/1.1/')
+SCT = CurieNamespace('sct', 'http://snomed.info/id/')
 SH = CurieNamespace('sh', 'http://www.w3.org/ns/shacl#')
 SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
 TERMCI = CurieNamespace('termci', 'https://hotecosystem.org/termci/')
-DEFAULT_ = TERMCI
+DEFAULT_ = SCT
 
 
 # Types
@@ -48,7 +49,7 @@ class CodeEntryUri(URIorCURIE):
     pass
 
 
-class ConceptSystemConceptSystemUri(URIorCURIE):
+class ConceptSystemNamespace(URI):
     pass
 
 
@@ -62,11 +63,11 @@ class CodeEntry(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = SKOS.Concept
     class_class_curie: ClassVar[str] = "skos:Concept"
     class_name: ClassVar[str] = "CodeEntry"
-    class_model_uri: ClassVar[URIRef] = TERMCI.CodeEntry
+    class_model_uri: ClassVar[URIRef] = SCT.CodeEntry
 
     uri: Union[str, CodeEntryUri] = None
     code: str = None
-    defined_in: Union[str, ConceptSystemConceptSystemUri] = None
+    defined_in: Union[str, ConceptSystemNamespace] = None
     designation: Optional[str] = None
     definition: Optional[str] = None
     reference: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
@@ -85,8 +86,8 @@ class CodeEntry(YAMLRoot):
 
         if self.defined_in is None:
             raise ValueError("defined_in must be supplied")
-        if not isinstance(self.defined_in, ConceptSystemConceptSystemUri):
-            self.defined_in = ConceptSystemConceptSystemUri(self.defined_in)
+        if not isinstance(self.defined_in, ConceptSystemNamespace):
+            self.defined_in = ConceptSystemNamespace(self.defined_in)
 
         if self.designation is not None and not isinstance(self.designation, str):
             self.designation = str(self.designation)
@@ -119,33 +120,24 @@ class ConceptSystem(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = SKOS.ConceptScheme
     class_class_curie: ClassVar[str] = "skos:ConceptScheme"
     class_name: ClassVar[str] = "ConceptSystem"
-    class_model_uri: ClassVar[URIRef] = TERMCI.ConceptSystem
+    class_model_uri: ClassVar[URIRef] = SCT.ConceptSystem
 
-    concept_system_uri: Union[str, ConceptSystemConceptSystemUri] = None
+    namespace: Union[str, ConceptSystemNamespace] = None
     prefix: Union[str, NCName] = None
-    namespace: Union[Union[str, URI], List[Union[str, URI]]] = None
     description: Optional[str] = None
     reference: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
     root_concept: Optional[Union[Union[str, CodeEntryUri], List[Union[str, CodeEntryUri]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.concept_system_uri is None:
-            raise ValueError("concept_system_uri must be supplied")
-        if not isinstance(self.concept_system_uri, ConceptSystemConceptSystemUri):
-            self.concept_system_uri = ConceptSystemConceptSystemUri(self.concept_system_uri)
+        if self.namespace is None:
+            raise ValueError("namespace must be supplied")
+        if not isinstance(self.namespace, ConceptSystemNamespace):
+            self.namespace = ConceptSystemNamespace(self.namespace)
 
         if self.prefix is None:
             raise ValueError("prefix must be supplied")
         if not isinstance(self.prefix, NCName):
             self.prefix = NCName(self.prefix)
-
-        if self.namespace is None:
-            raise ValueError("namespace must be supplied")
-        elif not isinstance(self.namespace, list):
-            self.namespace = [self.namespace]
-        elif len(self.namespace) == 0:
-            raise ValueError(f"namespace must be a non-empty list")
-        self.namespace = [v if isinstance(v, URI) else URI(v) for v in self.namespace]
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -172,13 +164,13 @@ class Package(YAMLRoot):
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = TERMCI.Package
-    class_class_curie: ClassVar[str] = "termci:Package"
+    class_class_uri: ClassVar[URIRef] = SCT.Package
+    class_class_curie: ClassVar[str] = "sct:Package"
     class_name: ClassVar[str] = "Package"
-    class_model_uri: ClassVar[URIRef] = TERMCI.Package
+    class_model_uri: ClassVar[URIRef] = SCT.Package
 
     entries: Optional[Union[Dict[Union[str, CodeEntryUri], Union[dict, CodeEntry]], List[Union[dict, CodeEntry]]]] = empty_dict()
-    systems: Optional[Union[Dict[Union[str, ConceptSystemConceptSystemUri], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]] = empty_dict()
+    systems: Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.entries is None:
@@ -191,7 +183,7 @@ class Package(YAMLRoot):
             self.systems = []
         if not isinstance(self.systems, (list, dict)):
             self.systems = [self.systems]
-        self._normalize_inlined_slot(slot_name="systems", slot_type=ConceptSystem, key_name="concept_system_uri", inlined_as_list=None, keyed=True)
+        self._normalize_inlined_slot(slot_name="systems", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=None, keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -204,43 +196,40 @@ class slots:
     pass
 
 slots.code = Slot(uri=SKOS.notation, name="code", curie=SKOS.curie('notation'),
-                   model_uri=TERMCI.code, domain=None, range=str)
+                   model_uri=SCT.code, domain=None, range=str)
 
 slots.designation = Slot(uri=SKOS.prefLabel, name="designation", curie=SKOS.curie('prefLabel'),
-                   model_uri=TERMCI.designation, domain=None, range=Optional[str])
+                   model_uri=SCT.designation, domain=None, range=Optional[str])
 
 slots.definition = Slot(uri=SKOS.definition, name="definition", curie=SKOS.curie('definition'),
-                   model_uri=TERMCI.definition, domain=None, range=Optional[str])
+                   model_uri=SCT.definition, domain=None, range=Optional[str])
 
 slots.reference = Slot(uri=SKOS.seeAlso, name="reference", curie=SKOS.curie('seeAlso'),
-                   model_uri=TERMCI.reference, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
+                   model_uri=SCT.reference, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
 
 slots.defined_in = Slot(uri=SKOS.inScheme, name="defined_in", curie=SKOS.curie('inScheme'),
-                   model_uri=TERMCI.defined_in, domain=None, range=Union[str, ConceptSystemConceptSystemUri])
+                   model_uri=SCT.defined_in, domain=None, range=Union[str, ConceptSystemNamespace])
 
 slots.narrower_than = Slot(uri=SKOS.broader, name="narrower_than", curie=SKOS.curie('broader'),
-                   model_uri=TERMCI.narrower_than, domain=None, range=Optional[Union[Union[str, CodeEntryUri], List[Union[str, CodeEntryUri]]]])
+                   model_uri=SCT.narrower_than, domain=None, range=Optional[Union[Union[str, CodeEntryUri], List[Union[str, CodeEntryUri]]]])
 
 slots.prefix = Slot(uri=SH.prefix, name="prefix", curie=SH.curie('prefix'),
-                   model_uri=TERMCI.prefix, domain=None, range=Union[str, NCName])
+                   model_uri=SCT.prefix, domain=None, range=Union[str, NCName])
 
 slots.namespace = Slot(uri=SH.namespace, name="namespace", curie=SH.curie('namespace'),
-                   model_uri=TERMCI.namespace, domain=None, range=Union[Union[str, URI], List[Union[str, URI]]])
+                   model_uri=SCT.namespace, domain=None, range=URIRef)
 
 slots.root_concept = Slot(uri=SKOS.hasTopConcept, name="root_concept", curie=SKOS.curie('hasTopConcept'),
-                   model_uri=TERMCI.root_concept, domain=None, range=Optional[Union[Union[str, CodeEntryUri], List[Union[str, CodeEntryUri]]]])
+                   model_uri=SCT.root_concept, domain=None, range=Optional[Union[Union[str, CodeEntryUri], List[Union[str, CodeEntryUri]]]])
 
 slots.description = Slot(uri=DC.description, name="description", curie=DC.curie('description'),
-                   model_uri=TERMCI.description, domain=None, range=Optional[str])
+                   model_uri=SCT.description, domain=None, range=Optional[str])
 
-slots.concept_uri = Slot(uri=TERMCI.uri, name="concept_uri", curie=TERMCI.curie('uri'),
-                   model_uri=TERMCI.concept_uri, domain=None, range=URIRef)
+slots.concept_uri = Slot(uri=SCT.uri, name="concept_uri", curie=SCT.curie('uri'),
+                   model_uri=SCT.concept_uri, domain=None, range=URIRef)
 
-slots.concept_system_uri = Slot(uri=TERMCI.concept_system_uri, name="concept_system_uri", curie=TERMCI.curie('concept_system_uri'),
-                   model_uri=TERMCI.concept_system_uri, domain=None, range=URIRef)
+slots.package__entries = Slot(uri=SCT.entries, name="package__entries", curie=SCT.curie('entries'),
+                   model_uri=SCT.package__entries, domain=None, range=Optional[Union[Dict[Union[str, CodeEntryUri], Union[dict, CodeEntry]], List[Union[dict, CodeEntry]]]])
 
-slots.package__entries = Slot(uri=TERMCI.entries, name="package__entries", curie=TERMCI.curie('entries'),
-                   model_uri=TERMCI.package__entries, domain=None, range=Optional[Union[Dict[Union[str, CodeEntryUri], Union[dict, CodeEntry]], List[Union[dict, CodeEntry]]]])
-
-slots.package__systems = Slot(uri=TERMCI.systems, name="package__systems", curie=TERMCI.curie('systems'),
-                   model_uri=TERMCI.package__systems, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemConceptSystemUri], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])
+slots.package__systems = Slot(uri=SCT.systems, name="package__systems", curie=SCT.curie('systems'),
+                   model_uri=SCT.package__systems, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])
