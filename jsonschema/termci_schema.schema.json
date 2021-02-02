@@ -2,9 +2,9 @@
    "$id": "https://w3id.org/termci_schema",
    "$schema": "http://json-schema.org/draft-07/schema#",
    "definitions": {
-      "CodeEntry": {
+      "ConceptReference": {
          "additionalProperties": false,
-         "description": "An entry in a concept system",
+         "description": "A minimal description of a class, individual, term or similar construct",
          "properties": {
             "code": {
                "description": "The official code of this entry",
@@ -23,7 +23,7 @@
                "type": "string"
             },
             "narrower_than": {
-               "description": "A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept\nsystem",
+               "description": "A reference to a SKOS concept whose intended meaning or extension is broader than this entry in the defining concept\nsystem",
                "items": {
                   "type": "string"
                },
@@ -46,13 +46,20 @@
             "code",
             "defined_in"
          ],
-         "title": "CodeEntry",
+         "title": "ConceptReference",
          "type": "object"
       },
       "ConceptSystem": {
          "additionalProperties": false,
          "description": "A terminological resource (ontology, classification scheme, concept system, etc.)",
          "properties": {
+            "contents": {
+               "description": "The concept references that are in the ConceptSystem",
+               "items": {
+                  "$ref": "#/definitions/ConceptReference"
+               },
+               "type": "array"
+            },
             "description": {
                "description": "The description of a concept system",
                "type": "string"
@@ -91,12 +98,6 @@
          "additionalProperties": false,
          "description": "A collection of CodEntries and/or ConceptSystems",
          "properties": {
-            "entries": {
-               "items": {
-                  "$ref": "#/definitions/CodeEntry"
-               },
-               "type": "array"
-            },
             "systems": {
                "items": {
                   "$ref": "#/definitions/ConceptSystem"

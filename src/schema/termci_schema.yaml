@@ -59,9 +59,9 @@ slots:
     required: true
 
   narrower_than:
-    range: CodeEntry
+    range: ConceptReference
     description: |-
-      A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept
+      A reference to a SKOS concept whose intended meaning or extension is broader than this entry in the defining concept
       system
     slot_uri: skos:broader
     multivalued: true
@@ -82,7 +82,7 @@ slots:
     slot_uri: sh:namespace
 
   root_concept:
-    range: CodeEntry
+    range: ConceptReference
     description: |-
       A concept that has no broader concepts in a ConceptSystem
     multivalued: true
@@ -102,10 +102,17 @@ slots:
     identifier: true
     alias: uri
 
-classes:
-  CodeEntry:
+  contents:
     description: |-
-      An entry in a concept system
+      The concept references that are in the ConceptSystem
+    range: ConceptReference
+    multivalued: true
+    inlined_as_list: true
+
+classes:
+  ConceptReference:
+    description: |-
+      A minimal description of a class, individual, term or similar construct
     class_uri: skos:Concept
     slots:
       - concept_uri
@@ -126,15 +133,12 @@ classes:
       - description
       - reference
       - root_concept
+      - contents
 
   Package:
     description: |-
       A collection of CodEntries and/or ConceptSystems
     attributes:
-      entries:
-        range: CodeEntry
-        inlined: true
-        multivalued: true
       systems:
         range: ConceptSystem
         inlined: true

@@ -35,13 +35,13 @@ metatype:Objectidentifier IRI
 
 metatype:Nodeidentifier NONLITERAL
 
-<CodeEntry> CLOSED {
-    (  $<CodeEntry_tes> (  skos:notation @metatype:String ;
+<ConceptReference> CLOSED {
+    (  $<ConceptReference_tes> (  skos:notation @metatype:String ;
           skos:prefLabel @metatype:String ? ;
           skos:definition @metatype:String ? ;
           skos:seeAlso @metatype:Uri * ;
           skos:inScheme @<ConceptSystem> ;
-          skos:broader @<CodeEntry> *
+          skos:broader @<ConceptReference> *
        ) ;
        rdf:type [ skos:Concept ]
     )
@@ -51,16 +51,15 @@ metatype:Nodeidentifier NONLITERAL
     (  $<ConceptSystem_tes> (  sh:prefix @metatype:Ncname ;
           dc:description @metatype:String ? ;
           skos:seeAlso @metatype:Uri * ;
-          skos:hasTopConcept @<CodeEntry> *
+          skos:hasTopConcept @<ConceptReference> * ;
+          <contents> @<ConceptReference> *
        ) ;
        rdf:type [ skos:ConceptScheme ]
     )
 }
 
 <Package> CLOSED {
-    (  $<Package_tes> (  <entries> @<CodeEntry> * ;
-          <systems> @<ConceptSystem> *
-       ) ;
+    (  $<Package_tes> <systems> @<ConceptSystem> * ;
        rdf:type [ <Package> ] ?
     )
 }

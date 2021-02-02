@@ -10,40 +10,40 @@
 <http://snomed.info/id/termci_schema> a metatype:SchemaDefinition ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:classes <http://snomed.info/id/CodeEntry>,
+    meta:classes <http://snomed.info/id/ConceptReference>,
         <http://snomed.info/id/ConceptSystem>,
         <http://snomed.info/id/Package> ;
     meta:default_range <http://snomed.info/id/string> ;
-    meta:generation_date "2021-02-02 09:05"^^xsd:dateTime ;
+    meta:generation_date "2021-02-02 13:27"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
     meta:prefixes [ meta:prefix_reference biolinkml: ;
             metatype:prefix_prefix "biolinkml" ],
+        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
             metatype:prefix_prefix "dc" ],
-        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
-            metatype:prefix_prefix "termci" ],
         [ meta:prefix_reference <http://snomed.info/id/> ;
             metatype:prefix_prefix "sct" ],
+        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
+            metatype:prefix_prefix "termci" ],
         [ meta:prefix_reference skos: ;
-            metatype:prefix_prefix "skos" ],
-        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
-            metatype:prefix_prefix "sh" ] ;
+            metatype:prefix_prefix "skos" ] ;
     meta:slots <http://snomed.info/id/code>,
         <http://snomed.info/id/concept_uri>,
+        <http://snomed.info/id/contents>,
         <http://snomed.info/id/defined_in>,
         <http://snomed.info/id/definition>,
         <http://snomed.info/id/description>,
         <http://snomed.info/id/designation>,
         <http://snomed.info/id/namespace>,
         <http://snomed.info/id/narrower_than>,
-        <http://snomed.info/id/package__entries>,
         <http://snomed.info/id/package__systems>,
         <http://snomed.info/id/prefix>,
         <http://snomed.info/id/reference>,
         <http://snomed.info/id/root_concept> ;
-    meta:source_file_date "Tue Feb  2 09:05:24 2021"^^xsd:dateTime ;
-    meta:source_file_size 3363 ;
+    meta:source_file_date "Tue Feb  2 13:27:27 2021"^^xsd:dateTime ;
+    meta:source_file_size 3527 ;
     meta:types <http://snomed.info/id/boolean>,
         <http://snomed.info/id/date>,
         <http://snomed.info/id/datetime>,
@@ -151,11 +151,6 @@
     metatype:repr "str" ;
     meta:uri xsd:dateTime .
 
-<http://snomed.info/id/entries> a metatype:SlotDefinition ;
-    meta:inlined true ;
-    meta:multivalued true ;
-    meta:range <http://snomed.info/id/CodeEntry> .
-
 <http://snomed.info/id/ncname> a metatype:TypeDefinition ;
     skos:definition "Prefix part of CURIE" ;
     skos:inScheme biolinkml:types ;
@@ -164,16 +159,6 @@
     metatype:imported_from "biolinkml:types" ;
     metatype:repr "str" ;
     meta:uri xsd:string .
-
-<http://snomed.info/id/package__entries> a metatype:SlotDefinition ;
-    skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:domain_of <http://snomed.info/id/Package> ;
-    meta:inlined true ;
-    meta:multivalued true ;
-    meta:owner <http://snomed.info/id/Package> ;
-    meta:range <http://snomed.info/id/CodeEntry> ;
-    meta:slot_uri <http://snomed.info/id/entries> ;
-    metatype:alias "entries" .
 
 <http://snomed.info/id/package__systems> a metatype:SlotDefinition ;
     skos:inScheme <https://w3id.org/termci_schema> ;
@@ -204,8 +189,8 @@
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:notation ;
     meta:definition_uri <http://snomed.info/id/code> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry> ;
-    meta:owner <http://snomed.info/id/CodeEntry> ;
+    meta:domain_of <http://snomed.info/id/ConceptReference> ;
+    meta:owner <http://snomed.info/id/ConceptReference> ;
     meta:range <http://snomed.info/id/string> ;
     meta:required true ;
     meta:slot_uri skos:notation .
@@ -214,9 +199,9 @@
     skos:definition "The URI or CURIE or a code entry" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     meta:definition_uri <http://snomed.info/id/concept_uri> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry> ;
+    meta:domain_of <http://snomed.info/id/ConceptReference> ;
     meta:identifier true ;
-    meta:owner <http://snomed.info/id/CodeEntry> ;
+    meta:owner <http://snomed.info/id/ConceptReference> ;
     meta:range <http://snomed.info/id/uriorcurie> ;
     meta:required true ;
     meta:slot_uri <http://snomed.info/id/uri> ;
@@ -227,8 +212,8 @@
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:inScheme ;
     meta:definition_uri <http://snomed.info/id/defined_in> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry> ;
-    meta:owner <http://snomed.info/id/CodeEntry> ;
+    meta:domain_of <http://snomed.info/id/ConceptReference> ;
+    meta:owner <http://snomed.info/id/ConceptReference> ;
     meta:range <http://snomed.info/id/ConceptSystem> ;
     meta:required true ;
     meta:slot_uri skos:inScheme .
@@ -238,8 +223,8 @@
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:definition ;
     meta:definition_uri <http://snomed.info/id/definition> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry> ;
-    meta:owner <http://snomed.info/id/CodeEntry> ;
+    meta:domain_of <http://snomed.info/id/ConceptReference> ;
+    meta:owner <http://snomed.info/id/ConceptReference> ;
     meta:range <http://snomed.info/id/string> ;
     meta:slot_uri skos:definition .
 
@@ -259,8 +244,8 @@
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:prefLabel ;
     meta:definition_uri <http://snomed.info/id/designation> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry> ;
-    meta:owner <http://snomed.info/id/CodeEntry> ;
+    meta:domain_of <http://snomed.info/id/ConceptReference> ;
+    meta:owner <http://snomed.info/id/ConceptReference> ;
     meta:range <http://snomed.info/id/string> ;
     meta:slot_uri skos:prefLabel .
 
@@ -277,15 +262,15 @@
     meta:slot_uri <http://www.w3.org/ns/shacl#namespace> .
 
 <http://snomed.info/id/narrower_than> a metatype:SlotDefinition ;
-    skos:definition """A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept
+    skos:definition """A reference to a SKOS concept whose intended meaning or extension is broader than this entry in the defining concept
 system""" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:broader ;
     meta:definition_uri <http://snomed.info/id/narrower_than> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry> ;
+    meta:domain_of <http://snomed.info/id/ConceptReference> ;
     meta:multivalued true ;
-    meta:owner <http://snomed.info/id/CodeEntry> ;
-    meta:range <http://snomed.info/id/CodeEntry> ;
+    meta:owner <http://snomed.info/id/ConceptReference> ;
+    meta:range <http://snomed.info/id/ConceptReference> ;
     meta:slot_uri skos:broader .
 
 <http://snomed.info/id/prefix> a metatype:SlotDefinition ;
@@ -307,15 +292,27 @@ system""" ;
     meta:domain_of <http://snomed.info/id/ConceptSystem> ;
     meta:multivalued true ;
     meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/CodeEntry> ;
+    meta:range <http://snomed.info/id/ConceptReference> ;
     meta:slot_uri skos:hasTopConcept .
+
+<http://snomed.info/id/contents> a metatype:SlotDefinition ;
+    skos:definition "The concept references that are in the ConceptSystem" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    meta:definition_uri <http://snomed.info/id/contents> ;
+    meta:domain_of <http://snomed.info/id/ConceptSystem> ;
+    meta:inlined true ;
+    meta:inlined_as_list true ;
+    meta:multivalued true ;
+    meta:owner <http://snomed.info/id/ConceptSystem> ;
+    meta:range <http://snomed.info/id/ConceptReference> ;
+    meta:slot_uri <http://snomed.info/id/contents> .
 
 <http://snomed.info/id/reference> a metatype:SlotDefinition ;
     skos:definition "A link that provides additional information about this entry" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:seeAlso ;
     meta:definition_uri <http://snomed.info/id/reference> ;
-    meta:domain_of <http://snomed.info/id/CodeEntry>,
+    meta:domain_of <http://snomed.info/id/ConceptReference>,
         <http://snomed.info/id/ConceptSystem> ;
     meta:multivalued true ;
     meta:owner <http://snomed.info/id/ConceptSystem> ;
@@ -331,6 +328,14 @@ system""" ;
     metatype:repr "str" ;
     meta:uri xsd:anyURI .
 
+<http://snomed.info/id/Package> a metatype:ClassDefinition ;
+    skos:definition "A collection of CodEntries and/or ConceptSystems" ;
+    skos:inScheme <https://w3id.org/termci_schema> ;
+    meta:attributes <http://snomed.info/id/systems> ;
+    meta:class_uri <http://snomed.info/id/Package> ;
+    meta:definition_uri <http://snomed.info/id/Package> ;
+    meta:slots <http://snomed.info/id/package__systems> .
+
 <http://snomed.info/id/string> a metatype:TypeDefinition ;
     skos:definition "A character string" ;
     skos:inScheme biolinkml:types ;
@@ -339,34 +344,25 @@ system""" ;
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:string .
 
-<http://snomed.info/id/Package> a metatype:ClassDefinition ;
-    skos:definition "A collection of CodEntries and/or ConceptSystems" ;
-    skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:attributes <http://snomed.info/id/entries>,
-        <http://snomed.info/id/systems> ;
-    meta:class_uri <http://snomed.info/id/Package> ;
-    meta:definition_uri <http://snomed.info/id/Package> ;
-    meta:slots <http://snomed.info/id/package__entries>,
-        <http://snomed.info/id/package__systems> .
-
 <http://snomed.info/id/ConceptSystem> a metatype:ClassDefinition ;
     skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:ConceptScheme ;
     meta:class_uri skos:ConceptScheme ;
     meta:definition_uri <http://snomed.info/id/ConceptSystem> ;
-    meta:slots <http://snomed.info/id/description>,
+    meta:slots <http://snomed.info/id/contents>,
+        <http://snomed.info/id/description>,
         <http://snomed.info/id/namespace>,
         <http://snomed.info/id/prefix>,
         <http://snomed.info/id/reference>,
         <http://snomed.info/id/root_concept> .
 
-<http://snomed.info/id/CodeEntry> a metatype:ClassDefinition ;
-    skos:definition "An entry in a concept system" ;
+<http://snomed.info/id/ConceptReference> a metatype:ClassDefinition ;
+    skos:definition "A minimal description of a class, individual, term or similar construct" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:Concept ;
     meta:class_uri skos:Concept ;
-    meta:definition_uri <http://snomed.info/id/CodeEntry> ;
+    meta:definition_uri <http://snomed.info/id/ConceptReference> ;
     meta:slots <http://snomed.info/id/code>,
         <http://snomed.info/id/concept_uri>,
         <http://snomed.info/id/defined_in>,
