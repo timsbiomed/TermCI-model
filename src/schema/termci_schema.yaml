@@ -18,9 +18,9 @@ default_range: string
 slots:
   code:
     range: string
-    identifier: true
+    required: true
     description: |-
-      The official identifier of this entry within the context of of the containing concept scheme
+      The official code of this entry
     slot_uri: skos:notation
 
   designation:
@@ -70,7 +70,7 @@ slots:
     range: ncname
     description: |-
       The official prefix assigned to a concept system
-    identifier: true
+    required: true
     slot_uri: sh:prefix
 
   namespace:
@@ -95,6 +95,18 @@ slots:
       The description of a concept system
     slot_uri: dc:description
 
+  concept_uri:
+    range: uriorcurie
+    description: |-
+      The URI or CURIE or a code entry
+    identifier: true
+    alias: uri
+
+  concept_system_uri:
+    range: uriorcurie
+    description: |-
+      The URI or CURIE of a concept system
+    identifier: true
 
 classes:
   CodeEntry:
@@ -102,6 +114,7 @@ classes:
       An entry in a concept system
     class_uri: skos:Concept
     slots:
+      - concept_uri
       - code
       - designation
       - definition
@@ -114,6 +127,7 @@ classes:
       A terminological resource (ontology, classification scheme, concept system, etc.)
     class_uri: skos:ConceptScheme
     slots:
+      - concept_system_uri
       - prefix
       - namespace
       - description

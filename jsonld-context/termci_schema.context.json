@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-02-01 16:25\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
+   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-02-02 08:47\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
    "@context": {
       "type": "@type",
       "biolinkml": "https://w3id.org/biolink/biolinkml/",
@@ -8,7 +8,11 @@
       "skos": "http://www.w3.org/2004/02/skos/core#",
       "termci": "https://hotecosystem.org/termci/",
       "@vocab": "https://hotecosystem.org/termci/",
-      "code": "@id",
+      "code": {
+         "@id": "skos:notation"
+      },
+      "concept_system_uri": "@id",
+      "uri": "@id",
       "defined_in": {
          "@type": "@id",
          "@id": "skos:inScheme"
@@ -36,7 +40,9 @@
       "systems": {
          "@type": "@id"
       },
-      "prefix": "@id",
+      "prefix": {
+         "@id": "sh:prefix"
+      },
       "reference": {
          "@type": "@id",
          "@id": "skos:seeAlso"

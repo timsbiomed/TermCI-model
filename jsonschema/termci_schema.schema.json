@@ -7,7 +7,7 @@
          "description": "An entry in a concept system",
          "properties": {
             "code": {
-               "description": "The official identifier of this entry within the context of of the containing concept scheme",
+               "description": "The official code of this entry",
                "type": "string"
             },
             "defined_in": {
@@ -35,9 +35,14 @@
                   "type": "string"
                },
                "type": "array"
+            },
+            "uri": {
+               "description": "The URI or CURIE or a code entry",
+               "type": "string"
             }
          },
          "required": [
+            "uri",
             "code",
             "defined_in"
          ],
@@ -48,6 +53,10 @@
          "additionalProperties": false,
          "description": "A terminological resource (ontology, classification scheme, concept system, etc.)",
          "properties": {
+            "concept_system_uri": {
+               "description": "The URI or CURIE of a concept system",
+               "type": "string"
+            },
             "description": {
                "description": "The description of a concept system",
                "type": "string"
@@ -79,6 +88,7 @@
             }
          },
          "required": [
+            "concept_system_uri",
             "prefix",
             "namespace"
          ],

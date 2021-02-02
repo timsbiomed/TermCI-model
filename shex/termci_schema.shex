@@ -36,7 +36,8 @@ metatype:Objectidentifier IRI
 metatype:Nodeidentifier NONLITERAL
 
 <CodeEntry> CLOSED {
-    (  $<CodeEntry_tes> (  skos:prefLabel @metatype:String ? ;
+    (  $<CodeEntry_tes> (  skos:notation @metatype:String ;
+          skos:prefLabel @metatype:String ? ;
           skos:definition @metatype:String ? ;
           skos:seeAlso @metatype:Uri * ;
           skos:inScheme @<ConceptSystem> ;
@@ -47,7 +48,8 @@ metatype:Nodeidentifier NONLITERAL
 }
 
 <ConceptSystem> CLOSED {
-    (  $<ConceptSystem_tes> (  sh:namespace @metatype:Uri + ;
+    (  $<ConceptSystem_tes> (  sh:prefix @metatype:Ncname ;
+          sh:namespace @metatype:Uri + ;
           dc:description @metatype:String ? ;
           skos:seeAlso @metatype:Uri * ;
           skos:hasTopConcept @<CodeEntry> *

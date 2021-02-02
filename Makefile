@@ -8,9 +8,11 @@ SCHEMA_SRC = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
 TGTS = graphql jsonschema docs shex owl csv graphql python jsonld-context rdf
 
 #GEN_OPTS = --no-mergeimports
-GEN_OPTS = 
+GEN_OPTS =
 
-all: gen stage
+export PIPENV_VERBOSITY = -1
+
+all: test gen stage
 gen: $(patsubst %,gen-%,$(TGTS))
 clean:
 	rm -rf target/
@@ -22,13 +24,16 @@ t:
 echo:
 	echo $(patsubst %,gen-%,$(TGTS))
 
-test: all
+# ISSUE: This doesn't actually iterate over multiple sources.  Fix it
+test: .PHONY
+	$(patsubst %, pipenv run gen-yaml $(GEN_OPTS) -v --log_level INFO %, $(SCHEMA_SRC))
 
 install:
 	pipenv install
 
 tdir-%:
 	mkdir -p target/$*
+
 docs:
 	mkdir $@
 
@@ -39,7 +44,6 @@ stage-%: gen-%
 
 ###  -- MARKDOWN DOCS --
 # Generate documentation ready for mkdocs
-# TODO: modularize imports
 gen-docs: target/docs/index.md copy-src-docs
 .PHONY: gen-docs
 copy-src-docs:

@@ -1,5 +1,6 @@
 type CodeEntry
   {
+    uri: Uriorcurie!
     code: String!
     designation: String
     definition: String
@@ -10,6 +11,7 @@ type CodeEntry
 
 type ConceptSystem
   {
+    conceptSystemUri: Uriorcurie!
     prefix: Ncname!
     namespace: [Uri]!
     description: String
