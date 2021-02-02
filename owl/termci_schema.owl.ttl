@@ -10,11 +10,8 @@
     rdfs:label "Package" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom <http://snomed.info/id/ConceptSystem> ;
-            owl:onProperty meta:systems ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <http://snomed.info/id/CodeEntry> ;
-            owl:onProperty meta:entries ] ;
-    skos:definition "A collection of CodEntries and/or ConceptSystems" .
+            owl:onProperty meta:system ] ;
+    skos:definition "A collection of ConceptSystems" .
 
 <http://snomed.info/id/concept_uri> a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -26,14 +23,9 @@ meta:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" ;
     skos:definition "the name and description of a subset" .
 
-meta:package__entries a owl:ObjectProperty,
+meta:package__system a owl:ObjectProperty,
         meta:SlotDefinition ;
-    rdfs:label "package__entries" ;
-    rdfs:range <http://snomed.info/id/CodeEntry> .
-
-meta:package__systems a owl:ObjectProperty,
-        meta:SlotDefinition ;
-    rdfs:label "package__systems" ;
+    rdfs:label "package__system" ;
     rdfs:range <http://snomed.info/id/ConceptSystem> .
 
 <https://w3id.org/biolink/biolinkml/meta/types/Boolean> a owl:Class,
@@ -133,17 +125,23 @@ meta:package__systems a owl:ObjectProperty,
     rdfs:label "termci_schema" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:generation_date "2021-02-02 09:05" ;
+    meta:generation_date "2021-02-02 14:14" ;
     meta:metamodel_version "1.7.0" ;
     meta:source_file "termci_schema.yaml" ;
-    meta:source_file_date "Tue Feb  2 09:05:24 2021" ;
-    meta:source_file_size 3363 .
+    meta:source_file_date "Tue Feb  2 13:54:11 2021" ;
+    meta:source_file_size 3508 .
 
 <http://snomed.info/id/code> a owl:ObjectProperty,
         meta:SlotDefinition ;
     rdfs:label "code" ;
     rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
     skos:definition "The official code of this entry" .
+
+<http://snomed.info/id/contents> a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "contents" ;
+    rdfs:range <http://snomed.info/id/ConceptReference> ;
+    skos:definition "The concept references that are in the ConceptSystem" .
 
 <http://snomed.info/id/defined_in> a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -179,8 +177,8 @@ meta:package__systems a owl:ObjectProperty,
 <http://snomed.info/id/narrower_than> a owl:ObjectProperty,
         meta:SlotDefinition ;
     rdfs:label "narrower_than" ;
-    rdfs:range <http://snomed.info/id/CodeEntry> ;
-    skos:definition """A reference to a CodeEntry whose intended meaning or extension is broader than this entry in the defining concept
+    rdfs:range <http://snomed.info/id/ConceptReference> ;
+    skos:definition """A reference to a SKOS concept whose intended meaning or extension is broader than this entry in the defining concept
 system""" .
 
 <http://snomed.info/id/prefix> a owl:ObjectProperty,
@@ -192,7 +190,7 @@ system""" .
 <http://snomed.info/id/root_concept> a owl:ObjectProperty,
         meta:SlotDefinition ;
     rdfs:label "root_concept" ;
-    rdfs:range <http://snomed.info/id/CodeEntry> ;
+    rdfs:range <http://snomed.info/id/ConceptReference> ;
     skos:definition "A concept that has no broader concepts in a ConceptSystem" .
 
 <http://snomed.info/id/reference> a owl:ObjectProperty,
@@ -227,23 +225,26 @@ meta:ClassDefinition a owl:Class ;
         meta:ClassDefinition ;
     rdfs:label "ConceptSystem" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
-            owl:onProperty <http://snomed.info/id/prefix> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <http://snomed.info/id/CodeEntry> ;
-            owl:onProperty <http://snomed.info/id/root_concept> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-            owl:onProperty <http://snomed.info/id/reference> ],
-        [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
             owl:onProperty <http://snomed.info/id/namespace> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <http://snomed.info/id/description> ] ;
+            owl:onProperty <http://snomed.info/id/description> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <http://snomed.info/id/reference> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
+            owl:onProperty <http://snomed.info/id/contents> ],
+        [ a owl:Restriction ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
+            owl:onProperty <http://snomed.info/id/prefix> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
+            owl:onProperty <http://snomed.info/id/root_concept> ] ;
     skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
     skos:exactMatch skos:ConceptScheme .
 
@@ -256,36 +257,36 @@ meta:ClassDefinition a owl:Class ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "a complete URI" .
 
-<http://snomed.info/id/CodeEntry> a owl:Class,
+<http://snomed.info/id/ConceptReference> a owl:Class,
         meta:ClassDefinition ;
-    rdfs:label "CodeEntry" ;
+    rdfs:label "ConceptReference" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <http://snomed.info/id/reference> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
+            owl:onProperty <http://snomed.info/id/narrower_than> ],
+        [ a owl:Restriction ;
+            owl:onClass <http://snomed.info/id/ConceptSystem> ;
+            owl:onProperty <http://snomed.info/id/defined_in> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <http://snomed.info/id/code> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <http://snomed.info/id/CodeEntry> ;
-            owl:onProperty <http://snomed.info/id/narrower_than> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <http://snomed.info/id/definition> ],
-        [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
             owl:onProperty meta:uri ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass <http://snomed.info/id/ConceptSystem> ;
-            owl:onProperty <http://snomed.info/id/defined_in> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <http://snomed.info/id/designation> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-            owl:onProperty <http://snomed.info/id/reference> ] ;
-    skos:definition "An entry in a concept system" ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <http://snomed.info/id/definition> ] ;
+    skos:definition "A minimal description of a class, individual, term or similar construct" ;
     skos:exactMatch skos:Concept .
 
 <https://w3id.org/biolink/biolinkml/meta/types/String> a owl:Class,

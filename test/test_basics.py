@@ -1,25 +1,39 @@
 import os
 import unittest
 
-from biolinkml.utils.yamlutils import as_yaml, as_rdf
+from biolinkml.utils.yamlutils import as_yaml, as_rdf, as_json_object
+from jsonasobj import as_json
 from rdflib import Namespace
 
-from python.termci_schema import CodeEntry, Package, ConceptSystem
+from python.termci_schema import ConceptReference, Package, ConceptSystem
 
 SCT = Namespace("http://snomed.info/id/")
+OBO = Namespace("http://purl.obolibrary.org/obo/")
+NCIT = Namespace("http://purl.obolibrary.org/obo/ncit#")
 
 
 class BasicsTestCase(unittest.TestCase):
     def test_emit_basics(self):
-        p = Package()
-        p.systems = ConceptSystem(SCT, prefix='SCT', description="SNOMED CT International", reference="http://snomed.org/")
-        p.entries = CodeEntry(SCT['74400008'], code='74400008', defined_in=SCT, designation="Appendicitis (disorder)",
-                              reference=SCT['74400008'], narrower_than=['18526009', '300307005'])
-        p.__post_init__()
+        snomed = ConceptSystem(SCT, prefix='SCT', description="SNOMED CT International", reference="http://snomed.org/")
+        snomed.contents.append(
+            ConceptReference(SCT['74400008'], code='74400008', defined_in=snomed.namespace,
+                             designation="Appendicitis (disorder)",  reference=SCT['74400008'],
+                             narrower_than=['18526009', '300307005']))
+        snomed.__post_init__()
+        p = Package(snomed)
         print(as_yaml(p))
+        print(as_json(as_json_object(p)))
         g = as_rdf(p, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
         print(g.serialize(format='turtle').decode())
 
+    def test_obo_sample(self):
+        e1 = ConceptReference(OBO['NCI_C147796'], code="C147796", defined_in=OBO,
+                              designation="TSCYC - Being Frightened of Men",
+                              definition="Trauma Symptom Checklist for Young Children (TSCYC) Please indicate how often"
+                                         " the child has done, felt, or experienced each of the following things in the "
+                                         "last month: Being frightened of men.", narrower_than=OBO.NCIT_C147557)
+        g = as_rdf(e1, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
+        print(g.serialize(format='turtle').decode())
 
 if __name__ == '__main__':
     unittest.main()

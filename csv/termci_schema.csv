@@ -1,5 +1,5 @@
 id,mappings,description
-CodeEntry,,An entry in a concept system
+ConceptReference,,"A minimal description of a class, individual, term or similar construct"
 ConceptSystem,,"A terminological resource (ontology, classification scheme, concept system, etc.)"
-Package,,A collection of CodEntries and/or ConceptSystems
+Package,,A collection of ConceptSystems
 
