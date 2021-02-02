@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-02 13:27
+# Generation date: 2021-02-02 13:37
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema

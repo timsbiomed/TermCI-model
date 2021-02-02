@@ -12,11 +12,13 @@ SCT = Namespace("http://snomed.info/id/")
 
 class BasicsTestCase(unittest.TestCase):
     def test_emit_basics(self):
-        p = Package()
-        p.systems = ConceptSystem(SCT, prefix='SCT', description="SNOMED CT International", reference="http://snomed.org/")
-        p.entries = ConceptReference(SCT['74400008'], code='74400008', defined_in=SCT, designation="Appendicitis (disorder)",
-                                     reference=SCT['74400008'], narrower_than=['18526009', '300307005'])
-        p.__post_init__()
+        snomed = ConceptSystem(SCT, prefix='SCT', description="SNOMED CT International", reference="http://snomed.org/")
+        snomed.contents.append(
+            ConceptReference(SCT['74400008'], code='74400008', defined_in=snomed.namespace,
+                             designation="Appendicitis (disorder)",  reference=SCT['74400008'],
+                             narrower_than=['18526009', '300307005']))
+        snomed.__post_init__()
+        p = Package(snomed)
         print(as_yaml(p))
         print(as_json(as_json_object(p)))
         g = as_rdf(p, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))

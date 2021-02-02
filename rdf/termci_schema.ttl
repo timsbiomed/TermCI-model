@@ -14,21 +14,21 @@
         <http://snomed.info/id/ConceptSystem>,
         <http://snomed.info/id/Package> ;
     meta:default_range <http://snomed.info/id/string> ;
-    meta:generation_date "2021-02-02 13:27"^^xsd:dateTime ;
+    meta:generation_date "2021-02-02 13:37"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference biolinkml: ;
-            metatype:prefix_prefix "biolinkml" ],
-        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
-            metatype:prefix_prefix "sh" ],
-        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
-            metatype:prefix_prefix "dc" ],
+    meta:prefixes [ meta:prefix_reference skos: ;
+            metatype:prefix_prefix "skos" ],
         [ meta:prefix_reference <http://snomed.info/id/> ;
             metatype:prefix_prefix "sct" ],
+        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
             metatype:prefix_prefix "termci" ],
-        [ meta:prefix_reference skos: ;
-            metatype:prefix_prefix "skos" ] ;
+        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference biolinkml: ;
+            metatype:prefix_prefix "biolinkml" ] ;
     meta:slots <http://snomed.info/id/code>,
         <http://snomed.info/id/concept_uri>,
         <http://snomed.info/id/contents>,
