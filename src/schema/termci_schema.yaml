@@ -137,9 +137,9 @@ classes:
 
   Package:
     description: |-
-      A collection of CodEntries and/or ConceptSystems
+      A collection of ConceptSystems
     attributes:
-      systems:
+      system:
         range: ConceptSystem
         inlined: true
         multivalued: true

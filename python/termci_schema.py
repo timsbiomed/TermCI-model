@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-02 13:37
+# Generation date: 2021-02-02 14:14
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -167,7 +167,7 @@ class ConceptSystem(YAMLRoot):
 @dataclass
 class Package(YAMLRoot):
     """
-    A collection of CodEntries and/or ConceptSystems
+    A collection of ConceptSystems
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -176,14 +176,14 @@ class Package(YAMLRoot):
     class_name: ClassVar[str] = "Package"
     class_model_uri: ClassVar[URIRef] = SCT.Package
 
-    systems: Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]] = empty_dict()
+    system: Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.systems is None:
-            self.systems = []
-        if not isinstance(self.systems, (list, dict)):
-            self.systems = [self.systems]
-        self._normalize_inlined_slot(slot_name="systems", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=None, keyed=True)
+        if self.system is None:
+            self.system = []
+        if not isinstance(self.system, (list, dict)):
+            self.system = [self.system]
+        self._normalize_inlined_slot(slot_name="system", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=None, keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -231,5 +231,5 @@ slots.concept_uri = Slot(uri=SCT.uri, name="concept_uri", curie=SCT.curie('uri')
 slots.contents = Slot(uri=SCT.contents, name="contents", curie=SCT.curie('contents'),
                    model_uri=SCT.contents, domain=None, range=Optional[Union[Dict[Union[str, ConceptReferenceUri], Union[dict, ConceptReference]], List[Union[dict, ConceptReference]]]])
 
-slots.package__systems = Slot(uri=SCT.systems, name="package__systems", curie=SCT.curie('systems'),
-                   model_uri=SCT.package__systems, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])
+slots.package__system = Slot(uri=SCT.system, name="package__system", curie=SCT.curie('system'),
+                   model_uri=SCT.package__system, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])

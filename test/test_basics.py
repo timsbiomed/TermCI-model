@@ -8,6 +8,8 @@ from rdflib import Namespace
 from python.termci_schema import ConceptReference, Package, ConceptSystem
 
 SCT = Namespace("http://snomed.info/id/")
+OBO = Namespace("http://purl.obolibrary.org/obo/")
+NCIT = Namespace("http://purl.obolibrary.org/obo/ncit#")
 
 
 class BasicsTestCase(unittest.TestCase):
@@ -24,6 +26,14 @@ class BasicsTestCase(unittest.TestCase):
         g = as_rdf(p, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
         print(g.serialize(format='turtle').decode())
 
+    def test_obo_sample(self):
+        e1 = ConceptReference(OBO['NCI_C147796'], code="C147796", defined_in=OBO,
+                              designation="TSCYC - Being Frightened of Men",
+                              definition="Trauma Symptom Checklist for Young Children (TSCYC) Please indicate how often"
+                                         " the child has done, felt, or experienced each of the following things in the "
+                                         "last month: Being frightened of men.", narrower_than=OBO.NCIT_C147557)
+        g = as_rdf(e1, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
+        print(g.serialize(format='turtle').decode())
 
 if __name__ == '__main__':
     unittest.main()

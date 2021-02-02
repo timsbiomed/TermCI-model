@@ -59,7 +59,7 @@ metatype:Nodeidentifier NONLITERAL
 }
 
 <Package> CLOSED {
-    (  $<Package_tes> <systems> @<ConceptSystem> * ;
+    (  $<Package_tes> <system> @<ConceptSystem> * ;
        rdf:type [ <Package> ] ?
     )
 }

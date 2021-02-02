@@ -10,8 +10,8 @@
     rdfs:label "Package" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom <http://snomed.info/id/ConceptSystem> ;
-            owl:onProperty meta:systems ] ;
-    skos:definition "A collection of CodEntries and/or ConceptSystems" .
+            owl:onProperty meta:system ] ;
+    skos:definition "A collection of ConceptSystems" .
 
 <http://snomed.info/id/concept_uri> a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -23,9 +23,9 @@ meta:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" ;
     skos:definition "the name and description of a subset" .
 
-meta:package__systems a owl:ObjectProperty,
+meta:package__system a owl:ObjectProperty,
         meta:SlotDefinition ;
-    rdfs:label "package__systems" ;
+    rdfs:label "package__system" ;
     rdfs:range <http://snomed.info/id/ConceptSystem> .
 
 <https://w3id.org/biolink/biolinkml/meta/types/Boolean> a owl:Class,
@@ -125,11 +125,11 @@ meta:package__systems a owl:ObjectProperty,
     rdfs:label "termci_schema" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:generation_date "2021-02-02 13:37" ;
+    meta:generation_date "2021-02-02 14:14" ;
     meta:metamodel_version "1.7.0" ;
     meta:source_file "termci_schema.yaml" ;
-    meta:source_file_date "Tue Feb  2 13:27:27 2021" ;
-    meta:source_file_size 3527 .
+    meta:source_file_date "Tue Feb  2 13:54:11 2021" ;
+    meta:source_file_size 3508 .
 
 <http://snomed.info/id/code> a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -229,22 +229,22 @@ meta:ClassDefinition a owl:Class ;
             owl:onProperty <http://snomed.info/id/namespace> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
-            owl:onProperty <http://snomed.info/id/contents> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
-            owl:onProperty <http://snomed.info/id/root_concept> ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <http://snomed.info/id/description> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <http://snomed.info/id/reference> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
+            owl:onProperty <http://snomed.info/id/contents> ],
         [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
             owl:onProperty <http://snomed.info/id/prefix> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-            owl:onProperty <http://snomed.info/id/reference> ] ;
+            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
+            owl:onProperty <http://snomed.info/id/root_concept> ] ;
     skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
     skos:exactMatch skos:ConceptScheme .
 
@@ -264,16 +264,15 @@ meta:ClassDefinition a owl:Class ;
             owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
             owl:onProperty <http://snomed.info/id/reference> ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <http://snomed.info/id/designation> ],
-        [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <http://snomed.info/id/code> ;
-            owl:qualifiedCardinality 1 ],
+            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
+            owl:onProperty <http://snomed.info/id/narrower_than> ],
         [ a owl:Restriction ;
             owl:onClass <http://snomed.info/id/ConceptSystem> ;
             owl:onProperty <http://snomed.info/id/defined_in> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <http://snomed.info/id/code> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
@@ -282,10 +281,11 @@ meta:ClassDefinition a owl:Class ;
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <http://snomed.info/id/definition> ],
+            owl:onProperty <http://snomed.info/id/designation> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <http://snomed.info/id/ConceptReference> ;
-            owl:onProperty <http://snomed.info/id/narrower_than> ] ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <http://snomed.info/id/definition> ] ;
     skos:definition "A minimal description of a class, individual, term or similar construct" ;
     skos:exactMatch skos:Concept .
 

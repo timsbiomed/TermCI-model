@@ -96,9 +96,9 @@
       },
       "Package": {
          "additionalProperties": false,
-         "description": "A collection of CodEntries and/or ConceptSystems",
+         "description": "A collection of ConceptSystems",
          "properties": {
-            "systems": {
+            "system": {
                "items": {
                   "$ref": "#/definitions/ConceptSystem"
                },

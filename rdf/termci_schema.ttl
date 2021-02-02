@@ -14,19 +14,19 @@
         <http://snomed.info/id/ConceptSystem>,
         <http://snomed.info/id/Package> ;
     meta:default_range <http://snomed.info/id/string> ;
-    meta:generation_date "2021-02-02 13:37"^^xsd:dateTime ;
+    meta:generation_date "2021-02-02 14:14"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference skos: ;
+    meta:prefixes [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference skos: ;
             metatype:prefix_prefix "skos" ],
         [ meta:prefix_reference <http://snomed.info/id/> ;
             metatype:prefix_prefix "sct" ],
-        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
-            metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
             metatype:prefix_prefix "termci" ],
-        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
-            metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference biolinkml: ;
             metatype:prefix_prefix "biolinkml" ] ;
     meta:slots <http://snomed.info/id/code>,
@@ -38,12 +38,12 @@
         <http://snomed.info/id/designation>,
         <http://snomed.info/id/namespace>,
         <http://snomed.info/id/narrower_than>,
-        <http://snomed.info/id/package__systems>,
+        <http://snomed.info/id/package__system>,
         <http://snomed.info/id/prefix>,
         <http://snomed.info/id/reference>,
         <http://snomed.info/id/root_concept> ;
-    meta:source_file_date "Tue Feb  2 13:27:27 2021"^^xsd:dateTime ;
-    meta:source_file_size 3527 ;
+    meta:source_file_date "Tue Feb  2 13:54:11 2021"^^xsd:dateTime ;
+    meta:source_file_size 3508 ;
     meta:types <http://snomed.info/id/boolean>,
         <http://snomed.info/id/date>,
         <http://snomed.info/id/datetime>,
@@ -160,17 +160,17 @@
     metatype:repr "str" ;
     meta:uri xsd:string .
 
-<http://snomed.info/id/package__systems> a metatype:SlotDefinition ;
+<http://snomed.info/id/package__system> a metatype:SlotDefinition ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     meta:domain_of <http://snomed.info/id/Package> ;
     meta:inlined true ;
     meta:multivalued true ;
     meta:owner <http://snomed.info/id/Package> ;
     meta:range <http://snomed.info/id/ConceptSystem> ;
-    meta:slot_uri <http://snomed.info/id/systems> ;
-    metatype:alias "systems" .
+    meta:slot_uri <http://snomed.info/id/system> ;
+    metatype:alias "system" .
 
-<http://snomed.info/id/systems> a metatype:SlotDefinition ;
+<http://snomed.info/id/system> a metatype:SlotDefinition ;
     meta:inlined true ;
     meta:multivalued true ;
     meta:range <http://snomed.info/id/ConceptSystem> .
@@ -329,12 +329,12 @@ system""" ;
     meta:uri xsd:anyURI .
 
 <http://snomed.info/id/Package> a metatype:ClassDefinition ;
-    skos:definition "A collection of CodEntries and/or ConceptSystems" ;
+    skos:definition "A collection of ConceptSystems" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:attributes <http://snomed.info/id/systems> ;
+    meta:attributes <http://snomed.info/id/system> ;
     meta:class_uri <http://snomed.info/id/Package> ;
     meta:definition_uri <http://snomed.info/id/Package> ;
-    meta:slots <http://snomed.info/id/package__systems> .
+    meta:slots <http://snomed.info/id/package__system> .
 
 <http://snomed.info/id/string> a metatype:TypeDefinition ;
     skos:definition "A character string" ;
