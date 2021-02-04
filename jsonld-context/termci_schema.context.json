@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-02-04 08:23\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
+   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-02-04 11:09\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
    "@context": {
       "type": "@type",
       "biolinkml": "https://w3id.org/biolink/biolinkml/",
@@ -35,7 +35,8 @@
          "@id": "skos:broader"
       },
       "system": {
-         "@type": "@id"
+         "@type": "@id",
+         "@container": "@list"
       },
       "prefix": {
          "@id": "sh:prefix"

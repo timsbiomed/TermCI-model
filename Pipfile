@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 biolinkml = ">=1.7.0"
+pyld = "*"
+rdflib-pyld-compat = "*"
 
 [dev-packages]
 mkdocs = "*"

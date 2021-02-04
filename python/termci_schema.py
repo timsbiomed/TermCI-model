@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-04 08:23
+# Generation date: 2021-02-04 10:55
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -183,7 +183,7 @@ class Package(YAMLRoot):
             self.system = []
         if not isinstance(self.system, (list, dict)):
             self.system = [self.system]
-        self._normalize_inlined_slot(slot_name="system", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=None, keyed=True)
+        self._normalize_inlined_slot(slot_name="system", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=True, keyed=True)
 
         super().__post_init__(**kwargs)
 

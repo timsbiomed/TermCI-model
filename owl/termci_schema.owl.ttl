@@ -125,11 +125,11 @@ meta:package__system a owl:ObjectProperty,
     rdfs:label "termci_schema" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:generation_date "2021-02-04 08:23" ;
+    meta:generation_date "2021-02-04 11:09" ;
     meta:metamodel_version "1.7.0" ;
     meta:source_file "termci_schema.yaml" ;
-    meta:source_file_date "Thu Feb  4 08:23:00 2021" ;
-    meta:source_file_size 3511 .
+    meta:source_file_date "Thu Feb  4 10:55:15 2021" ;
+    meta:source_file_size 3519 .
 
 <https://hotecosystem.org/termci/code> a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -225,15 +225,15 @@ meta:ClassDefinition a owl:Class ;
         meta:ClassDefinition ;
     rdfs:label "ConceptSystem" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
+            owl:onProperty <https://hotecosystem.org/termci/contents> ],
+        [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
             owl:onProperty <https://hotecosystem.org/termci/prefix> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
             owl:onProperty <https://hotecosystem.org/termci/root_concept> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
-            owl:onProperty <https://hotecosystem.org/termci/contents> ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
             owl:onProperty <https://hotecosystem.org/termci/reference> ],
@@ -263,29 +263,29 @@ meta:ClassDefinition a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://hotecosystem.org/termci/designation> ],
-        [ a owl:Restriction ;
-            owl:onClass <https://hotecosystem.org/termci/ConceptSystem> ;
-            owl:onProperty <https://hotecosystem.org/termci/defined_in> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <https://hotecosystem.org/termci/definition> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
-            owl:onProperty <https://hotecosystem.org/termci/reference> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
-            owl:onProperty <https://hotecosystem.org/termci/narrower_than> ],
         [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
             owl:onProperty meta:uri ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/designation> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
+            owl:onProperty <https://hotecosystem.org/termci/reference> ],
+        [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <https://hotecosystem.org/termci/code> ;
-            owl:qualifiedCardinality 1 ] ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass <https://hotecosystem.org/termci/ConceptSystem> ;
+            owl:onProperty <https://hotecosystem.org/termci/defined_in> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
+            owl:onProperty <https://hotecosystem.org/termci/narrower_than> ] ;
     skos:definition "A minimal description of a class, individual, term or similar construct" ;
     skos:exactMatch skos:Concept .
 

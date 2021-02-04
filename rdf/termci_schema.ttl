@@ -14,21 +14,21 @@
         <https://hotecosystem.org/termci/ConceptSystem>,
         <https://hotecosystem.org/termci/Package> ;
     meta:default_range <https://hotecosystem.org/termci/string> ;
-    meta:generation_date "2021-02-04 08:23"^^xsd:dateTime ;
+    meta:generation_date "2021-02-04 11:09"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference biolinkml: ;
-            metatype:prefix_prefix "biolinkml" ],
+    meta:prefixes [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
+            metatype:prefix_prefix "termci" ],
+        [ meta:prefix_reference <http://snomed.info/id/> ;
+            metatype:prefix_prefix "sct" ],
         [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
             metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference skos: ;
             metatype:prefix_prefix "skos" ],
-        [ meta:prefix_reference <http://snomed.info/id/> ;
-            metatype:prefix_prefix "sct" ],
-        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
-            metatype:prefix_prefix "termci" ],
-        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
-            metatype:prefix_prefix "dc" ] ;
+        [ meta:prefix_reference biolinkml: ;
+            metatype:prefix_prefix "biolinkml" ] ;
     meta:slots <https://hotecosystem.org/termci/code>,
         <https://hotecosystem.org/termci/concept_uri>,
         <https://hotecosystem.org/termci/contents>,
@@ -42,8 +42,8 @@
         <https://hotecosystem.org/termci/prefix>,
         <https://hotecosystem.org/termci/reference>,
         <https://hotecosystem.org/termci/root_concept> ;
-    meta:source_file_date "Thu Feb  4 08:23:00 2021"^^xsd:dateTime ;
-    meta:source_file_size 3511 ;
+    meta:source_file_date "Thu Feb  4 10:55:15 2021"^^xsd:dateTime ;
+    meta:source_file_size 3519 ;
     meta:types <https://hotecosystem.org/termci/boolean>,
         <https://hotecosystem.org/termci/date>,
         <https://hotecosystem.org/termci/datetime>,
@@ -164,6 +164,7 @@
     skos:inScheme <https://w3id.org/termci_schema> ;
     meta:domain_of <https://hotecosystem.org/termci/Package> ;
     meta:inlined true ;
+    meta:inlined_as_list true ;
     meta:multivalued true ;
     meta:owner <https://hotecosystem.org/termci/Package> ;
     meta:range <https://hotecosystem.org/termci/ConceptSystem> ;
@@ -171,7 +172,7 @@
     metatype:alias "system" .
 
 <https://hotecosystem.org/termci/system> a metatype:SlotDefinition ;
-    meta:inlined true ;
+    meta:inlined_as_list true ;
     meta:multivalued true ;
     meta:range <https://hotecosystem.org/termci/ConceptSystem> .
 

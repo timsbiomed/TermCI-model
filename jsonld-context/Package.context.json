@@ -1,0 +1,13 @@
+{
+    "@context":[
+        "termci_namespaces.context.json",
+        {
+            "@vocab": "https://hotecosystem.org/termci/",
+            "system": {
+                "@type": "@id",
+                "@context": "ConceptSystem.context.json",
+                "@container": "@list"
+            }
+        }
+    ]
+}
