@@ -13,7 +13,7 @@ prefixes:
   dc: http://purl.org/dc/elements/1.1/
   sct: http://snomed.info/id/
 
-default_prefix: sct
+default_prefix: termci
 default_range: string
 
 slots:

@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-02 14:14
+# Generation date: 2021-02-04 08:23
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -39,7 +39,7 @@ SCT = CurieNamespace('sct', 'http://snomed.info/id/')
 SH = CurieNamespace('sh', 'http://www.w3.org/ns/shacl#')
 SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
 TERMCI = CurieNamespace('termci', 'https://hotecosystem.org/termci/')
-DEFAULT_ = SCT
+DEFAULT_ = TERMCI
 
 
 # Types
@@ -63,7 +63,7 @@ class ConceptReference(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = SKOS.Concept
     class_class_curie: ClassVar[str] = "skos:Concept"
     class_name: ClassVar[str] = "ConceptReference"
-    class_model_uri: ClassVar[URIRef] = SCT.ConceptReference
+    class_model_uri: ClassVar[URIRef] = TERMCI.ConceptReference
 
     uri: Union[str, ConceptReferenceUri] = None
     code: str = None
@@ -120,7 +120,7 @@ class ConceptSystem(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = SKOS.ConceptScheme
     class_class_curie: ClassVar[str] = "skos:ConceptScheme"
     class_name: ClassVar[str] = "ConceptSystem"
-    class_model_uri: ClassVar[URIRef] = SCT.ConceptSystem
+    class_model_uri: ClassVar[URIRef] = TERMCI.ConceptSystem
 
     namespace: Union[str, ConceptSystemNamespace] = None
     prefix: Union[str, NCName] = None
@@ -171,10 +171,10 @@ class Package(YAMLRoot):
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = SCT.Package
-    class_class_curie: ClassVar[str] = "sct:Package"
+    class_class_uri: ClassVar[URIRef] = TERMCI.Package
+    class_class_curie: ClassVar[str] = "termci:Package"
     class_name: ClassVar[str] = "Package"
-    class_model_uri: ClassVar[URIRef] = SCT.Package
+    class_model_uri: ClassVar[URIRef] = TERMCI.Package
 
     system: Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]] = empty_dict()
 
@@ -196,40 +196,40 @@ class slots:
     pass
 
 slots.code = Slot(uri=SKOS.notation, name="code", curie=SKOS.curie('notation'),
-                   model_uri=SCT.code, domain=None, range=str)
+                   model_uri=TERMCI.code, domain=None, range=str)
 
 slots.designation = Slot(uri=SKOS.prefLabel, name="designation", curie=SKOS.curie('prefLabel'),
-                   model_uri=SCT.designation, domain=None, range=Optional[str])
+                   model_uri=TERMCI.designation, domain=None, range=Optional[str])
 
 slots.definition = Slot(uri=SKOS.definition, name="definition", curie=SKOS.curie('definition'),
-                   model_uri=SCT.definition, domain=None, range=Optional[str])
+                   model_uri=TERMCI.definition, domain=None, range=Optional[str])
 
 slots.reference = Slot(uri=SKOS.seeAlso, name="reference", curie=SKOS.curie('seeAlso'),
-                   model_uri=SCT.reference, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
+                   model_uri=TERMCI.reference, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
 
 slots.defined_in = Slot(uri=SKOS.inScheme, name="defined_in", curie=SKOS.curie('inScheme'),
-                   model_uri=SCT.defined_in, domain=None, range=Union[str, ConceptSystemNamespace])
+                   model_uri=TERMCI.defined_in, domain=None, range=Union[str, ConceptSystemNamespace])
 
 slots.narrower_than = Slot(uri=SKOS.broader, name="narrower_than", curie=SKOS.curie('broader'),
-                   model_uri=SCT.narrower_than, domain=None, range=Optional[Union[Union[str, ConceptReferenceUri], List[Union[str, ConceptReferenceUri]]]])
+                   model_uri=TERMCI.narrower_than, domain=None, range=Optional[Union[Union[str, ConceptReferenceUri], List[Union[str, ConceptReferenceUri]]]])
 
 slots.prefix = Slot(uri=SH.prefix, name="prefix", curie=SH.curie('prefix'),
-                   model_uri=SCT.prefix, domain=None, range=Union[str, NCName])
+                   model_uri=TERMCI.prefix, domain=None, range=Union[str, NCName])
 
 slots.namespace = Slot(uri=SH.namespace, name="namespace", curie=SH.curie('namespace'),
-                   model_uri=SCT.namespace, domain=None, range=URIRef)
+                   model_uri=TERMCI.namespace, domain=None, range=URIRef)
 
 slots.root_concept = Slot(uri=SKOS.hasTopConcept, name="root_concept", curie=SKOS.curie('hasTopConcept'),
-                   model_uri=SCT.root_concept, domain=None, range=Optional[Union[Union[str, ConceptReferenceUri], List[Union[str, ConceptReferenceUri]]]])
+                   model_uri=TERMCI.root_concept, domain=None, range=Optional[Union[Union[str, ConceptReferenceUri], List[Union[str, ConceptReferenceUri]]]])
 
 slots.description = Slot(uri=DC.description, name="description", curie=DC.curie('description'),
-                   model_uri=SCT.description, domain=None, range=Optional[str])
+                   model_uri=TERMCI.description, domain=None, range=Optional[str])
 
-slots.concept_uri = Slot(uri=SCT.uri, name="concept_uri", curie=SCT.curie('uri'),
-                   model_uri=SCT.concept_uri, domain=None, range=URIRef)
+slots.concept_uri = Slot(uri=TERMCI.uri, name="concept_uri", curie=TERMCI.curie('uri'),
+                   model_uri=TERMCI.concept_uri, domain=None, range=URIRef)
 
-slots.contents = Slot(uri=SCT.contents, name="contents", curie=SCT.curie('contents'),
-                   model_uri=SCT.contents, domain=None, range=Optional[Union[Dict[Union[str, ConceptReferenceUri], Union[dict, ConceptReference]], List[Union[dict, ConceptReference]]]])
+slots.contents = Slot(uri=TERMCI.contents, name="contents", curie=TERMCI.curie('contents'),
+                   model_uri=TERMCI.contents, domain=None, range=Optional[Union[Dict[Union[str, ConceptReferenceUri], Union[dict, ConceptReference]], List[Union[dict, ConceptReference]]]])
 
-slots.package__system = Slot(uri=SCT.system, name="package__system", curie=SCT.curie('system'),
-                   model_uri=SCT.package__system, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])
+slots.package__system = Slot(uri=TERMCI.system, name="package__system", curie=TERMCI.curie('system'),
+                   model_uri=TERMCI.package__system, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])

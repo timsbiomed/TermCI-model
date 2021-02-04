@@ -7,62 +7,62 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://snomed.info/id/termci_schema> a metatype:SchemaDefinition ;
+<https://hotecosystem.org/termci/termci_schema> a metatype:SchemaDefinition ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:classes <http://snomed.info/id/ConceptReference>,
-        <http://snomed.info/id/ConceptSystem>,
-        <http://snomed.info/id/Package> ;
-    meta:default_range <http://snomed.info/id/string> ;
-    meta:generation_date "2021-02-02 14:14"^^xsd:dateTime ;
+    meta:classes <https://hotecosystem.org/termci/ConceptReference>,
+        <https://hotecosystem.org/termci/ConceptSystem>,
+        <https://hotecosystem.org/termci/Package> ;
+    meta:default_range <https://hotecosystem.org/termci/string> ;
+    meta:generation_date "2021-02-04 08:23"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
-            metatype:prefix_prefix "dc" ],
+    meta:prefixes [ meta:prefix_reference biolinkml: ;
+            metatype:prefix_prefix "biolinkml" ],
+        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ],
         [ meta:prefix_reference skos: ;
             metatype:prefix_prefix "skos" ],
         [ meta:prefix_reference <http://snomed.info/id/> ;
             metatype:prefix_prefix "sct" ],
         [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
             metatype:prefix_prefix "termci" ],
-        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
-            metatype:prefix_prefix "sh" ],
-        [ meta:prefix_reference biolinkml: ;
-            metatype:prefix_prefix "biolinkml" ] ;
-    meta:slots <http://snomed.info/id/code>,
-        <http://snomed.info/id/concept_uri>,
-        <http://snomed.info/id/contents>,
-        <http://snomed.info/id/defined_in>,
-        <http://snomed.info/id/definition>,
-        <http://snomed.info/id/description>,
-        <http://snomed.info/id/designation>,
-        <http://snomed.info/id/namespace>,
-        <http://snomed.info/id/narrower_than>,
-        <http://snomed.info/id/package__system>,
-        <http://snomed.info/id/prefix>,
-        <http://snomed.info/id/reference>,
-        <http://snomed.info/id/root_concept> ;
-    meta:source_file_date "Tue Feb  2 13:54:11 2021"^^xsd:dateTime ;
-    meta:source_file_size 3508 ;
-    meta:types <http://snomed.info/id/boolean>,
-        <http://snomed.info/id/date>,
-        <http://snomed.info/id/datetime>,
-        <http://snomed.info/id/decimal>,
-        <http://snomed.info/id/double>,
-        <http://snomed.info/id/float>,
-        <http://snomed.info/id/integer>,
-        <http://snomed.info/id/ncname>,
-        <http://snomed.info/id/nodeidentifier>,
-        <http://snomed.info/id/objectidentifier>,
-        <http://snomed.info/id/string>,
-        <http://snomed.info/id/time>,
-        <http://snomed.info/id/uri>,
-        <http://snomed.info/id/uriorcurie> ;
-    metatype:default_prefix "sct" ;
+        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ] ;
+    meta:slots <https://hotecosystem.org/termci/code>,
+        <https://hotecosystem.org/termci/concept_uri>,
+        <https://hotecosystem.org/termci/contents>,
+        <https://hotecosystem.org/termci/defined_in>,
+        <https://hotecosystem.org/termci/definition>,
+        <https://hotecosystem.org/termci/description>,
+        <https://hotecosystem.org/termci/designation>,
+        <https://hotecosystem.org/termci/namespace>,
+        <https://hotecosystem.org/termci/narrower_than>,
+        <https://hotecosystem.org/termci/package__system>,
+        <https://hotecosystem.org/termci/prefix>,
+        <https://hotecosystem.org/termci/reference>,
+        <https://hotecosystem.org/termci/root_concept> ;
+    meta:source_file_date "Thu Feb  4 08:23:00 2021"^^xsd:dateTime ;
+    meta:source_file_size 3511 ;
+    meta:types <https://hotecosystem.org/termci/boolean>,
+        <https://hotecosystem.org/termci/date>,
+        <https://hotecosystem.org/termci/datetime>,
+        <https://hotecosystem.org/termci/decimal>,
+        <https://hotecosystem.org/termci/double>,
+        <https://hotecosystem.org/termci/float>,
+        <https://hotecosystem.org/termci/integer>,
+        <https://hotecosystem.org/termci/ncname>,
+        <https://hotecosystem.org/termci/nodeidentifier>,
+        <https://hotecosystem.org/termci/objectidentifier>,
+        <https://hotecosystem.org/termci/string>,
+        <https://hotecosystem.org/termci/time>,
+        <https://hotecosystem.org/termci/uri>,
+        <https://hotecosystem.org/termci/uriorcurie> ;
+    metatype:default_prefix "termci" ;
     metatype:metamodel_version "1.7.0" ;
     metatype:source_file "termci_schema.yaml" .
 
-<http://snomed.info/id/boolean> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/boolean> a metatype:TypeDefinition ;
     skos:definition "A binary (true or false) value" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Boolean ;
@@ -71,7 +71,7 @@
     metatype:repr "bool" ;
     meta:uri xsd:boolean .
 
-<http://snomed.info/id/date> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/date> a metatype:TypeDefinition ;
     skos:definition "a date (year, month and day) in an idealized calendar" ;
     skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" ;
     skos:inScheme biolinkml:types ;
@@ -81,7 +81,7 @@
     metatype:repr "str" ;
     meta:uri xsd:date .
 
-<http://snomed.info/id/datetime> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/datetime> a metatype:TypeDefinition ;
     skos:definition "The combination of a date and time" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Datetime ;
@@ -90,7 +90,7 @@
     metatype:repr "str" ;
     meta:uri xsd:dateTime .
 
-<http://snomed.info/id/decimal> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/decimal> a metatype:TypeDefinition ;
     skos:definition "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Decimal ;
@@ -98,7 +98,7 @@
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:decimal .
 
-<http://snomed.info/id/double> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/double> a metatype:TypeDefinition ;
     skos:definition "A real number that conforms to the xsd:double specification" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Double ;
@@ -106,7 +106,7 @@
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:double .
 
-<http://snomed.info/id/float> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/float> a metatype:TypeDefinition ;
     skos:definition "A real number that conforms to the xsd:float specification" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Float ;
@@ -114,7 +114,7 @@
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:float .
 
-<http://snomed.info/id/integer> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/integer> a metatype:TypeDefinition ;
     skos:definition "An integer" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Integer ;
@@ -122,7 +122,7 @@
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:integer .
 
-<http://snomed.info/id/nodeidentifier> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/nodeidentifier> a metatype:TypeDefinition ;
     skos:definition "A URI, CURIE or BNODE that represents a node in a model." ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Nodeidentifier ;
@@ -131,7 +131,7 @@
     metatype:repr "str" ;
     meta:uri shex:nonLiteral .
 
-<http://snomed.info/id/objectidentifier> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/objectidentifier> a metatype:TypeDefinition ;
     skos:definition "A URI or CURIE that represents an object in the model." ;
     skos:inScheme biolinkml:types ;
     skos:note "Used for inheritence and type checking" ;
@@ -141,7 +141,7 @@
     metatype:repr "str" ;
     meta:uri shex:iri .
 
-<http://snomed.info/id/time> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/time> a metatype:TypeDefinition ;
     skos:definition "A time object represents a (local) time of day, independent of any particular day" ;
     skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" ;
     skos:inScheme biolinkml:types ;
@@ -151,7 +151,7 @@
     metatype:repr "str" ;
     meta:uri xsd:dateTime .
 
-<http://snomed.info/id/ncname> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/ncname> a metatype:TypeDefinition ;
     skos:definition "Prefix part of CURIE" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Ncname ;
@@ -160,22 +160,22 @@
     metatype:repr "str" ;
     meta:uri xsd:string .
 
-<http://snomed.info/id/package__system> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/package__system> a metatype:SlotDefinition ;
     skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:domain_of <http://snomed.info/id/Package> ;
+    meta:domain_of <https://hotecosystem.org/termci/Package> ;
     meta:inlined true ;
     meta:multivalued true ;
-    meta:owner <http://snomed.info/id/Package> ;
-    meta:range <http://snomed.info/id/ConceptSystem> ;
-    meta:slot_uri <http://snomed.info/id/system> ;
+    meta:owner <https://hotecosystem.org/termci/Package> ;
+    meta:range <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:slot_uri <https://hotecosystem.org/termci/system> ;
     metatype:alias "system" .
 
-<http://snomed.info/id/system> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/system> a metatype:SlotDefinition ;
     meta:inlined true ;
     meta:multivalued true ;
-    meta:range <http://snomed.info/id/ConceptSystem> .
+    meta:range <https://hotecosystem.org/termci/ConceptSystem> .
 
-<http://snomed.info/id/uriorcurie> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/uriorcurie> a metatype:TypeDefinition ;
     skos:definition "a URI or a CURIE" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Uriorcurie ;
@@ -184,142 +184,142 @@
     metatype:repr "str" ;
     meta:uri xsd:anyURI .
 
-<http://snomed.info/id/code> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/code> a metatype:SlotDefinition ;
     skos:definition "The official code of this entry" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:notation ;
-    meta:definition_uri <http://snomed.info/id/code> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference> ;
-    meta:owner <http://snomed.info/id/ConceptReference> ;
-    meta:range <http://snomed.info/id/string> ;
+    meta:definition_uri <https://hotecosystem.org/termci/code> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
     meta:required true ;
     meta:slot_uri skos:notation .
 
-<http://snomed.info/id/concept_uri> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/concept_uri> a metatype:SlotDefinition ;
     skos:definition "The URI or CURIE or a code entry" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:definition_uri <http://snomed.info/id/concept_uri> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference> ;
+    meta:definition_uri <https://hotecosystem.org/termci/concept_uri> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference> ;
     meta:identifier true ;
-    meta:owner <http://snomed.info/id/ConceptReference> ;
-    meta:range <http://snomed.info/id/uriorcurie> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:range <https://hotecosystem.org/termci/uriorcurie> ;
     meta:required true ;
-    meta:slot_uri <http://snomed.info/id/uri> ;
+    meta:slot_uri <https://hotecosystem.org/termci/uri> ;
     metatype:alias "uri" .
 
-<http://snomed.info/id/defined_in> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/defined_in> a metatype:SlotDefinition ;
     skos:definition "The terminological resource (ontology, classification scheme, concept system, etc.) that defines this code" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:inScheme ;
-    meta:definition_uri <http://snomed.info/id/defined_in> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference> ;
-    meta:owner <http://snomed.info/id/ConceptReference> ;
-    meta:range <http://snomed.info/id/ConceptSystem> ;
+    meta:definition_uri <https://hotecosystem.org/termci/defined_in> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:range <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:required true ;
     meta:slot_uri skos:inScheme .
 
-<http://snomed.info/id/definition> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/definition> a metatype:SlotDefinition ;
     skos:definition "The \"preferred\" textual definition of this code in the context of a particular community or language" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:definition ;
-    meta:definition_uri <http://snomed.info/id/definition> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference> ;
-    meta:owner <http://snomed.info/id/ConceptReference> ;
-    meta:range <http://snomed.info/id/string> ;
+    meta:definition_uri <https://hotecosystem.org/termci/definition> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
     meta:slot_uri skos:definition .
 
-<http://snomed.info/id/description> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/description> a metatype:SlotDefinition ;
     skos:definition "The description of a concept system" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation <dc:description> ;
-    meta:definition_uri <http://snomed.info/id/description> ;
-    meta:domain_of <http://snomed.info/id/ConceptSystem> ;
-    meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/string> ;
+    meta:definition_uri <https://hotecosystem.org/termci/description> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
     meta:slot_uri <http://purl.org/dc/elements/1.1/description> .
 
-<http://snomed.info/id/designation> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/designation> a metatype:SlotDefinition ;
     skos:definition "The preferred label or text in the context of a particular community or language" ;
     skos:editorialNote "Designation should never be used as an identifier.  They are strictly informative" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:prefLabel ;
-    meta:definition_uri <http://snomed.info/id/designation> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference> ;
-    meta:owner <http://snomed.info/id/ConceptReference> ;
-    meta:range <http://snomed.info/id/string> ;
+    meta:definition_uri <https://hotecosystem.org/termci/designation> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
     meta:slot_uri skos:prefLabel .
 
-<http://snomed.info/id/namespace> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/namespace> a metatype:SlotDefinition ;
     skos:definition "A known namespace URI assigned to this concept system/prefix" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation <sh:namespace> ;
-    meta:definition_uri <http://snomed.info/id/namespace> ;
-    meta:domain_of <http://snomed.info/id/ConceptSystem> ;
+    meta:definition_uri <https://hotecosystem.org/termci/namespace> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:identifier true ;
-    meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/uri> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/uri> ;
     meta:required true ;
     meta:slot_uri <http://www.w3.org/ns/shacl#namespace> .
 
-<http://snomed.info/id/narrower_than> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/narrower_than> a metatype:SlotDefinition ;
     skos:definition """A reference to a SKOS concept whose intended meaning or extension is broader than this entry in the defining concept
 system""" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:broader ;
-    meta:definition_uri <http://snomed.info/id/narrower_than> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference> ;
+    meta:definition_uri <https://hotecosystem.org/termci/narrower_than> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference> ;
     meta:multivalued true ;
-    meta:owner <http://snomed.info/id/ConceptReference> ;
-    meta:range <http://snomed.info/id/ConceptReference> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:range <https://hotecosystem.org/termci/ConceptReference> ;
     meta:slot_uri skos:broader .
 
-<http://snomed.info/id/prefix> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/prefix> a metatype:SlotDefinition ;
     skos:definition "The official prefix assigned to a concept system" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation <sh:prefix> ;
-    meta:definition_uri <http://snomed.info/id/prefix> ;
-    meta:domain_of <http://snomed.info/id/ConceptSystem> ;
-    meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/ncname> ;
+    meta:definition_uri <https://hotecosystem.org/termci/prefix> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/ncname> ;
     meta:required true ;
     meta:slot_uri <http://www.w3.org/ns/shacl#prefix> .
 
-<http://snomed.info/id/root_concept> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/root_concept> a metatype:SlotDefinition ;
     skos:definition "A concept that has no broader concepts in a ConceptSystem" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:hasTopConcept ;
-    meta:definition_uri <http://snomed.info/id/root_concept> ;
-    meta:domain_of <http://snomed.info/id/ConceptSystem> ;
+    meta:definition_uri <https://hotecosystem.org/termci/root_concept> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:multivalued true ;
-    meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/ConceptReference> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/ConceptReference> ;
     meta:slot_uri skos:hasTopConcept .
 
-<http://snomed.info/id/contents> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/contents> a metatype:SlotDefinition ;
     skos:definition "The concept references that are in the ConceptSystem" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:definition_uri <http://snomed.info/id/contents> ;
-    meta:domain_of <http://snomed.info/id/ConceptSystem> ;
+    meta:definition_uri <https://hotecosystem.org/termci/contents> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:inlined true ;
     meta:inlined_as_list true ;
     meta:multivalued true ;
-    meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/ConceptReference> ;
-    meta:slot_uri <http://snomed.info/id/contents> .
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:slot_uri <https://hotecosystem.org/termci/contents> .
 
-<http://snomed.info/id/reference> a metatype:SlotDefinition ;
+<https://hotecosystem.org/termci/reference> a metatype:SlotDefinition ;
     skos:definition "A link that provides additional information about this entry" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:seeAlso ;
-    meta:definition_uri <http://snomed.info/id/reference> ;
-    meta:domain_of <http://snomed.info/id/ConceptReference>,
-        <http://snomed.info/id/ConceptSystem> ;
+    meta:definition_uri <https://hotecosystem.org/termci/reference> ;
+    meta:domain_of <https://hotecosystem.org/termci/ConceptReference>,
+        <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:multivalued true ;
-    meta:owner <http://snomed.info/id/ConceptSystem> ;
-    meta:range <http://snomed.info/id/uri> ;
+    meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:range <https://hotecosystem.org/termci/uri> ;
     meta:slot_uri skos:seeAlso .
 
-<http://snomed.info/id/uri> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/uri> a metatype:TypeDefinition ;
     skos:definition "a complete URI" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:Uri ;
@@ -328,15 +328,15 @@ system""" ;
     metatype:repr "str" ;
     meta:uri xsd:anyURI .
 
-<http://snomed.info/id/Package> a metatype:ClassDefinition ;
+<https://hotecosystem.org/termci/Package> a metatype:ClassDefinition ;
     skos:definition "A collection of ConceptSystems" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
-    meta:attributes <http://snomed.info/id/system> ;
-    meta:class_uri <http://snomed.info/id/Package> ;
-    meta:definition_uri <http://snomed.info/id/Package> ;
-    meta:slots <http://snomed.info/id/package__system> .
+    meta:attributes <https://hotecosystem.org/termci/system> ;
+    meta:class_uri <https://hotecosystem.org/termci/Package> ;
+    meta:definition_uri <https://hotecosystem.org/termci/Package> ;
+    meta:slots <https://hotecosystem.org/termci/package__system> .
 
-<http://snomed.info/id/string> a metatype:TypeDefinition ;
+<https://hotecosystem.org/termci/string> a metatype:TypeDefinition ;
     skos:definition "A character string" ;
     skos:inScheme biolinkml:types ;
     meta:definition_uri metatype:String ;
@@ -344,32 +344,32 @@ system""" ;
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:string .
 
-<http://snomed.info/id/ConceptSystem> a metatype:ClassDefinition ;
+<https://hotecosystem.org/termci/ConceptSystem> a metatype:ClassDefinition ;
     skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:ConceptScheme ;
     meta:class_uri skos:ConceptScheme ;
-    meta:definition_uri <http://snomed.info/id/ConceptSystem> ;
-    meta:slots <http://snomed.info/id/contents>,
-        <http://snomed.info/id/description>,
-        <http://snomed.info/id/namespace>,
-        <http://snomed.info/id/prefix>,
-        <http://snomed.info/id/reference>,
-        <http://snomed.info/id/root_concept> .
+    meta:definition_uri <https://hotecosystem.org/termci/ConceptSystem> ;
+    meta:slots <https://hotecosystem.org/termci/contents>,
+        <https://hotecosystem.org/termci/description>,
+        <https://hotecosystem.org/termci/namespace>,
+        <https://hotecosystem.org/termci/prefix>,
+        <https://hotecosystem.org/termci/reference>,
+        <https://hotecosystem.org/termci/root_concept> .
 
-<http://snomed.info/id/ConceptReference> a metatype:ClassDefinition ;
+<https://hotecosystem.org/termci/ConceptReference> a metatype:ClassDefinition ;
     skos:definition "A minimal description of a class, individual, term or similar construct" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
     skos:mappingRelation skos:Concept ;
     meta:class_uri skos:Concept ;
-    meta:definition_uri <http://snomed.info/id/ConceptReference> ;
-    meta:slots <http://snomed.info/id/code>,
-        <http://snomed.info/id/concept_uri>,
-        <http://snomed.info/id/defined_in>,
-        <http://snomed.info/id/definition>,
-        <http://snomed.info/id/designation>,
-        <http://snomed.info/id/narrower_than>,
-        <http://snomed.info/id/reference> .
+    meta:definition_uri <https://hotecosystem.org/termci/ConceptReference> ;
+    meta:slots <https://hotecosystem.org/termci/code>,
+        <https://hotecosystem.org/termci/concept_uri>,
+        <https://hotecosystem.org/termci/defined_in>,
+        <https://hotecosystem.org/termci/definition>,
+        <https://hotecosystem.org/termci/designation>,
+        <https://hotecosystem.org/termci/narrower_than>,
+        <https://hotecosystem.org/termci/reference> .
 
 
 

@@ -18,13 +18,13 @@ class BasicsTestCase(unittest.TestCase):
         snomed.contents.append(
             ConceptReference(SCT['74400008'], code='74400008', defined_in=snomed.namespace,
                              designation="Appendicitis (disorder)",  reference=SCT['74400008'],
-                             narrower_than=['18526009', '300307005']))
+                             narrower_than=[SCT['18526009'], SCT['300307005']]))
         snomed.__post_init__()
         p = Package(snomed)
         print(as_yaml(p))
         print(as_json(as_json_object(p)))
         g = as_rdf(p, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
-        print(g.serialize(format='turtle').decode())
+        print(g.serialize(format='json-ld').decode())
 
     def test_obo_sample(self):
         e1 = ConceptReference(OBO['NCI_C147796'], code="C147796", defined_in=OBO,
@@ -32,8 +32,11 @@ class BasicsTestCase(unittest.TestCase):
                               definition="Trauma Symptom Checklist for Young Children (TSCYC) Please indicate how often"
                                          " the child has done, felt, or experienced each of the following things in the "
                                          "last month: Being frightened of men.", narrower_than=OBO.NCIT_C147557)
-        g = as_rdf(e1, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
+        c1 = ConceptSystem(OBO, "OBO", contents=[e1])
+        p1 = Package({OBO:c1})
+        g = as_rdf(p1, contexts=os.path.abspath('../jsonld-context/termci_schema.context.json'))
         print(g.serialize(format='turtle').decode())
+        print(g.serialize(format='json-ld').decode())
 
 if __name__ == '__main__':
     unittest.main()
