@@ -22,7 +22,7 @@
     "narrower_than": {
       "@type": "@id",
       "@id": "skos:broader",
-      "@container": "@list",
+      "@container": "@set",
       "@context": "ConceptReference.context.json"
     }
   }

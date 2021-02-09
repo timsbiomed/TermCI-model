@@ -59,7 +59,7 @@ gen-python: $(patsubst %, target/python/%.py, $(SCHEMA_NAMES))
 target/python/%.py: $(SCHEMA_DIR)/%.yaml  tdir-python
 	pipenv run gen-py-classes --no-mergeimports $(GEN_OPTS) $< > $@
 
-###  -- MARKDOWN DOCS --
+###  -- GRAPHQL --
 gen-graphql:target/graphql/$(SCHEMA_NAME).graphql 
 target/graphql/%.graphql: $(SCHEMA_DIR)/%.yaml tdir-graphql
 	pipenv run gen-graphql $(GEN_OPTS) $< > $@

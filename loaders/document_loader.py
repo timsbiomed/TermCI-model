@@ -1,3 +1,4 @@
+import json
 import os
 
 from pyld.jsonld import requests_document_loader, JsonLdError
@@ -34,8 +35,8 @@ def pyld_document_loader(**kwargs):
             return {
                 'contentType': 'text/plain',
                 'contextUrl': None,
-                'documentUrl': url,
-                'document': url
+                'documentUrl': None,
+                'document': json.loads(url)
             }
 
         # process relative URL
@@ -56,7 +57,7 @@ def pyld_document_loader(**kwargs):
                     'contentType': 'text/plain',
                     'contextUrl': None,
                     'documentUrl': url,
-                    'document': doc
+                    'document': json.loads(doc)
                 }
             except Exception as cause:
                 raise JsonLdError(

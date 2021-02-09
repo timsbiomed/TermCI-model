@@ -1,0 +1,5 @@
+{
+  "@context": "../context/Package.context.json",
+  "@omitGraph": true,
+  "@type": "termci:Package"
+}

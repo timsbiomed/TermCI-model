@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-biolinkml = ">=1.7.0"
-pyld = "*"
+biolinkml = { git = "https://github.com/biolink/biolinkml" }
+pyld = {editable = true, git = "https://github.com/hsolbrig/pyld"}
 rdflib-pyld-compat = "*"
 
 [dev-packages]

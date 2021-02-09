@@ -1,5 +1,0 @@
-{
-  "@context": "https://raw.githubusercontent.com/HOT-Ecosystem/TermCI-model/main/jsonld-context/termci_schema.context.json",
-  "@omitGraph": true,
-  "@type": "termci:Package"
-}

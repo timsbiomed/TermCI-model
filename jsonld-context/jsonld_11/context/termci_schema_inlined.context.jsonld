@@ -11,7 +11,7 @@
     "@vocab": "https://hotecosystem.org/termci/",
     "system": {
       "@type": "@id",
-      "@container": "@list",
+      "@container": "@set",
       "@context": {}
     },
     "ConceptReference": {
@@ -67,11 +67,11 @@
         "root_concept": {
           "@type": "@id",
           "@id": "skos:hasTopConcept",
-          "@container": "@list"
+          "@container": "@set"
         },
         "contents": {
           "@type": "@id",
-          "@container": "@list"
+          "@container": "@set"
         }
       }
     }
