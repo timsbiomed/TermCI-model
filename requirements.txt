@@ -10,6 +10,6 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
-biolinkml>=1.7.0
-pyld
+-e git+https://github.com/hsolbrig/pyld#egg=pyld
+biolinkml
 rdflib-pyld-compat
