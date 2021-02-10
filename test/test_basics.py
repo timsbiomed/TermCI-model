@@ -18,6 +18,7 @@ NCIT = Namespace("http://purl.obolibrary.org/obo/NCI_")
 
 CWD = os.path.abspath(os.path.dirname(__file__))
 CONTEXT_DIR = os.path.abspath(os.path.join(CWD, '../jsonld-context'))
+
 LD_10_DIR = os.path.join(CONTEXT_DIR, 'jsonld_10/context')
 LD_11_DIR = os.path.join(CONTEXT_DIR, 'jsonld_11/context')
 

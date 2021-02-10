@@ -14,8 +14,9 @@ This directory contains a variety of contexts for use with the JSON-LD module
 * [ConceptSystem.context.jsonld]() - ConceptSystem context (hand generated)
 * [ConceptReference.context.jsonld]() - ConceptReference context (hand generated)
 * [termci_namespaces.context.jsonld]() - experimental module for separate namespaces, including explicit namespace
-  identifier for namespaces that end with a '_'
-* [termci_schema_inlined.context.jsonld]() - Nested contexts inlined
+  identifier for namespaces that end with a '_' (hand generated)
+* [termci_schema_inlined.context.jsonld]() - Nested contexts inlined (generated using context_flattener.py starting
+  with Package.context.jsonld)
   
 ### frame directory
 * [termci_schema.frame.jsonld]() - frame that links directly to Package

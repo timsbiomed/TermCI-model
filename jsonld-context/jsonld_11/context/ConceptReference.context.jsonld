@@ -1,6 +1,6 @@
 {
   "@context": {
-    "@import": "termci_namespaces.context.json",
+    "@import": "termci_namespaces.context.jsonld",
     "uri": "@id",
     "code": {
       "@id": "skos:notation"
@@ -17,13 +17,12 @@
     "defined_in": {
       "@type": "@id",
       "@id": "skos:inScheme",
-      "@context": "ConceptSystem.context.json"
+      "@context": "ConceptSystem.context.jsonld"
     },
     "narrower_than": {
       "@type": "@id",
       "@id": "skos:broader",
-      "@container": "@set",
-      "@context": "ConceptReference.context.json"
+      "@context": "ConceptReference.context.jsonld"
     }
   }
 }

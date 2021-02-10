@@ -1,12 +1,13 @@
 {
-  "@context": {
-    "@import": "termci_namespaces.context.jsonld",
-    "@vocab": "https://hotecosystem.org/termci/",
-    "system": {
-      "@type": "@id",
-      "@id": "termci:system",
-      "@context": "ConceptSystem.context.json",
-      "@container": "@set"
+  "@context": [
+    "termci_namespaces.context.jsonld",
+    {
+      "@vocab": "https://hotecosystem.org/termci/",
+      "system": {
+        "@type": "@id",
+        "@id": "termci:system",
+        "@context": "ConceptSystem.context.jsonld"
+      }
     }
-  }
+  ]
 }

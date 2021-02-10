@@ -1,6 +1,6 @@
-from biolinkml.utils.context_utils import CONTEXTS_PARAM_TYPE, merge_contexts
+from biolinkml.utils.context_utils import CONTEXTS_PARAM_TYPE
 from biolinkml.utils.yamlutils import YAMLRoot, as_json_object
-from jsonasobj import as_json, JsonObj
+from jsonasobj import as_json
 
 
 def strip_nulls(obj: dict) -> dict:
@@ -8,10 +8,11 @@ def strip_nulls(obj: dict) -> dict:
     return {k: v for k, v in obj.items() if v or v is False}
 
 
-def dump(element: YAMLRoot, contexts: CONTEXTS_PARAM_TYPE = None) -> JsonObj:
+def dump(element: YAMLRoot, to_file: str, contexts: CONTEXTS_PARAM_TYPE = None) -> None:
     """
-    Return element as a JSON or JSON-LD object
+    Write element as json to to_file
     :param element: LinkML object to be emitted
+    :param to_file: file to write to
     :param contexts: JSON-LD context(s) in the form of:
         * file name
         * URL
@@ -19,9 +20,9 @@ def dump(element: YAMLRoot, contexts: CONTEXTS_PARAM_TYPE = None) -> JsonObj:
         * dict
         * JSON Object
         * A list containing elements of any type named above
-    :return: JSON Object representing the element
     """
-    return as_json_object(element, contexts)
+    with open(to_file, 'w') as outf:
+        outf.write(dumps(element, contexts))
 
 
 def dumps(element: YAMLRoot, contexts: CONTEXTS_PARAM_TYPE = None) -> str:
@@ -37,4 +38,4 @@ def dumps(element: YAMLRoot, contexts: CONTEXTS_PARAM_TYPE = None) -> str:
         * A list containing elements of any type named above
     :return: JSON Object representing the element
     """
-    return as_json(dump(element, contexts), filtr=strip_nulls)
+    return as_json(as_json_object(element, contexts), filtr=strip_nulls, indent='  ')

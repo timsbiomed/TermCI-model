@@ -6,6 +6,10 @@
         "sct": "http://snomed.info/id/",
         "sh": "http://www.w3.org/ns/shacl#",
         "skos": "http://www.w3.org/2004/02/skos/core#",
-        "termci": "https://hotecosystem.org/termci/"
+        "termci": "https://hotecosystem.org/termci/",
+        "ncit": {
+            "@value": "http://purl.obolibrary.org/obo/NCI_",
+            "@prefix": true
+        }
     }
 }

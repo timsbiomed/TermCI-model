@@ -39,8 +39,11 @@ def flatten_dict(ctxt: str, base: str, seen: Optional[List[str]] = None) -> dict
 
 
 def flatten(ctxt: str, base: str) -> str:
+    print('_'*10 + f' Flattening {os.path.join(base, ctxt)}')
     return json.dumps(flatten_dict(ctxt, base), indent=2)
 
-outdir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../jsonld-context'))
-with open(os.path.join(outdir, "termci_schema_frame_inlined.json"), 'w') as outf:
-    outf.write(flatten('termci_schema_frame.json', outdir))
+
+ctxt_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../jsonld-context/jsonld_11/context'))
+ctxt = flatten('Package.context.jsonld', ctxt_dir)
+with open(os.path.join(ctxt_dir, 'termci_schema_inlined.context.jsonld'), 'w') as outf:
+    outf.write(ctxt)

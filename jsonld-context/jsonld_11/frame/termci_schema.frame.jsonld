@@ -1,5 +1,16 @@
 {
   "@context": "../context/Package.context.json",
   "@omitGraph": true,
-  "@type": "termci:Package"
+  "@type": "termci:Package",
+  "system": {
+    "@embed": "always",
+    "contents": {
+      "defined_in": {
+        "@embed": "never"
+      },
+      "narrower_than": {
+        "@embed": "never"
+      }
+    }
+  }
 }
