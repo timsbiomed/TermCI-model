@@ -14,7 +14,7 @@
             "http://purl.obolibrary.org/obo/NCI_C147796"
           ],
           "narrower_than": [
-            "http://purl.obolibrary.org/obo/NCIT_C147557"
+            "http://purl.obolibrary.org/obo/NCI_C147557"
           ]
         },
         {
@@ -30,5 +30,5 @@
       ]
     }
   ],
-  "type": "Package"
+  "@type": "Package"
 }
