@@ -26,7 +26,7 @@ This directory contains a variety of contexts for use with the JSON-LD module
 ```bash
 > cd jsonld-context
 > docker image build . -t context_server
-> docker run -it --rm -d -p <port>:80 --name context_server -v `pwd`:/usr/share/nginx/html context_server
+> docker run -it --rm -d -p 80:80 -p 443:443 --name context_server -v `pwd`/html:/usr/share/nginx/html context_server 
 ``
 
 ## TODO
