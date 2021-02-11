@@ -4,10 +4,13 @@ LABEL maintainer="Harold Solbrig <solbrig@jhu.edu>"
 LABEL description="Local docker image for TermCI context"]
 
 # Add the application/ld+json to the mime types setting
-COPY ./mime.types /etc/nginx/mime.types
+COPY nginx/mime.types /etc/nginx/mime.types
 
 # Include the various CORS settings and the like into the config file
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY nginx/context_server.crt /etc/nginx/certs/context_server.crt
+COPY nginx/context_server.key /etc/nginx/certs/context_server.key
 
 # Get am image of vim into the container
 RUN apt-get update -y && \
