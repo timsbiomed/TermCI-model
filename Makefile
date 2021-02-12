@@ -95,8 +95,9 @@ target/rdf/%.ttl: $(SCHEMA_DIR)/%.yaml tdir-rdf
 	pipenv run gen-rdf $(GEN_OPTS) $< > $@
 
 ### -- JSONLD Context --
-gen-jsonld-context: target/jsonld-context/$(SCHEMA_NAME).context.json
-target/jsonld-context/%.context.json: $(SCHEMA_DIR)/%.yaml tdir-jsonld-context
+gen-jsonld-context: target/jsonld-context/html/jsonld_10/$(SCHEMA_NAME).context.jsonld
+target/jsonld-context/html/jsonld_10/%.context.jsonld: $(SCHEMA_DIR)/%.yaml tdir-jsonld-context
+	mkdir -p target/jsonld-context/html/jsonld_10
 	pipenv run gen-jsonld-context $(GEN_OPTS) $< > $@
 
 ###  -- LinkML --

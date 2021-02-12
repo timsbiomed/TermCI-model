@@ -5,7 +5,7 @@ from jsonasobj import as_json
 
 def strip_nulls(obj: dict) -> dict:
     """ Don't emit None, empty lists and empty dictionaries """
-    return {k: v for k, v in obj.items() if v or v is False}
+    return {k: v for k, v in obj.items() if not (v is None or v == [] or v == {})}
 
 
 def dump(element: YAMLRoot, to_file: str, contexts: CONTEXTS_PARAM_TYPE = None) -> None:

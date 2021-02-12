@@ -11,7 +11,7 @@ type ConceptReference
 
 type ConceptSystem
   {
-    prefix: Ncname!
+    prefix: String!
     namespace: Uri!
     description: String
     reference: [Uri]

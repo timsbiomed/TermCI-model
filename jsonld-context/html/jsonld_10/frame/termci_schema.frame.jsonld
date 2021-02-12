@@ -1,5 +1,0 @@
-{
-  "@context": "termci.context.jsonld",
-  "@omitGraph": true,
-  "@type": "termci:Package"
-}

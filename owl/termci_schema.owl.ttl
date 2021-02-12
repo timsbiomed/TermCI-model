@@ -92,6 +92,15 @@ meta:package__system a owl:ObjectProperty,
             owl:qualifiedCardinality 1 ] ;
     skos:definition "An integer" .
 
+<https://w3id.org/biolink/biolinkml/meta/types/Ncname> a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "ncname" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "Prefix part of CURIE" .
+
 <https://w3id.org/biolink/biolinkml/meta/types/Nodeidentifier> a owl:Class,
         meta:TypeDefinition ;
     rdfs:label "nodeidentifier" ;
@@ -125,10 +134,10 @@ meta:package__system a owl:ObjectProperty,
     rdfs:label "termci_schema" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Terminology Code Index model" ;
-    meta:generation_date "2021-02-04 11:09" ;
+    meta:generation_date "2021-02-12 11:22" ;
     meta:metamodel_version "1.7.0" ;
     meta:source_file "termci_schema.yaml" ;
-    meta:source_file_date "Thu Feb  4 10:55:15 2021" ;
+    meta:source_file_date "Fri Feb 12 11:19:04 2021" ;
     meta:source_file_size 3519 .
 
 <https://hotecosystem.org/termci/code> a owl:ObjectProperty,
@@ -184,7 +193,7 @@ system""" .
 <https://hotecosystem.org/termci/prefix> a owl:ObjectProperty,
         meta:SlotDefinition ;
     rdfs:label "prefix" ;
-    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
+    rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/String> ;
     skos:definition "The official prefix assigned to a concept system" .
 
 <https://hotecosystem.org/termci/root_concept> a owl:ObjectProperty,
@@ -198,15 +207,6 @@ system""" .
     rdfs:label "reference" ;
     rdfs:range <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
     skos:definition "A link that provides additional information about this entry" .
-
-<https://w3id.org/biolink/biolinkml/meta/types/Ncname> a owl:Class,
-        meta:TypeDefinition ;
-    rdfs:label "ncname" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty meta:topValue ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:definition "Prefix part of CURIE" .
 
 <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> a owl:Class,
         meta:TypeDefinition ;
@@ -225,15 +225,12 @@ meta:ClassDefinition a owl:Class ;
         meta:ClassDefinition ;
     rdfs:label "ConceptSystem" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/description> ],
+        [ a owl:Restriction ;
             owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
             owl:onProperty <https://hotecosystem.org/termci/contents> ],
-        [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Ncname> ;
-            owl:onProperty <https://hotecosystem.org/termci/prefix> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
-            owl:onProperty <https://hotecosystem.org/termci/root_concept> ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
             owl:onProperty <https://hotecosystem.org/termci/reference> ],
@@ -242,9 +239,12 @@ meta:ClassDefinition a owl:Class ;
             owl:onProperty <https://hotecosystem.org/termci/namespace> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
+            owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;
+            owl:onProperty <https://hotecosystem.org/termci/root_concept> ],
+        [ a owl:Restriction ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://hotecosystem.org/termci/description> ] ;
+            owl:onProperty <https://hotecosystem.org/termci/prefix> ;
+            owl:qualifiedCardinality 1 ] ;
     skos:definition "A terminological resource (ontology, classification scheme, concept system, etc.)" ;
     skos:exactMatch skos:ConceptScheme .
 
@@ -265,10 +265,6 @@ meta:ClassDefinition a owl:Class ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <https://hotecosystem.org/termci/definition> ],
         [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
-            owl:onProperty meta:uri ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
             owl:onProperty <https://hotecosystem.org/termci/designation> ],
@@ -276,12 +272,16 @@ meta:ClassDefinition a owl:Class ;
             owl:allValuesFrom <https://w3id.org/biolink/biolinkml/meta/types/Uri> ;
             owl:onProperty <https://hotecosystem.org/termci/reference> ],
         [ a owl:Restriction ;
-            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
-            owl:onProperty <https://hotecosystem.org/termci/code> ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/Uriorcurie> ;
+            owl:onProperty meta:uri ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:onClass <https://hotecosystem.org/termci/ConceptSystem> ;
             owl:onProperty <https://hotecosystem.org/termci/defined_in> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass <https://w3id.org/biolink/biolinkml/meta/types/String> ;
+            owl:onProperty <https://hotecosystem.org/termci/code> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://hotecosystem.org/termci/ConceptReference> ;

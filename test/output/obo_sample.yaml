@@ -12,7 +12,7 @@ system:
     reference:
     - http://purl.obolibrary.org/obo/NCI_C147796
     narrower_than:
-    - http://purl.obolibrary.org/obo/NCIT_C147557
+    - http://purl.obolibrary.org/obo/NCI_C147557
   - uri: http://purl.obolibrary.org/obo/NCI_C147557
     code: C147557
     defined_in: http://purl.obolibrary.org/obo/

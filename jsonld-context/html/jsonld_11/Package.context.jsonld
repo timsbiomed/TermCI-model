@@ -9,5 +9,18 @@
         "@context": "ConceptSystem.context.jsonld"
       }
     }
-  ]
+  ],
+  "@omitGraph": true,
+  "@type": "termci:Package",
+  "system": {
+    "@embed": "@always",
+    "contents": {
+      "defined_in": {
+        "@embed": "@never"
+      },
+      "narrower_than": {
+        "@embed": "@never"
+      }
+    }
+  }
 }

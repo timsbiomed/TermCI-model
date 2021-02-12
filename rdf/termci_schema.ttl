@@ -14,21 +14,21 @@
         <https://hotecosystem.org/termci/ConceptSystem>,
         <https://hotecosystem.org/termci/Package> ;
     meta:default_range <https://hotecosystem.org/termci/string> ;
-    meta:generation_date "2021-02-04 11:09"^^xsd:dateTime ;
+    meta:generation_date "2021-02-12 11:22"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
-            metatype:prefix_prefix "dc" ],
-        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
-            metatype:prefix_prefix "termci" ],
-        [ meta:prefix_reference <http://snomed.info/id/> ;
-            metatype:prefix_prefix "sct" ],
-        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
-            metatype:prefix_prefix "sh" ],
+    meta:prefixes [ meta:prefix_reference biolinkml: ;
+            metatype:prefix_prefix "biolinkml" ],
         [ meta:prefix_reference skos: ;
             metatype:prefix_prefix "skos" ],
-        [ meta:prefix_reference biolinkml: ;
-            metatype:prefix_prefix "biolinkml" ] ;
+        [ meta:prefix_reference <http://snomed.info/id/> ;
+            metatype:prefix_prefix "sct" ],
+        [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
+            metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
+            metatype:prefix_prefix "sh" ],
+        [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
+            metatype:prefix_prefix "termci" ] ;
     meta:slots <https://hotecosystem.org/termci/code>,
         <https://hotecosystem.org/termci/concept_uri>,
         <https://hotecosystem.org/termci/contents>,
@@ -42,7 +42,7 @@
         <https://hotecosystem.org/termci/prefix>,
         <https://hotecosystem.org/termci/reference>,
         <https://hotecosystem.org/termci/root_concept> ;
-    meta:source_file_date "Thu Feb  4 10:55:15 2021"^^xsd:dateTime ;
+    meta:source_file_date "Fri Feb 12 11:19:04 2021"^^xsd:dateTime ;
     meta:source_file_size 3519 ;
     meta:types <https://hotecosystem.org/termci/boolean>,
         <https://hotecosystem.org/termci/date>,
@@ -122,6 +122,15 @@
     metatype:imported_from "biolinkml:types" ;
     meta:uri xsd:integer .
 
+<https://hotecosystem.org/termci/ncname> a metatype:TypeDefinition ;
+    skos:definition "Prefix part of CURIE" ;
+    skos:inScheme biolinkml:types ;
+    meta:definition_uri metatype:Ncname ;
+    metatype:base "NCName" ;
+    metatype:imported_from "biolinkml:types" ;
+    metatype:repr "str" ;
+    meta:uri xsd:string .
+
 <https://hotecosystem.org/termci/nodeidentifier> a metatype:TypeDefinition ;
     skos:definition "A URI, CURIE or BNODE that represents a node in a model." ;
     skos:inScheme biolinkml:types ;
@@ -150,15 +159,6 @@
     metatype:imported_from "biolinkml:types" ;
     metatype:repr "str" ;
     meta:uri xsd:dateTime .
-
-<https://hotecosystem.org/termci/ncname> a metatype:TypeDefinition ;
-    skos:definition "Prefix part of CURIE" ;
-    skos:inScheme biolinkml:types ;
-    meta:definition_uri metatype:Ncname ;
-    metatype:base "NCName" ;
-    metatype:imported_from "biolinkml:types" ;
-    metatype:repr "str" ;
-    meta:uri xsd:string .
 
 <https://hotecosystem.org/termci/package__system> a metatype:SlotDefinition ;
     skos:inScheme <https://w3id.org/termci_schema> ;
@@ -281,7 +281,7 @@ system""" ;
     meta:definition_uri <https://hotecosystem.org/termci/prefix> ;
     meta:domain_of <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
-    meta:range <https://hotecosystem.org/termci/ncname> ;
+    meta:range <https://hotecosystem.org/termci/string> ;
     meta:required true ;
     meta:slot_uri <http://www.w3.org/ns/shacl#prefix> .
 

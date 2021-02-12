@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-04 10:55
+# Generation date: 2021-02-12 11:22
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -24,8 +24,8 @@ from biolinkml.utils.formatutils import camelcase, underscore, sfx
 from biolinkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from biolinkml.utils.curienamespace import CurieNamespace
-from biolinkml.utils.metamodelcore import NCName, URI, URIorCURIE
-from includes.types import Ncname, String, Uri, Uriorcurie
+from biolinkml.utils.metamodelcore import URI, URIorCURIE
+from includes.types import String, Uri, Uriorcurie
 
 metamodel_version = "1.7.0"
 
@@ -123,7 +123,7 @@ class ConceptSystem(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = TERMCI.ConceptSystem
 
     namespace: Union[str, ConceptSystemNamespace] = None
-    prefix: Union[str, NCName] = None
+    prefix: str = None
     description: Optional[str] = None
     reference: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
     root_concept: Optional[Union[Union[str, ConceptReferenceUri], List[Union[str, ConceptReferenceUri]]]] = empty_list()
@@ -137,8 +137,8 @@ class ConceptSystem(YAMLRoot):
 
         if self.prefix is None:
             raise ValueError("prefix must be supplied")
-        if not isinstance(self.prefix, NCName):
-            self.prefix = NCName(self.prefix)
+        if not isinstance(self.prefix, str):
+            self.prefix = str(self.prefix)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -157,7 +157,7 @@ class ConceptSystem(YAMLRoot):
 
         if self.contents is None:
             self.contents = []
-        if not isinstance(self.contents, (list, dict)):
+        if not isinstance(self.contents, (list)):
             self.contents = [self.contents]
         self._normalize_inlined_slot(slot_name="contents", slot_type=ConceptReference, key_name="uri", inlined_as_list=True, keyed=True)
 
@@ -181,7 +181,7 @@ class Package(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.system is None:
             self.system = []
-        if not isinstance(self.system, (list, dict)):
+        if not isinstance(self.system, (list)):
             self.system = [self.system]
         self._normalize_inlined_slot(slot_name="system", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=True, keyed=True)
 
@@ -214,7 +214,7 @@ slots.narrower_than = Slot(uri=SKOS.broader, name="narrower_than", curie=SKOS.cu
                    model_uri=TERMCI.narrower_than, domain=None, range=Optional[Union[Union[str, ConceptReferenceUri], List[Union[str, ConceptReferenceUri]]]])
 
 slots.prefix = Slot(uri=SH.prefix, name="prefix", curie=SH.curie('prefix'),
-                   model_uri=TERMCI.prefix, domain=None, range=Union[str, NCName])
+                   model_uri=TERMCI.prefix, domain=None, range=str)
 
 slots.namespace = Slot(uri=SH.namespace, name="namespace", curie=SH.curie('namespace'),
                    model_uri=TERMCI.namespace, domain=None, range=URIRef)

@@ -1,8 +1,7 @@
 import json
-import os
+from urllib.parse import urlparse, urljoin
 
 from pyld.jsonld import requests_document_loader, JsonLdError
-from urllib.parse import urlparse, urljoin
 
 
 def pyld_document_loader(**kwargs):
@@ -12,8 +11,7 @@ def pyld_document_loader(**kwargs):
     Can be used to setup extra Requests args such as verify, cert, timeout,
     or others.
 
-    :param secure: require all requests to use HTTPS (default: False).
-    :param **kwargs: extra keyword args for Requests get() call.
+    :param kwargs: extra keyword args for Requests get() call.
 
     :return: the RemoteDocument loader function.
     """
@@ -24,6 +22,7 @@ def pyld_document_loader(**kwargs):
 
         :param url: the URL to retrieve.
         :param prev_url: Dictionary to carry the previous URL referenced
+        :param options: Additional options
 
         :return: the RemoteDocument.
         """

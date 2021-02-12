@@ -2,6 +2,8 @@ import json
 import os
 from typing import List, Optional, Union
 
+from loaders import LD_11_DIR
+
 
 def flatten_dict(ctxt: str, base: str, seen: Optional[List[str]] = None) -> dict:
 
@@ -32,7 +34,7 @@ def flatten_dict(ctxt: str, base: str, seen: Optional[List[str]] = None) -> dict
     elif ctxt in seen:
         return {}
     seen.append(ctxt)
-    with open (os.path.join(base, ctxt)) as f:
+    with open(os.path.join(base, ctxt)) as f:
         rval = map_dict(json.load(f), seen)
     seen.pop()
     return rval
@@ -43,7 +45,6 @@ def flatten(ctxt: str, base: str) -> str:
     return json.dumps(flatten_dict(ctxt, base), indent=2)
 
 
-ctxt_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../jsonld-context/jsonld_11/context'))
-ctxt = flatten('Package.context.jsonld', ctxt_dir)
-with open(os.path.join(ctxt_dir, 'termci_schema_inlined.context.jsonld'), 'w') as outf:
-    outf.write(ctxt)
+ctxt_file = flatten('Package.context.jsonld', LD_11_DIR)
+with open(os.path.join(LD_11_DIR, 'termci_schema_inlined.context.jsonld'), 'w') as outf:
+    outf.write(ctxt_file)

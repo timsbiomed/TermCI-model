@@ -48,7 +48,7 @@ metatype:Nodeidentifier NONLITERAL
 }
 
 <ConceptSystem> CLOSED {
-    (  $<ConceptSystem_tes> (  sh:prefix @metatype:Ncname ;
+    (  $<ConceptSystem_tes> (  sh:prefix @metatype:String ;
           dc:description @metatype:String ? ;
           skos:seeAlso @metatype:Uri * ;
           skos:hasTopConcept @<ConceptReference> * ;

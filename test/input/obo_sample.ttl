@@ -1,4 +1,5 @@
 @prefix ncit: <http://purl.obolibrary.org/obo/NCI_> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix termci: <https://hotecosystem.org/termci/> .
 
@@ -16,7 +17,8 @@ ncit:C147557 skos:broader ncit:C91102 ;
     skos:prefLabel "TSCYC Questionnaire Question" .
 
 <http://purl.obolibrary.org/obo/> skos:hasConcept ncit:C147557,
-        ncit:C147796 .
+        ncit:C147796 ;
+    sh:prefix "OBO" .
 
 [] a termci:Package ;
     termci:system <http://purl.obolibrary.org/obo/> .

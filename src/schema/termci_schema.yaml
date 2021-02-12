@@ -68,7 +68,7 @@ slots:
     required: false
 
   prefix:
-    range: ncname
+    range: string
     description: |-
       The official prefix assigned to a concept system
     required: true
