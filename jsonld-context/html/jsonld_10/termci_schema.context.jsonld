@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-03-24 08:09\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
+   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-03-24 11:36\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
    "@context": {
       "type": "@type",
       "biolinkml": "https://w3id.org/biolink/biolinkml/",
@@ -30,6 +30,10 @@
       "designation": {
          "@id": "skos:prefLabel"
       },
+      "members": {
+         "@type": "@id",
+         "@id": "skos:member"
+      },
       "namespace": "@id",
       "narrower_than": {
          "@type": "@id",
@@ -48,6 +52,9 @@
       "root_concept": {
          "@type": "@id",
          "@id": "skos:hasTopConcept"
+      },
+      "CodeSet": {
+         "@id": "skos:CodeSet"
       },
       "ConceptReference": {
          "@id": "skos:Concept"

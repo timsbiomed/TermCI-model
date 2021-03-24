@@ -2,6 +2,36 @@
    "$id": "https://w3id.org/termci_schema",
    "$schema": "http://json-schema.org/draft-07/schema#",
    "definitions": {
+      "CodeSet": {
+         "additionalProperties": false,
+         "description": "A collection of terminological concept references",
+         "properties": {
+            "definition": {
+               "description": "The \"preferred\" textual definition of this code in the context of a particular community or language",
+               "type": "string"
+            },
+            "description": {
+               "description": "The description of a concept system",
+               "type": "string"
+            },
+            "members": {
+               "description": "The concept references that are in the CodeSet",
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "uri": {
+               "description": "The URI or CURIE of a code set ",
+               "type": "string"
+            }
+         },
+         "required": [
+            "uri"
+         ],
+         "title": "CodeSet",
+         "type": "object"
+      },
       "ConceptReference": {
          "additionalProperties": false,
          "description": "A minimal description of a class, individual, term or similar construct",
