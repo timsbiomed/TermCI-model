@@ -12,6 +12,7 @@ prefixes:
   sh: http://www.w3.org/ns/shacl#
   dc: http://purl.org/dc/elements/1.1/
   sct: http://snomed.info/id/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
 
 default_prefix: termci
 default_range: string
@@ -46,7 +47,7 @@ slots:
     range: uri
     description: |-
       A link that provides additional information about this entry
-    slot_uri: skos:seeAlso
+    slot_uri: rdfs:seeAlso
     multivalued: true
     required: false
 

@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-02-12 11:22
+# Generation date: 2021-03-24 08:08
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -35,6 +35,7 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 # Namespaces
 BIOLINKML = CurieNamespace('biolinkml', 'https://w3id.org/biolink/biolinkml/')
 DC = CurieNamespace('dc', 'http://purl.org/dc/elements/1.1/')
+RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
 SCT = CurieNamespace('sct', 'http://snomed.info/id/')
 SH = CurieNamespace('sh', 'http://www.w3.org/ns/shacl#')
 SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
@@ -157,7 +158,7 @@ class ConceptSystem(YAMLRoot):
 
         if self.contents is None:
             self.contents = []
-        if not isinstance(self.contents, (list)):
+        if not isinstance(self.contents, (list, dict)):
             self.contents = [self.contents]
         self._normalize_inlined_slot(slot_name="contents", slot_type=ConceptReference, key_name="uri", inlined_as_list=True, keyed=True)
 
@@ -181,7 +182,7 @@ class Package(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.system is None:
             self.system = []
-        if not isinstance(self.system, (list)):
+        if not isinstance(self.system, (list, dict)):
             self.system = [self.system]
         self._normalize_inlined_slot(slot_name="system", slot_type=ConceptSystem, key_name="namespace", inlined_as_list=True, keyed=True)
 
@@ -204,7 +205,7 @@ slots.designation = Slot(uri=SKOS.prefLabel, name="designation", curie=SKOS.curi
 slots.definition = Slot(uri=SKOS.definition, name="definition", curie=SKOS.curie('definition'),
                    model_uri=TERMCI.definition, domain=None, range=Optional[str])
 
-slots.reference = Slot(uri=SKOS.seeAlso, name="reference", curie=SKOS.curie('seeAlso'),
+slots.reference = Slot(uri=RDFS.seeAlso, name="reference", curie=RDFS.curie('seeAlso'),
                    model_uri=TERMCI.reference, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
 
 slots.defined_in = Slot(uri=SKOS.inScheme, name="defined_in", curie=SKOS.curie('inScheme'),

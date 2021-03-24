@@ -3,6 +3,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix meta: <https://w3id.org/biolink/biolinkml/meta/> .
 @prefix metatype: <https://w3id.org/biolink/biolinkml/meta/types/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix shex: <http://www.w3.org/ns/shex#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -14,19 +15,21 @@
         <https://hotecosystem.org/termci/ConceptSystem>,
         <https://hotecosystem.org/termci/Package> ;
     meta:default_range <https://hotecosystem.org/termci/string> ;
-    meta:generation_date "2021-02-12 11:22"^^xsd:dateTime ;
+    meta:generation_date "2021-03-24 08:09"^^xsd:dateTime ;
     meta:id <https://w3id.org/termci_schema> ;
     meta:imports biolinkml:types ;
-    meta:prefixes [ meta:prefix_reference biolinkml: ;
-            metatype:prefix_prefix "biolinkml" ],
-        [ meta:prefix_reference skos: ;
-            metatype:prefix_prefix "skos" ],
-        [ meta:prefix_reference <http://snomed.info/id/> ;
+    meta:prefixes [ meta:prefix_reference <http://snomed.info/id/> ;
             metatype:prefix_prefix "sct" ],
         [ meta:prefix_reference <http://purl.org/dc/elements/1.1/> ;
             metatype:prefix_prefix "dc" ],
+        [ meta:prefix_reference rdfs: ;
+            metatype:prefix_prefix "rdfs" ],
+        [ meta:prefix_reference biolinkml: ;
+            metatype:prefix_prefix "biolinkml" ],
         [ meta:prefix_reference <http://www.w3.org/ns/shacl#> ;
             metatype:prefix_prefix "sh" ],
+        [ meta:prefix_reference skos: ;
+            metatype:prefix_prefix "skos" ],
         [ meta:prefix_reference <https://hotecosystem.org/termci/> ;
             metatype:prefix_prefix "termci" ] ;
     meta:slots <https://hotecosystem.org/termci/code>,
@@ -42,8 +45,8 @@
         <https://hotecosystem.org/termci/prefix>,
         <https://hotecosystem.org/termci/reference>,
         <https://hotecosystem.org/termci/root_concept> ;
-    meta:source_file_date "Fri Feb 12 11:19:04 2021"^^xsd:dateTime ;
-    meta:source_file_size 3519 ;
+    meta:source_file_date "Wed Mar 24 08:08:31 2021"^^xsd:dateTime ;
+    meta:source_file_size 3565 ;
     meta:types <https://hotecosystem.org/termci/boolean>,
         <https://hotecosystem.org/termci/date>,
         <https://hotecosystem.org/termci/datetime>,
@@ -311,14 +314,14 @@ system""" ;
 <https://hotecosystem.org/termci/reference> a metatype:SlotDefinition ;
     skos:definition "A link that provides additional information about this entry" ;
     skos:inScheme <https://w3id.org/termci_schema> ;
-    skos:mappingRelation skos:seeAlso ;
+    skos:mappingRelation rdfs:seeAlso ;
     meta:definition_uri <https://hotecosystem.org/termci/reference> ;
     meta:domain_of <https://hotecosystem.org/termci/ConceptReference>,
         <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:multivalued true ;
     meta:owner <https://hotecosystem.org/termci/ConceptSystem> ;
     meta:range <https://hotecosystem.org/termci/uri> ;
-    meta:slot_uri skos:seeAlso .
+    meta:slot_uri rdfs:seeAlso .
 
 <https://hotecosystem.org/termci/uri> a metatype:TypeDefinition ;
     skos:definition "a complete URI" ;
