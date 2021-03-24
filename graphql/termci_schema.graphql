@@ -1,3 +1,11 @@
+type CodeSet
+  {
+    description: String
+    definition: String
+    uri: Uriorcurie!
+    members: [Uriorcurie]
+  }
+
 type ConceptReference
   {
     uri: Uriorcurie!

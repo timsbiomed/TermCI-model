@@ -1,5 +1,5 @@
 # Auto generated from termci_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-03-24 08:08
+# Generation date: 2021-03-24 11:36
 # Schema: termci_schema
 #
 # id: https://w3id.org/termci_schema
@@ -51,6 +51,10 @@ class ConceptReferenceUri(URIorCURIE):
 
 
 class ConceptSystemNamespace(URI):
+    pass
+
+
+class CodeSetUri(URIorCURIE):
     pass
 
 
@@ -166,6 +170,44 @@ class ConceptSystem(YAMLRoot):
 
 
 @dataclass
+class CodeSet(YAMLRoot):
+    """
+    A collection of terminological concept references
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SKOS.CodeSet
+    class_class_curie: ClassVar[str] = "skos:CodeSet"
+    class_name: ClassVar[str] = "CodeSet"
+    class_model_uri: ClassVar[URIRef] = TERMCI.CodeSet
+
+    uri: Union[str, CodeSetUri] = None
+    description: Optional[str] = None
+    definition: Optional[str] = None
+    members: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.uri is None:
+            raise ValueError("uri must be supplied")
+        if not isinstance(self.uri, CodeSetUri):
+            self.uri = CodeSetUri(self.uri)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.definition is not None and not isinstance(self.definition, str):
+            self.definition = str(self.definition)
+
+        if self.members is None:
+            self.members = []
+        if not isinstance(self.members, list):
+            self.members = [self.members]
+        self.members = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.members]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
 class Package(YAMLRoot):
     """
     A collection of ConceptSystems
@@ -231,6 +273,12 @@ slots.concept_uri = Slot(uri=TERMCI.uri, name="concept_uri", curie=TERMCI.curie(
 
 slots.contents = Slot(uri=TERMCI.contents, name="contents", curie=TERMCI.curie('contents'),
                    model_uri=TERMCI.contents, domain=None, range=Optional[Union[Dict[Union[str, ConceptReferenceUri], Union[dict, ConceptReference]], List[Union[dict, ConceptReference]]]])
+
+slots.code_set_uri = Slot(uri=TERMCI.uri, name="code_set_uri", curie=TERMCI.curie('uri'),
+                   model_uri=TERMCI.code_set_uri, domain=None, range=URIRef)
+
+slots.members = Slot(uri=SKOS.member, name="members", curie=SKOS.curie('member'),
+                   model_uri=TERMCI.members, domain=None, range=Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]])
 
 slots.package__system = Slot(uri=TERMCI.system, name="package__system", curie=TERMCI.curie('system'),
                    model_uri=TERMCI.package__system, domain=None, range=Optional[Union[Dict[Union[str, ConceptSystemNamespace], Union[dict, ConceptSystem]], List[Union[dict, ConceptSystem]]]])

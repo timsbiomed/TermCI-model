@@ -36,6 +36,15 @@ metatype:Objectidentifier IRI
 
 metatype:Nodeidentifier NONLITERAL
 
+<CodeSet> CLOSED {
+    (  $<CodeSet_tes> (  dc:description @metatype:String ? ;
+          skos:definition @metatype:String ? ;
+          skos:member @metatype:Uriorcurie *
+       ) ;
+       rdf:type [ skos:CodeSet ]
+    )
+}
+
 <ConceptReference> CLOSED {
     (  $<ConceptReference_tes> (  skos:notation @metatype:String ;
           skos:prefLabel @metatype:String ? ;
