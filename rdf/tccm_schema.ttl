@@ -15,24 +15,24 @@
         <https://hotecosystem.org/tccm/Package> ;
     linkml:default_prefix "tccm" ;
     linkml:default_range <https://hotecosystem.org/tccm/string> ;
-    linkml:generation_date "2021-05-11 21:33"^^xsd:dateTime ;
+    linkml:generation_date "2021-05-11 21:40"^^xsd:dateTime ;
     linkml:id <https://w3id.org/tccm_schema> ;
     linkml:imports linkml:types ;
     linkml:metamodel_version "1.7.0" ;
-    linkml:prefixes [ linkml:prefix_prefix "linkml" ;
-            linkml:prefix_reference linkml: ],
-        [ linkml:prefix_prefix "dc" ;
-            linkml:prefix_reference <http://purl.org/dc/elements/1.1/> ],
-        [ linkml:prefix_prefix "skos" ;
-            linkml:prefix_reference skos: ],
-        [ linkml:prefix_prefix "sct" ;
-            linkml:prefix_reference <http://snomed.info/id/> ],
-        [ linkml:prefix_prefix "sh" ;
-            linkml:prefix_reference <http://www.w3.org/ns/shacl#> ],
-        [ linkml:prefix_prefix "rdfs" ;
+    linkml:prefixes [ linkml:prefix_prefix "rdfs" ;
             linkml:prefix_reference rdfs: ],
         [ linkml:prefix_prefix "tccm" ;
-            linkml:prefix_reference <https://hotecosystem.org/tccm/> ] ;
+            linkml:prefix_reference <https://hotecosystem.org/tccm/> ],
+        [ linkml:prefix_prefix "skos" ;
+            linkml:prefix_reference skos: ],
+        [ linkml:prefix_prefix "linkml" ;
+            linkml:prefix_reference linkml: ],
+        [ linkml:prefix_prefix "sct" ;
+            linkml:prefix_reference <http://snomed.info/id/> ],
+        [ linkml:prefix_prefix "dc" ;
+            linkml:prefix_reference <http://purl.org/dc/elements/1.1/> ],
+        [ linkml:prefix_prefix "sh" ;
+            linkml:prefix_reference <http://www.w3.org/ns/shacl#> ] ;
     linkml:slots <https://hotecosystem.org/tccm/code>,
         <https://hotecosystem.org/tccm/code_set_uri>,
         <https://hotecosystem.org/tccm/concept_system_uri>,
@@ -49,7 +49,7 @@
         <https://hotecosystem.org/tccm/prefix>,
         <https://hotecosystem.org/tccm/reference>,
         <https://hotecosystem.org/tccm/root_concept> ;
-    linkml:source_file "termci_schema.yaml" ;
+    linkml:source_file "tccm_schema.yaml" ;
     linkml:source_file_date "Tue May 11 21:33:16 2021"^^xsd:dateTime ;
     linkml:source_file_size 4219 ;
     linkml:types <https://hotecosystem.org/tccm/boolean>,

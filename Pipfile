@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-biolinkml = { git = "https://github.com/biolink/biolinkml" }
+linkml = "*"
 pyld = {editable = true, git = "https://github.com/hsolbrig/pyld"}
 rdflib-pyld-compat = "*"
 jsonasobj = ">=1.3.1"

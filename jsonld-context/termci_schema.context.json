@@ -1,21 +1,18 @@
 {
-   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2021-05-11 21:33\n    Schema: tccm_schema\n    \n    id: https://w3id.org/tccm_schema\n    description: Terminology Core Common Model\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\nGeneration date: 2021-02-02 14:43\nSchema: termci_schema\n\nid: https://w3id.org/termci_schema\ndescription: Terminology Code Index model\nlicense: https://creativecommons.org/publicdomain/zero/1.0/\n",
    "@context": {
+      "type": "@type",
+      "biolinkml": "https://w3id.org/biolink/biolinkml/",
       "dc": "http://purl.org/dc/elements/1.1/",
-      "linkml": "https://w3id.org/linkml/",
-      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
       "sct": "http://snomed.info/id/",
       "sh": "http://www.w3.org/ns/shacl#",
       "skos": "http://www.w3.org/2004/02/skos/core#",
-      "tccm": "https://hotecosystem.org/tccm/",
-      "@vocab": "https://hotecosystem.org/tccm/",
+      "termci": "https://hotecosystem.org/termci/",
+      "@vocab": "http://snomed.info/id/",
       "code": {
          "@id": "skos:notation"
       },
       "uri": "@id",
-      "contents": {
-         "@type": "@id"
-      },
       "defined_in": {
          "@type": "@id",
          "@id": "skos:inScheme"
@@ -29,19 +26,15 @@
       "designation": {
          "@id": "skos:prefLabel"
       },
-      "members": {
-         "@type": "@id",
-         "@id": "skos:member"
-      },
-      "namespace": {
-         "@type": "@id",
-         "@id": "sh:namespace"
-      },
+      "namespace": "@id",
       "narrower_than": {
          "@type": "@id",
          "@id": "skos:broader"
       },
-      "system": {
+      "entries": {
+         "@type": "@id"
+      },
+      "systems": {
          "@type": "@id"
       },
       "prefix": {
@@ -49,16 +42,13 @@
       },
       "reference": {
          "@type": "@id",
-         "@id": "rdfs:seeAlso"
+         "@id": "skos:seeAlso"
       },
       "root_concept": {
          "@type": "@id",
          "@id": "skos:hasTopConcept"
       },
-      "CodeSet": {
-         "@id": "skos:CodeSet"
-      },
-      "ConceptReference": {
+      "ConceptEntry": {
          "@id": "skos:Concept"
       },
       "ConceptSystem": {

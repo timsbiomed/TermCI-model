@@ -1,9 +1,9 @@
 type CodeSet
   {
     description: String
-    definition: String
+    designation: String
     uri: Uriorcurie!
-    members: [Uriorcurie]
+    members: [ConceptReference]
   }
 
 type ConceptReference
@@ -19,8 +19,9 @@ type ConceptReference
 
 type ConceptSystem
   {
+    uri: Uriorcurie!
     prefix: String!
-    namespace: Uri!
+    namespace: Uri
     description: String
     reference: [Uri]
     rootConcept: [ConceptReference]

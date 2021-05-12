@@ -1,23 +1,23 @@
 {
-   "$id": "https://w3id.org/termci_schema",
+   "$id": "https://w3id.org/tccm_schema",
    "$schema": "http://json-schema.org/draft-07/schema#",
    "definitions": {
       "CodeSet": {
          "additionalProperties": false,
          "description": "A collection of terminological concept references",
          "properties": {
-            "definition": {
-               "description": "The \"preferred\" textual definition of this code in the context of a particular community or language",
-               "type": "string"
-            },
             "description": {
                "description": "The description of a concept system",
+               "type": "string"
+            },
+            "designation": {
+               "description": "The preferred label or text in the context of a particular community or language",
                "type": "string"
             },
             "members": {
                "description": "The concept references that are in the CodeSet",
                "items": {
-                  "type": "string"
+                  "$ref": "#/definitions/ConceptReference"
                },
                "type": "array"
             },
@@ -67,7 +67,7 @@
                "type": "array"
             },
             "uri": {
-               "description": "The URI or CURIE or a code entry",
+               "description": "The URI or CURIE of a code entry",
                "type": "string"
             }
          },
@@ -115,11 +115,15 @@
                   "type": "string"
                },
                "type": "array"
+            },
+            "uri": {
+               "description": "The URI or CURIE of a concept system ",
+               "type": "string"
             }
          },
          "required": [
-            "prefix",
-            "namespace"
+            "uri",
+            "prefix"
          ],
          "title": "ConceptSystem",
          "type": "object"
@@ -141,7 +145,7 @@
       }
    },
    "properties": {},
-   "title": "termci_schema",
+   "title": "tccm_schema",
    "type": "object"
 }
 

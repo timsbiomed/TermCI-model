@@ -1,20 +1,21 @@
-id: https://w3id.org/termci_schema
-name: termci_schema
+id: https://w3id.org/tccm_schema
+name: tccm_schema
 description: >-
-  Terminology Code Index model
+  Terminology Core Common Model
+
 imports:
- - biolinkml:types
+ - linkml:types
 
 prefixes:
-  biolinkml: https://w3id.org/biolink/biolinkml/
-  termci: https://hotecosystem.org/termci/
+  linkml: https://w3id.org/linkml/
+  tccm: https://hotecosystem.org/tccm/
   skos: http://www.w3.org/2004/02/skos/core#
   sh: http://www.w3.org/ns/shacl#
   dc: http://purl.org/dc/elements/1.1/
   sct: http://snomed.info/id/
   rdfs: http://www.w3.org/2000/01/rdf-schema#
 
-default_prefix: termci
+default_prefix: tccm
 default_range: string
 
 slots:
@@ -79,8 +80,14 @@ slots:
     range: uri
     description: |-
       A known namespace URI assigned to this concept system/prefix
-    identifier: true
     slot_uri: sh:namespace
+
+  concept_system_uri:
+    range: uriorcurie
+    description: |-
+      The URI or CURIE of a concept system 
+    identifier: true
+    alias: uri
 
   root_concept:
     range: ConceptReference
@@ -99,7 +106,7 @@ slots:
   concept_uri:
     range: uriorcurie
     description: |-
-      The URI or CURIE or a code entry
+      The URI or CURIE of a code entry
     identifier: true
     alias: uri
 
@@ -120,7 +127,7 @@ slots:
   members:
     description: |-
       The concept references that are in the CodeSet
-    range: uriorcurie
+    range: ConceptReference
     multivalued: true
     inlined_as_list: true
     slot_uri: skos:member    
@@ -144,6 +151,7 @@ classes:
       A terminological resource (ontology, classification scheme, concept system, etc.)
     class_uri: skos:ConceptScheme
     slots:
+      - concept_system_uri
       - prefix
       - namespace
       - description
@@ -157,7 +165,7 @@ classes:
     class_uri: skos:CodeSet
     slots:
       - description
-      - definition
+      - designation
       - code_set_uri
       - members
 

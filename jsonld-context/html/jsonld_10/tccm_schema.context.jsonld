@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from termci_schema.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2021-05-11 21:33\n    Schema: tccm_schema\n    \n    id: https://w3id.org/tccm_schema\n    description: Terminology Core Common Model\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from tccm_schema.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2021-05-11 21:40\n    Schema: tccm_schema\n    \n    id: https://w3id.org/tccm_schema\n    description: Terminology Core Common Model\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
       "dc": "http://purl.org/dc/elements/1.1/",
       "linkml": "https://w3id.org/linkml/",
