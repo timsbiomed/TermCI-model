@@ -1,0 +1,69 @@
+{
+   "_comments": "Auto generated from tccm_schema.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2021-05-11 21:40\n    Schema: tccm_schema\n    \n    id: https://w3id.org/tccm_schema\n    description: Terminology Core Common Model\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "@context": {
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "linkml": "https://w3id.org/linkml/",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "sct": "http://snomed.info/id/",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "tccm": "https://hotecosystem.org/tccm/",
+      "@vocab": "https://hotecosystem.org/tccm/",
+      "code": {
+         "@id": "skos:notation"
+      },
+      "uri": "@id",
+      "contents": {
+         "@type": "@id"
+      },
+      "defined_in": {
+         "@type": "@id",
+         "@id": "skos:inScheme"
+      },
+      "definition": {
+         "@id": "skos:definition"
+      },
+      "description": {
+         "@id": "dc:description"
+      },
+      "designation": {
+         "@id": "skos:prefLabel"
+      },
+      "members": {
+         "@type": "@id",
+         "@id": "skos:member"
+      },
+      "namespace": {
+         "@type": "@id",
+         "@id": "sh:namespace"
+      },
+      "narrower_than": {
+         "@type": "@id",
+         "@id": "skos:broader"
+      },
+      "system": {
+         "@type": "@id"
+      },
+      "prefix": {
+         "@id": "sh:prefix"
+      },
+      "reference": {
+         "@type": "@id",
+         "@id": "rdfs:seeAlso"
+      },
+      "root_concept": {
+         "@type": "@id",
+         "@id": "skos:hasTopConcept"
+      },
+      "CodeSet": {
+         "@id": "skos:CodeSet"
+      },
+      "ConceptReference": {
+         "@id": "skos:Concept"
+      },
+      "ConceptSystem": {
+         "@id": "skos:ConceptScheme"
+      }
+   }
+}
+

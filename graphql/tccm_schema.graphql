@@ -1,0 +1,36 @@
+type CodeSet
+  {
+    description: String
+    designation: String
+    uri: Uriorcurie!
+    members: [ConceptReference]
+  }
+
+type ConceptReference
+  {
+    uri: Uriorcurie!
+    code: String!
+    designation: String
+    definition: String
+    reference: [Uri]
+    definedIn: ConceptSystem!
+    narrowerThan: [ConceptReference]
+  }
+
+type ConceptSystem
+  {
+    uri: Uriorcurie!
+    prefix: String!
+    namespace: Uri
+    description: String
+    reference: [Uri]
+    rootConcept: [ConceptReference]
+    contents: [ConceptReference]
+  }
+
+type Package
+  {
+    system: [ConceptSystem]
+  }
+
+
