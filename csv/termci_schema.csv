@@ -1,6 +1,0 @@
-id,mappings,description
-CodeSet,,A collection of terminological concept references
-ConceptReference,,"A minimal description of a class, individual, term or similar construct"
-ConceptSystem,,"A terminological resource (ontology, classification scheme, concept system, etc.)"
-Package,,A collection of ConceptSystems
-
