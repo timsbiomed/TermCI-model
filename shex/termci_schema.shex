@@ -1,55 +1,55 @@
-BASE <https://hotecosystem.org/termci/>
+BASE <https://hotecosystem.org/tccm/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX sh: <http://www.w3.org/ns/shacl#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
-PREFIX metatype: <https://w3id.org/biolink/biolinkml/meta/types/>
 
 
-metatype:String xsd:string
+linkml:String xsd:string
 
-metatype:Integer xsd:integer
+linkml:Integer xsd:integer
 
-metatype:Boolean xsd:boolean
+linkml:Boolean xsd:boolean
 
-metatype:Float xsd:float
+linkml:Float xsd:float
 
-metatype:Double xsd:double
+linkml:Double xsd:double
 
-metatype:Decimal xsd:decimal
+linkml:Decimal xsd:decimal
 
-metatype:Time xsd:dateTime
+linkml:Time xsd:dateTime
 
-metatype:Date xsd:date
+linkml:Date xsd:date
 
-metatype:Datetime xsd:dateTime
+linkml:Datetime xsd:dateTime
 
-metatype:Uriorcurie IRI
+linkml:Uriorcurie IRI
 
-metatype:Uri IRI
+linkml:Uri IRI
 
-metatype:Ncname xsd:string
+linkml:Ncname xsd:string
 
-metatype:Objectidentifier IRI
+linkml:Objectidentifier IRI
 
-metatype:Nodeidentifier NONLITERAL
+linkml:Nodeidentifier NONLITERAL
 
 <CodeSet> CLOSED {
-    (  $<CodeSet_tes> (  dc:description @metatype:String ? ;
-          skos:definition @metatype:String ? ;
-          skos:member @metatype:Uriorcurie *
+    (  $<CodeSet_tes> (  dc:description @linkml:String ? ;
+          skos:prefLabel @linkml:String ? ;
+          skos:member @<ConceptReference> *
        ) ;
        rdf:type [ skos:CodeSet ]
     )
 }
 
 <ConceptReference> CLOSED {
-    (  $<ConceptReference_tes> (  skos:notation @metatype:String ;
-          skos:prefLabel @metatype:String ? ;
-          skos:definition @metatype:String ? ;
-          rdfs:seeAlso @metatype:Uri * ;
+    (  $<ConceptReference_tes> (  skos:notation @linkml:String ;
+          skos:prefLabel @linkml:String ? ;
+          skos:definition @linkml:String ? ;
+          rdfs:seeAlso @linkml:Uri * ;
           skos:inScheme @<ConceptSystem> ;
           skos:broader @<ConceptReference> *
        ) ;
@@ -58,9 +58,10 @@ metatype:Nodeidentifier NONLITERAL
 }
 
 <ConceptSystem> CLOSED {
-    (  $<ConceptSystem_tes> (  sh:prefix @metatype:String ;
-          dc:description @metatype:String ? ;
-          rdfs:seeAlso @metatype:Uri * ;
+    (  $<ConceptSystem_tes> (  sh:prefix @linkml:String ;
+          sh:namespace @linkml:Uri ? ;
+          dc:description @linkml:String ? ;
+          rdfs:seeAlso @linkml:Uri * ;
           skos:hasTopConcept @<ConceptReference> * ;
           <contents> @<ConceptReference> *
        ) ;
